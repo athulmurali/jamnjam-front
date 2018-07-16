@@ -3,7 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c817a034-e548-4413-90db-94a1c3e5d9c2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
+      <change beforePath="$PROJECT_DIR$/src/RoutedApp.js" afterPath="$PROJECT_DIR$/src/RoutedApp.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/ArtistCard.js" afterPath="$PROJECT_DIR$/src/components/ArtistCard.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/ArtistProfile.js" afterPath="$PROJECT_DIR$/src/components/ArtistProfile.js" />
+      <change beforePath="$PROJECT_DIR$/src/services/lostFmServices/Artist.js" afterPath="$PROJECT_DIR$/src/services/lostFmServices/Artist.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,13 +21,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+            <state relative-caret-position="247">
+              <caret line="102" column="57" lean-forward="false" selection-start-line="102" selection-start-column="57" selection-end-line="102" selection-end-column="57" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
                 <element signature="e#1483#1668#0" expanded="false" />
                 <element signature="e#1845#2139#0" expanded="false" />
                 <element signature="e#2166#2296#0" expanded="false" />
@@ -32,38 +38,13 @@
       <file leaf-file-name="ArtistCard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/ArtistCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
+            <state relative-caret-position="286">
+              <caret line="92" column="34" lean-forward="true" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#505#965#0" expanded="false" />
                 <element signature="e#517#549#0" expanded="false" />
-                <element signature="e#1671#2160#0" expanded="false" />
+                <element signature="e#1738#2227#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchBar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/SearchBar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="116" column="58" lean-forward="false" selection-start-line="116" selection-start-column="58" selection-end-line="116" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#2112#2154#0" expanded="false" />
-                <element signature="e#3108#3264#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="83" lean-forward="false" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -91,12 +72,16 @@
       <find>Learn</find>
       <find>Login</find>
       <find>Lo</find>
-      <find>getArtistNames</find>
       <find>console.</find>
       <find>console</find>
       <find>cons</find>
       <find>conso</find>
       <find>consol</find>
+      <find>getArtistNames</find>
+      <find>artist</find>
+      <find>getArtistInfo</find>
+      <find>a</find>
+      <find>ad</find>
     </findStrings>
     <replaceStrings>
       <replace>style</replace>
@@ -117,16 +102,16 @@
         <option value="$PROJECT_DIR$/src/components/googleSignIn.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/index.css" />
-        <option value="$PROJECT_DIR$/src/components/ArtistProfile.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
-        <option value="$PROJECT_DIR$/src/RoutedApp.js" />
         <option value="$PROJECT_DIR$/src/components/Booking.js" />
         <option value="$PROJECT_DIR$/src/components/GoogleSignIn.js" />
-        <option value="$PROJECT_DIR$/src/services/lostFmServices/Artist.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/ArtistCard.js" />
         <option value="$PROJECT_DIR$/src/components/SearchBar.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/src/RoutedApp.js" />
+        <option value="$PROJECT_DIR$/src/services/lostFmServices/Artist.js" />
+        <option value="$PROJECT_DIR$/src/components/ArtistProfile.js" />
+        <option value="$PROJECT_DIR$/src/components/ArtistCard.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
@@ -324,12 +309,12 @@
       <workItem from="1531649645907" duration="10451000" />
       <workItem from="1531714975208" duration="3261000" />
       <workItem from="1531744094738" duration="2336000" />
-      <workItem from="1531750682243" duration="18871000" />
+      <workItem from="1531750682243" duration="24062000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41437000" />
+    <option name="totallyTimeSpent" value="46628000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -342,7 +327,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2792297" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2778542" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2657512" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -376,12 +361,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/ArtistCard.js</url>
-          <line>42</line>
+          <line>45</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/ArtistCard.js</url>
-          <line>41</line>
+          <line>44</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -391,11 +376,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/ArtistCard.js</url>
-          <line>105</line>
+          <line>110</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/ArtistProfile.js</url>
+          <line>20</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -405,10 +396,9 @@
         <state relative-caret-position="285">
           <caret line="44" column="45" lean-forward="false" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
             <element signature="e#505#965#0" expanded="false" />
             <element signature="e#517#549#0" expanded="false" />
-            <element signature="e#1671#2160#0" expanded="false" />
+            <element signature="e#1738#2227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -418,7 +408,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
             <element signature="e#1483#1668#0" expanded="false" />
             <element signature="e#1845#2139#0" expanded="false" />
             <element signature="e#2166#2296#0" expanded="false" />
@@ -431,10 +420,9 @@
         <state relative-caret-position="450">
           <caret line="80" column="6" lean-forward="false" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="6" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
             <element signature="e#505#965#0" expanded="false" />
             <element signature="e#517#549#0" expanded="false" />
-            <element signature="e#1671#2160#0" expanded="false" />
+            <element signature="e#1738#2227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -444,10 +432,9 @@
         <state relative-caret-position="15">
           <caret line="1" column="29" lean-forward="true" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
             <element signature="e#505#965#0" expanded="false" />
             <element signature="e#517#549#0" expanded="false" />
-            <element signature="e#1671#2160#0" expanded="false" />
+            <element signature="e#1738#2227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -457,10 +444,9 @@
         <state relative-caret-position="705">
           <caret line="47" column="67" lean-forward="false" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="67" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
             <element signature="e#505#965#0" expanded="false" />
             <element signature="e#517#549#0" expanded="false" />
-            <element signature="e#1671#2160#0" expanded="false" />
+            <element signature="e#1738#2227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -478,7 +464,6 @@
         <state relative-caret-position="150">
           <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
             <element signature="e#1483#1668#0" expanded="false" />
             <element signature="e#1845#2139#0" expanded="false" />
             <element signature="e#2166#2296#0" expanded="false" />
@@ -491,7 +476,7 @@
         <state relative-caret-position="1350">
           <caret line="98" column="5" lean-forward="false" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
             <element signature="e#2112#2154#0" expanded="false" />
             <element signature="e#3108#3264#0" expanded="false" />
           </folding>
@@ -527,14 +512,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -548,21 +525,9 @@
         <state relative-caret-position="135">
           <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
             <element signature="e#650#740#0" expanded="false" />
             <element signature="e#757#1237#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ArtistProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="102" column="19" lean-forward="false" selection-start-line="102" selection-start-column="19" selection-end-line="107" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-            <element signature="e#1404#1468#0" expanded="false" />
-            <element signature="e#1483#1581#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -572,52 +537,16 @@
         <state relative-caret-position="315">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/lostFmServices/Artist.js">
+    <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="97" lean-forward="false" selection-start-line="19" selection-start-column="97" selection-end-line="19" selection-end-column="97" />
+        <state relative-caret-position="315">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#1483#1668#0" expanded="false" />
-            <element signature="e#1845#2139#0" expanded="false" />
-            <element signature="e#2166#2296#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RoutedApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#71#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ArtistCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#505#965#0" expanded="false" />
-            <element signature="e#517#549#0" expanded="false" />
-            <element signature="e#1671#2160#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,7 +555,7 @@
         <state relative-caret-position="64">
           <caret line="116" column="58" lean-forward="false" selection-start-line="116" selection-start-column="58" selection-end-line="116" selection-end-column="58" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
             <element signature="e#2112#2154#0" expanded="false" />
             <element signature="e#3108#3264#0" expanded="false" />
           </folding>
@@ -635,9 +564,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="83" lean-forward="false" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RoutedApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/lostFmServices/Artist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ArtistProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="144" column="74" lean-forward="false" selection-start-line="144" selection-start-column="73" selection-end-line="144" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#1560#1624#0" expanded="false" />
+            <element signature="e#1639#1737#0" expanded="false" />
+            <element signature="e#2234#2418#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ArtistCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="92" column="34" lean-forward="true" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
+          <folding>
+            <element signature="e#505#965#0" expanded="false" />
+            <element signature="e#517#549#0" expanded="false" />
+            <element signature="e#1738#2227#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="102" column="57" lean-forward="false" selection-start-line="102" selection-start-column="57" selection-end-line="102" selection-end-column="57" />
+          <folding>
+            <element signature="e#1483#1668#0" expanded="false" />
+            <element signature="e#1845#2139#0" expanded="false" />
+            <element signature="e#2166#2296#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

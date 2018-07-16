@@ -39,6 +39,9 @@ const styles = theme => ({
 function ArtistCard(props) {
     const { classes, theme } = props;
 
+    let mbid =props.mbid
+    const MY_ROUTE = `/artist/${mbid}/`;
+
     return (
         <div>
             <Card className={classes.card}
@@ -74,7 +77,8 @@ function ArtistCard(props) {
 
 
                         <Button variant="contained" color="secondary" className={classes.button}>
-                            <Link to="/artist" style={{color:"White",  textDecoration:"none"
+                            <Link to={MY_ROUTE.toString()} params={{ mbid: "12311111" }}
+                                  style={{color:"White",  textDecoration:"none"
                             }}>more</Link>
 
                         </Button>
@@ -87,7 +91,8 @@ function ArtistCard(props) {
                     image={props.imageUrl}
                     title="Live from space album cover"
                     onClick={()=>{
-                        alert("hola")
+
+                        window.location= props.site
 
 
                     }}

@@ -99,6 +99,8 @@ class App extends Component {
                                       imageUrl      =   {artistObj.image[2]["#text"]}
                                       subtitle      =    {"#" +(index+1) + " Fans : " + artistObj.listeners }
                                       loggedIn      = {!!this.state.currentUserName}
+                                      mbid ={artistObj.mbid}
+                                      site={artistObj.url}
                           />
 
                       </li>

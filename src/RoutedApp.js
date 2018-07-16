@@ -12,7 +12,7 @@ const  RoutedApp =()=> {
         <div>
             <Route exact path="/" component={App}/>
             <Route  exact path="/home" component={App}/>
-            <Route   exact path="/artist" component={ArtistProfile} />
+            <Route  exact path="/artist/:mbid" component={ArtistProfile} />
 
             <Route   exact path="/booking" component={Booking} />
 

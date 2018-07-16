@@ -11,7 +11,12 @@ import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
 
+import querySearch from "query-string";
+import Artist from "../services/lostFmServices/Artist";
 
+
+
+const artist = Artist.instance
 
 const styles = {
     masterContainer:{
@@ -46,10 +51,7 @@ const styles = {
         borderWidth:"2"
 
     },
-    cardMedia:{
-        backgroundColor:"white",
-
-    },
+    cardMedia:{alignSelf:"center",justifyContent:"space-around", borderRadius: 10},
     cover: {
         height: 0,
         paddingTop: '56.25%', // 16:9
@@ -76,14 +78,39 @@ const styles = {
 export default class ArtistProfile extends React.Component{
     constructor(props){
         super(props)
+        this.state={
+            artistInfo: {}
+        }
 
     }
+    componentDidMount(){
+        this.setState({
+            mbid:this.props.match.params.mbid
+        },()=>{
+            this.getArtistInfo(this.state.mbid)
+        })
+
+    }
+
+
+    getArtistInfo=(mbid)=>{
+
+        artist.getArtistInfo(mbid).then(response=>{
+            if (!!response.artist) this.setState({
+                artistInfo : response.artist
+            })
+
+        })
+
+    }
+
     render(){
 
         const bull = <span className={styles.bullet}>•</span>;
 
-        return(
+        if (!this.state.artistInfo.image) return null
 
+        else return(
 
             <div style={styles.masterContainer}>
                 <div style={styles.container}>
@@ -94,9 +121,12 @@ export default class ArtistProfile extends React.Component{
 
                 <CardMedia style={styles.card}>
 
-                        <img style={{alignSelf:"center",justifyContent:"space-around", borderRadius: 10}}
+                    {
+                        console.log(this.state.artistInfo.image[2]["#text"])
+                    }
+                        <img style={styles.cardMedia}
 
-                            src={"https://lastfm-img2.akamaized.net/i/u/300x300/fdc369923434b3ccb68a47aae0433a1f.png"}  />
+                            src={this.state.artistInfo.image[3]["#text"]}  />
                 </CardMedia>
                 <Card style={styles.card}>
                     <CardContent>
@@ -104,15 +134,15 @@ export default class ArtistProfile extends React.Component{
                             Artist Name
                         </Typography>
                         <Typography variant="headline" component="h2">
-                            Ed Sheeran
+                            {this.state.artistInfo.name}
                         </Typography>
 
                         <List>
                             <ListItem button divider disabled>
-                                <ListItemText primary="Rank" secondary={"#1"}/>
+                                <ListItemText primary="Rank" secondary={"Unavailable"}/>
                             </ListItem>
                             <ListItem button divider disabled>
-                                <ListItemText primary="Fans" secondary="999999" />
+                                <ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />
                             </ListItem>
                         </List>
 
@@ -121,11 +151,10 @@ export default class ArtistProfile extends React.Component{
 
 
                         <Typography style={styles.pos} color="textSecondary">
-                            adjective
+                            ABOUT
                         </Typography>
                         <Typography component="p">
-                            well meaning and kindly.<br />
-                            {'"a benevolent smile"'}
+                            {this.state.artistInfo.bio.summary}
                         </Typography>
                     </CardContent>
                     <CardActions>
