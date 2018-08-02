@@ -5,25 +5,18 @@ import ArtistProfile from "./components/ArtistProfile";
 import Booking from "./components/Booking";
 
 const  RoutedApp =()=> {
-
-    return<Router>
-
-        <div>
-
-    <Switch>
-
-            <Route  path="/" component={App}/>
-            <Route   path="/home" component={App}/>
-            <Route  path="/artist/:mbid" component={ArtistProfile} />
-
-            <Route  path="/booking" component={Booking} />
-
-
-
-    </Switch>
-    </div>
-    </Router>
-
+    return(
+        <Router>
+            <div>
+                <Switch>
+                    <Route  path="/"                component={App}/>
+                    <Route   path="/home"           component={App}/>
+                    <Route  path="/artist/:mbid"    component={ArtistProfile} />
+                    <Route  path="/booking"         component={Booking} />
+                </Switch>
+            </div>
+        </Router>
+        )
 }
 
 export default  RoutedApp
