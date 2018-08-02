@@ -6,6 +6,7 @@ import ArtistCard from "./components/ArtistCard";
 import GoogleSignIn from "./components/GoogleSignIn";
 import Artist from "./services/lostFmServices/Artist";
 import Typography from "@material-ui/core/es/Typography/Typography";
+import Logout from './components/Logout'
 const artist = Artist.instance
 class App extends Component {
     constructor(props)
@@ -19,7 +20,8 @@ class App extends Component {
     }
 
     handleLogin=(response)=>{
-        console.log(response.profileObj);
+        console.log("return from google login ")
+        console.log(response);
 
         this.setState({
             userProfileObj:response.profileObj,
@@ -58,8 +60,7 @@ class App extends Component {
 
     }
 
-    componentDidMount(){
-    }
+    componentDidMount(){}
 
   render(){
     return (
@@ -80,6 +81,7 @@ class App extends Component {
                   <Typography variant="headline" component="h3">
                       {this.state.currentUserName}
                   </Typography>
+                  <Logout></Logout>
               </div>
           }
               <SearchBar

@@ -8,17 +8,20 @@ const  RoutedApp =()=> {
 
     return<Router>
 
-    <Switch>
         <div>
-            <Route exact path="/" component={App}/>
-            <Route  exact path="/home" component={App}/>
-            <Route  exact path="/artist/:mbid" component={ArtistProfile} />
 
-            <Route   exact path="/booking" component={Booking} />
+    <Switch>
+
+            <Route  path="/" component={App}/>
+            <Route   path="/home" component={App}/>
+            <Route  path="/artist/:mbid" component={ArtistProfile} />
+
+            <Route  path="/booking" component={Booking} />
 
 
-        </div>
+
     </Switch>
+    </div>
     </Router>
 
 }
