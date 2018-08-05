@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +14,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from "@material-ui/core/es/Button/Button";
+import { LOG_IN, LOG_OUT, LOG_IN_ACT, LOG_OUT_ACT } from '../redux/actions/userAccountActions';
 
 const styles = {
     root: {
@@ -33,8 +35,11 @@ class MenuAppBar extends React.Component {
         anchorEl: null,
     };
 
-    handleChange = (event, checked) => {
-        this.setState({ auth: checked });
+    handleChange = (event, checked, loginCall, logOutCall) => {
+
+        checked? loginCall() : logOutCall()
+
+        
     };
 
     handleMenu = event => {
@@ -50,14 +55,18 @@ class MenuAppBar extends React.Component {
         const { auth, anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
+        console.log(this.props)
+
         return (
             <div className={classes.root}>
                 <FormGroup>
                     <FormControlLabel
                         control={
-                            <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
+                            <Switch checked={this.props.isLoggedIn} onChange={
+                                ()=>this.handleChange(null, this.props.isLoggedIn, 
+                                     this.props.logOut,this.props.logIn)} aria-label="LoginSwitch" />
                         }
-                        label={auth ? 'Logout' : 'Login'}
+                        label={this.props.isLoggedIn ? 'Logout' : 'Login'}
                     />
                 </FormGroup>
                 <AppBar position="static">
@@ -69,7 +78,7 @@ class MenuAppBar extends React.Component {
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             Photos
                         </Typography>
-                        {auth && (
+                        {this.props.isLoggedIn && (
                             <div>
 
                                 <IconButton
@@ -80,7 +89,7 @@ class MenuAppBar extends React.Component {
                                 >
                                     <AccountCircle />
                                 </IconButton>
-                                <Button color="inherit" className={classes.button}>
+                                <Button color="inherit" className={classes.button} onClick={this.props.logOut}>
                                     Logout
                                 </Button>
 
@@ -114,4 +123,28 @@ MenuAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MenuAppBar);
+const mapStateToProps = state => {
+
+    console.log(state.userAccountReducer)
+
+
+    return {
+
+        isLoggedIn : state.userAccountReducer.isLoggedIn
+
+    }
+
+}
+    
+
+const mapDispatchToProps = (dispatch) =>({
+
+    logIn: () => {dispatch(LOG_IN_ACT)},
+    logOut: () => {dispatch(LOG_OUT_ACT)}
+
+})
+
+const styledAppBar = withStyles(styles)(MenuAppBar);
+// export default withStyles(styles)(MenuAppBar);
+export default connect(mapStateToProps, mapDispatchToProps)(styledAppBar);
+

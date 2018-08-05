@@ -78,7 +78,7 @@ const styles = theme => ({
         return (
             <div className={classes.root}>
                 <AppBar position="static">
-                    <Tabs value={value} onChange={this.handleChange}>
+                    <Tabs value={value} onChange={this.handleChange} centered>
                         <Tab label="Artists" />
                         <Tab label="Bands" />
                         <Tab label="Admin" />
