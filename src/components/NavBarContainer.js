@@ -16,6 +16,9 @@ import Menu from '@material-ui/core/Menu';
 import Button from "@material-ui/core/es/Button/Button";
 import { LOG_IN, LOG_OUT, LOG_IN_ACT, LOG_OUT_ACT } from '../redux/actions/userAccountActions';
 
+import {withRouter} from "react-router";
+import {Link} from "react-router-dom";
+
 const styles = {
     root: {
         flexGrow: 1,
@@ -36,10 +39,7 @@ class MenuAppBar extends React.Component {
     };
 
     handleChange = (event, checked, loginCall, logOutCall) => {
-
         checked? loginCall() : logOutCall()
-
-        
     };
 
     handleMenu = event => {
@@ -49,6 +49,7 @@ class MenuAppBar extends React.Component {
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
+
 
     render() {
         const { classes } = this.props;
@@ -63,7 +64,7 @@ class MenuAppBar extends React.Component {
                     <FormControlLabel
                         control={
                             <Switch checked={this.props.isLoggedIn} onChange={
-                                ()=>this.handleChange(null, this.props.isLoggedIn, 
+                                ()=>this.handleChange(null, this.props.isLoggedIn,
                                      this.props.logOut,this.props.logIn)} aria-label="LoginSwitch" />
                         }
                         label={this.props.isLoggedIn ? 'Logout' : 'Login'}
@@ -78,7 +79,7 @@ class MenuAppBar extends React.Component {
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             Photos
                         </Typography>
-                        {this.props.isLoggedIn && (
+                        {!!this.props.isLoggedIn && (
                             <div>
 
                                 <IconButton
@@ -112,6 +113,21 @@ class MenuAppBar extends React.Component {
                                 </Menu>
                             </div>
                         )}
+
+                        {!this.props.isLoggedIn && (
+                            <div>
+
+                                <Link to={`/register`} style={{ textDecoration: 'none' ,color: 'inherit'}}
+                                      onClick={()=>alert("hi")} >
+                                    <Button color='inherit'
+                                            className={classes.button}>
+                                           Register
+                                    </Button>
+
+                                </Link>
+
+                            </div>
+                        )}
                     </Toolbar>
                 </AppBar>
             </div>
@@ -135,7 +151,7 @@ const mapStateToProps = state => {
     }
 
 }
-    
+
 
 const mapDispatchToProps = (dispatch) =>({
 

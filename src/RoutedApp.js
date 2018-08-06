@@ -5,19 +5,24 @@ import ArtistProfile from "./components/ArtistProfile";
 import Booking from "./components/Booking";
 import NavBarContainer from "./components/NavBarContainer";
 import Admin from "./containers/Admin";
+import UserRegister from "./containers/UserRegister";
 
 const  RoutedApp =()=> {
     return(
         <div>
-            <NavBarContainer/>
             <Router>
+
                 <div>
+                    <NavBarContainer/>
+
                     <Switch>
-                        <Route exact path="/"                component={App}/>
-                        <Route  exact  path="/home"           component={App}/>
-                        <Route  exact path="/artist/:mbid"    component={ArtistProfile} />
-                        <Route  exact path="/booking"         component={Booking} />
-                        <Route  exact path="/admin"           component={Admin } />
+                        <Route exact path="/"                   component={App}/>
+                        <Route  exact  path="/home"             component={App}/>
+                        <Route  exact path="/artist/:mbid"      component={ArtistProfile} />
+                        <Route  exact path="/booking"           component={Booking} />
+                        <Route  exact path="/admin"             component={Admin } />
+                        <Route  exact path="/register"          component={UserRegister } />
+
                     </Switch>
 
                 </div>
