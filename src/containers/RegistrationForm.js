@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
+import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -51,8 +50,11 @@ const currencies = [
 
 class TextFields extends React.Component {
     state = {
-        firstName : 'Cat in the Hat',
-        lastName  : 'Last Name',
+        firstName : 'First',
+        lastName  : 'Last',
+        password : '',
+        confirmPassword : '',
+        dob: '',
 
         age: '',
         multiline: 'Controlled',
@@ -69,7 +71,9 @@ class TextFields extends React.Component {
         const { classes } = this.props;
 
         return (
-            <form className={classes.container} noValidate autoComplete="off" centred>
+            <form className={classes.container}
+                  noValidate
+                  autoComplete="off" centred>
                 <TextField
                     id="firstName"
                     label="First Name"
@@ -98,14 +102,24 @@ class TextFields extends React.Component {
                     type="password"
                     autoComplete="current-password"
                     margin="normal"
+                    required
+                    onChange={(event)=>{
+                        this.setState({password : event.target.value })}}
                 />
                 <TextField
                     id="confirmPassword"
                     label="Confirm Password"
                     className={classes.textField}
-                    type="password"
+                        type="password"
                     autoComplete="current-password"
                     margin="normal"
+                    error={this.state.password !== this.state.confirmPassword}
+                    helperText={this.state.password !== this.state.confirmPassword  && "Password not matching!" }
+                    required
+
+                    onChange={(event)=>{
+                        this.setState({confirmPassword : event.target.value })}}
+
                 />
 
                 <TextField
@@ -115,6 +129,7 @@ class TextFields extends React.Component {
                     defaultValue=""
                     className={classes.textField}
                     margin="normal"
+                    helperText={false?  "username already taken!" : ""}
                 />
                 <TextField
                     error ={false}
@@ -123,6 +138,9 @@ class TextFields extends React.Component {
                     defaultValue=""
                     className={classes.textField}
                     margin="normal"
+                    error ={true}
+                    helperText={true  && "Email already registered!" }
+
                 />
 
                 <TextField
@@ -134,14 +152,14 @@ class TextFields extends React.Component {
                     margin="normal"
                 />
 
-
                 <TextField
-                    id="date"
+                    id="dob"
                     label="Birthday"
                     type="date"
                     defaultValue="2017-05-24"
                     className={classes.textField}
                     margin="normal"
+                    onChange={(event=>{this.setState({dob : event.target.value})})}
                 />
 
 
