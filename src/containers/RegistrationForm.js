@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import * as EmailValidator from 'email-validator';
+import {UserByRole} from "../services/api/userByRole";
 
 const styles = theme => ({
     container: {
@@ -13,8 +15,6 @@ const styles = theme => ({
         margin : 'auto',
         alignContent : 'center',
         padding : 10
-
-
 
     },
     textField: {
@@ -29,37 +29,62 @@ const styles = theme => ({
     },
 });
 
-const currencies = [
-    {
-        value: 'USD',
-        label: '$',
-    },
-    {
-        value: 'EUR',
-        label: '€',
-    },
-    {
-        value: 'BTC',
-        label: '฿',
-    },
-    {
-        value: 'JPY',
-        label: '¥',
-    },
-];
-
 class TextFields extends React.Component {
+
+    userByRoleService = new UserByRole();
+
     state = {
+        role     : 'admin',
+        email     : '',
+        username  : '',
+        phone     :'',
         firstName : 'First',
         lastName  : 'Last',
         password : '',
         confirmPassword : '',
         dob: '',
 
-        age: '',
-        multiline: 'Controlled',
-        currency: 'EUR',
+
+        isUsernameAvailable : false,
+        isEmailAvailable : false,
+        emailError :'',
+        usernameError:''
+
+
     };
+
+
+
+    getUserNameAvailFromServer=()=>{
+        this.userByRoleService.getUserNameAvailability(this.state.role, this.state.username).
+        then(result=>{
+            console.log(result)
+            this.setState({
+                isUsernameAvailable : true,
+                usernameError : ''})
+        }).
+        catch(err=>{
+            console.log(err)
+            this.setState({isUsernameAvailable : false,
+                usernameError : 'username taken!',})
+        })
+    }
+
+    getEmailAvailFromServer=()=>{
+
+        this.userByRoleService.getEmailIdAvailability(this.state.role, this.state.email).
+        then(result=>{
+            console.log(result)
+            this.setState({isEmailAvailable: true,
+                emailError : ''
+            })
+        }).
+        catch(err=>{
+            console.log(err)
+            this.setState({isEmailAvailable: false,
+                emailError : 'emailId  already registered!'})
+        })
+    }
 
     handleChange = name => event => {
         this.setState({
@@ -82,6 +107,8 @@ class TextFields extends React.Component {
                     onChange={this.handleChange('firstName')}
                     margin="normal"
                     required
+                    helperText={ !this.state.firstName && "Cannot be empty" }
+
                 />
 
                 <TextField
@@ -92,6 +119,8 @@ class TextFields extends React.Component {
                     onChange={this.handleChange('lastName')}
                     margin="normal"
                     required
+                    helperText={ !this.state.lastName && "Cannot be empty" }
+
                 />
 
 
@@ -123,33 +152,51 @@ class TextFields extends React.Component {
                 />
 
                 <TextField
-                    error ={true}
+                    required
+                    error ={!this.state.username || !this.state.isUsernameAvailable}
                     id="username"
                     label="username"
                     defaultValue=""
                     className={classes.textField}
                     margin="normal"
-                    helperText={false?  "username already taken!" : ""}
+                    helperText={this.state.isUsernameAvailable?  "" : this.state.usernameError }
+                    onChange={(event=>{
+                        this.setState({username : event.target.value},
+                        this.getUserNameAvailFromServer
+                        )})}
+
                 />
                 <TextField
-                    error ={false}
+                    // error={true}
+                    error ={ !EmailValidator.validate(this.state.email) || !this.state.isEmailAvailable}
                     id="email"
                     label="email"
                     defaultValue=""
                     className={classes.textField}
                     margin="normal"
-                    error ={true}
-                    helperText={true  && "Email already registered!" }
+                    // helperText={true  && "Email already registered!" }
+
+                    helperText={ this.state.emailError ||
+                        !EmailValidator.validate(this.state.email) && "Invalid email Id!" }
+
+
+                    onChange={(event)=>{
+                        this.setState({email : event.target.value },
+                            this.getEmailAvailFromServer)}}
 
                 />
 
                 <TextField
                     error ={false}
                     id="phone"
+                    type="number"
                     label="phone"
                     defaultValue=""
                     className={classes.textField}
                     margin="normal"
+                    onChange={(event=>{this.setState(
+                        {phone : event.target.value})})}
+
                 />
 
                 <TextField
@@ -159,20 +206,32 @@ class TextFields extends React.Component {
                     defaultValue="2017-05-24"
                     className={classes.textField}
                     margin="normal"
-                    onChange={(event=>{this.setState({dob : event.target.value})})}
+                    onChange={(event=>{
+                        this.setState({dob : event.target.value})})}
                 />
 
 
                 <Button variant="contained" color="primary"
                         className={classes.button}
                         fullWidth
-                        margin="normal">
+                        margin="normal"
+                        disabled={!this.isFormValid()}
+
+                >
                     Register
                 </Button>
 
             </form>
         );
     }
+
+
+    isFormValid=()=>{
+        return this.state.firstName && this.state.lastName &&
+            (this.state.password === this.state.confirmPassword) &&
+            this.state.username && this.state.phone && EmailValidator.validate(this.state.email)
+            && this.state.isEmailAvailable & this.state.isUsernameAvailable}
+
 }
 
 TextFields.propTypes = {
@@ -180,135 +239,3 @@ TextFields.propTypes = {
 };
 
 export default  withStyles(styles)(TextFields)
-
-
-
-// form fields for later user
-
-//
-// <TextField
-// id="read-only-input"
-// label="Read Only"
-// defaultValue="Hello World"
-// className={classes.textField}
-// margin="normal"
-// InputProps={{
-//     readOnly: true,
-// }}
-// />
-// <TextField
-//     id="multiline-flexible"
-//     label="Multiline"
-//     multiline
-//     rowsMax="4"
-//     value={this.state.multiline}
-//     onChange={this.handleChange('multiline')}
-//     className={classes.textField}
-//     margin="normal"
-// />
-// <TextField
-// id="multiline-static"
-// label="Multiline"
-// multiline
-// rows="4"
-// defaultValue="Default Value"
-// className={classes.textField}
-// margin="normal"
-//     />
-//     <TextField
-// id="helperText"
-// label="Helper text"
-// defaultValue="Default Value"
-// className={classes.textField}
-// helperText="Some important text"
-// margin="normal"
-//     />
-//     <TextField
-// id="with-placeholder"
-// label="With placeholder"
-// placeholder="Placeholder"
-// className={classes.textField}
-// margin="normal"
-//     />
-//     <TextField
-// id="textarea"
-// label="With placeholder multiline"
-// placeholder="Placeholder"
-// multiline
-// className={classes.textField}
-// margin="normal"
-//     />
-//     <TextField
-// id="number"
-// label="Number"
-// value={this.state.age}
-// onChange={this.handleChange('age')}
-// type="number"
-// className={classes.textField}
-// InputLabelProps={{
-//     shrink: true,
-// }}
-// margin="normal"
-//     />
-//     <TextField
-// id="search"
-// label="Search field"
-// type="search"
-// className={classes.textField}
-// margin="normal"
-//     />
-//     <TextField
-// id="select-currency"
-// select
-// label="Select"
-// className={classes.textField}
-// value={this.state.currency}
-// onChange={this.handleChange('currency')}
-// SelectProps={{
-//     MenuProps: {
-//         className: classes.menu,
-//     },
-// }}
-// helperText="Please select your currency"
-// margin="normal"
-//     >
-//     {currencies.map(option => (
-//         <MenuItem key={option.value} value={option.value}>
-//             {option.label}
-//         </MenuItem>
-//     ))}
-// </TextField>
-// <TextField
-//     id="select-currency-native"
-//     select
-//     label="Native select"
-//     className={classes.textField}
-//     value={this.state.currency}
-//     onChange={this.handleChange('currency')}
-//     SelectProps={{
-//         native: true,
-//         MenuProps: {
-//             className: classes.menu,
-//         },
-//     }}
-//     helperText="Please select your currency"
-//     margin="normal"
-// >
-//     {currencies.map(option => (
-//         <option key={option.value} value={option.value}>
-//             {option.label}
-//         </option>
-//     ))}
-// </TextField>
-// <TextField
-//     id="full-width"
-//     label="Label"
-//     InputLabelProps={{
-//         shrink: true,
-//     }}
-//     placeholder="Placeholder"
-//     helperText="Full width!"
-//     fullWidth
-//     margin="normal"
-// />
-//

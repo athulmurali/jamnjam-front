@@ -7,7 +7,9 @@ var axiosInstance = axios.create();
 axiosInstance.interceptors.request.use(function (config) {
     // Do something before request is sent
     //If the header does not contain the token and the url not public, redirect to login
-    var accessToken = getAccessTokenFromCookies();
+    // var accessToken = getAccessTokenFromCookies();
+
+    const accessToken = localStorage.getItem('x-auth-token');
 
     //if token is found add it to the header
     if (accessToken) {
