@@ -56,8 +56,6 @@ class MenuAppBar extends React.Component {
         const { auth, anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
-        console.log(this.props)
-
         return (
             <div className={classes.root}>
                 <FormGroup>
@@ -139,14 +137,8 @@ MenuAppBar.propTypes = {
 };
 
 const mapStateToProps = state => {
-
-    console.log(state.userAccountReducer)
-
-
     return {
-
         isLoggedIn : state.userAccountReducer.isLoggedIn
-
     }
 
 }

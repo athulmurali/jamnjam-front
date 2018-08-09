@@ -11,17 +11,11 @@ import thunk from 'redux-thunk'
 
 import userAccountReducer from './redux/reducers/userAccountReducer';
 import { LOG_IN, LOG_OUT } from './redux/Constants/userAccount';
+import userRegistrationReducer from "./redux/reducers/userRegistrationReducer";
 
-const combinedReducers = combineReducers({userAccountReducer})
+const combinedReducers = combineReducers({userAccountReducer, userRegistrationReducer})
 const middlewares = applyMiddleware(  thunk ,logger)
 const store = createStore(combinedReducers,middlewares)
-const action ={
-    type : LOG_OUT,
-    payload : {
-        text: "hi_test"
-    }
-}
-store.dispatch(action)
 
 ReactDOM.render(
     <Provider store ={store}>

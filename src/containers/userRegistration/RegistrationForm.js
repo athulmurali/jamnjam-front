@@ -4,7 +4,9 @@ import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import * as EmailValidator from 'email-validator';
-import {UserByRole} from "../services/api/userByRole";
+import {UserByRole} from "../../services/api/userByRole";
+import {REGISTER_USER, UPDATE_ROLE} from "../../redux/Constants/userRegister";
+import {connect} from "react-redux";
 
 const styles = theme => ({
     container: {
@@ -29,12 +31,12 @@ const styles = theme => ({
     },
 });
 
-class TextFields extends React.Component {
+class RegistrationForm extends React.Component {
 
     userByRoleService = new UserByRole();
 
     state = {
-        role     : 'admin',
+        role     : '',
         email     : '',
         username  : '',
         phone     :'',
@@ -56,7 +58,7 @@ class TextFields extends React.Component {
 
 
     getUserNameAvailFromServer=()=>{
-        this.userByRoleService.getUserNameAvailability(this.state.role, this.state.username).
+        this.userByRoleService.getUserNameAvailability(this.props.role, this.state.username).
         then(result=>{
             console.log(result)
             this.setState({
@@ -72,7 +74,7 @@ class TextFields extends React.Component {
 
     getEmailAvailFromServer=()=>{
 
-        this.userByRoleService.getEmailIdAvailability(this.state.role, this.state.email).
+        this.userByRoleService.getEmailIdAvailability(this.props.role, this.state.email).
         then(result=>{
             console.log(result)
             this.setState({isEmailAvailable: true,
@@ -98,7 +100,7 @@ class TextFields extends React.Component {
         return (
             <form className={classes.container}
                   noValidate
-                  autoComplete="off" centred>
+                  autoComplete="off" centred={true}>
                 <TextField
                     id="firstName"
                     label="First Name"
@@ -212,6 +214,7 @@ class TextFields extends React.Component {
 
 
                 <Button variant="contained" color="primary"
+                        onClick = {()=>{this.props.register(this.state)}}
                         className={classes.button}
                         fullWidth
                         margin="normal"
@@ -234,8 +237,29 @@ class TextFields extends React.Component {
 
 }
 
-TextFields.propTypes = {
+RegistrationForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default  withStyles(styles)(TextFields)
+
+
+
+const mapStateToProps = state => {
+    return {
+        ...state.userRegistrationReducer
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) =>({
+
+    register:(userData)=>{dispatch({type: REGISTER_USER,
+    payload : {
+        ...userData
+    }})}
+
+})
+
+
+
+export default  connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(RegistrationForm));

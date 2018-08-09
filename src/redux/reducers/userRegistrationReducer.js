@@ -1,20 +1,20 @@
-import {LOG_IN, LOG_OUT} from "../Constants/userAccount";
-import {
-    UPDATE_CONFIRM_PASSWORD, UPDATE_EMAIL, UPDATE_FIRST_NAME, UPDATE_LAST_NAME,
-    UPDATE_PASSWORD, UPDATE_USERNAME
-} from "../Constants/userRegister";
+import {UPDATE_EMAIL, UPDATE_FIRST_NAME, UPDATE_LAST_NAME, UPDATE_ROLE, REGISTER_USER} from "../Constants/userRegister";
 
 const initialState = {
-    isLoggedIn: false,
-    error: false,
-    errorMessage: ''
-
+    firstName : '',
+    lastName : '',
+    emailId : '',
+    phone : '',
+    username : '',
+    password : '',
+    role : '',
 }
+
 const userRegistrationReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case UPDATE_FIRST_NAME:
-            return Object.assign({}, state, )
+            return Object.assign({}, state, {firstName : action.payload.firstName})
 
         case UPDATE_LAST_NAME:
             return Object.assign({}, state, )
@@ -23,19 +23,31 @@ const userRegistrationReducer = (state = initialState, action) => {
         case UPDATE_EMAIL:
             return Object.assign({}, state, )
 
-        case UPDATE_PASSWORD:
-            return
 
 
-        case UPDATE_CONFIRM_PASSWORD:
-
-
-        case UPDATE_EMAIL:
+        case UPDATE_ROLE:return Object.assign({}, state,{role : action.payload.role} )
 
 
 
-        case UPDATE_USERNAME:
-
+        case REGISTER_USER:
+            {
+                console.log(state.role)
+                return Object.assign({}, state,{...action.payload,...{role : state.role}} )
+            }
+        //
+        // case UPDATE_PASSWORD:
+        //     return
+        //
+        //
+        // case UPDATE_CONFIRM_PASSWORD:
+        //
+        //
+        // case UPDATE_EMAIL:
+        //
+        //
+        //
+        // case UPDATE_USERNAME:
+        //
 
 
 

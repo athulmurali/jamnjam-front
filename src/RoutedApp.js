@@ -5,7 +5,8 @@ import ArtistProfile from "./components/ArtistProfile";
 import Booking from "./components/Booking";
 import NavBarContainer from "./components/NavBarContainer";
 import Admin from "./containers/Admin";
-import UserRegister from "./containers/UserRegister";
+import UserRegister from "./containers/userRegistration/UserRegister";
+import roleSelect from "./containers/userRegistration/RoleSelect";
 
 const  RoutedApp =()=> {
     return(
@@ -22,6 +23,8 @@ const  RoutedApp =()=> {
                         <Route  exact path="/booking"           component={Booking} />
                         <Route  exact path="/admin"             component={Admin } />
                         <Route  exact path="/register"          component={UserRegister } />
+                        <Route  exact path="/roleSelect"          component={roleSelect } />
+
 
                     </Switch>
 
