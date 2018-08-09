@@ -5,6 +5,7 @@ export const  BASE_URL = "https://jamnjam-backend.herokuapp.com"
 
  const emailAvailability_URL = '/user/userRole/isEmailAvailable/emailId'
 
+export const CREATE_USER_URL = BASE_URL + '/user/'
 
  export const USERNAME_AVAILABILITY_URL =(userRole, username)=>
      BASE_URL + usernameAvailability_URL

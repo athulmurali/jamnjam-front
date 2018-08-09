@@ -5,8 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import * as EmailValidator from 'email-validator';
 import {UserByRole} from "../../services/api/userByRole";
-import {REGISTER_USER, UPDATE_ROLE} from "../../redux/Constants/userRegister";
+import {REGISTER_USER, UPDATE_FIELD, UPDATE_ROLE} from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
+import {UserService} from "../../services/api/user";
 
 const styles = theme => ({
     container: {
@@ -37,7 +38,7 @@ class RegistrationForm extends React.Component {
 
     state = {
         role     : '',
-        email     : '',
+        emailId    : '',
         username  : '',
         phone     :'',
         firstName : 'First',
@@ -58,15 +59,13 @@ class RegistrationForm extends React.Component {
 
 
     getUserNameAvailFromServer=()=>{
-        this.userByRoleService.getUserNameAvailability(this.props.role, this.state.username).
+        this.userByRoleService.getUserNameAvailability(this.props.role, this.props.username).
         then(result=>{
-            console.log(result)
             this.setState({
                 isUsernameAvailable : true,
                 usernameError : ''})
         }).
         catch(err=>{
-            console.log(err)
             this.setState({isUsernameAvailable : false,
                 usernameError : 'username taken!',})
         })
@@ -74,7 +73,7 @@ class RegistrationForm extends React.Component {
 
     getEmailAvailFromServer=()=>{
 
-        this.userByRoleService.getEmailIdAvailability(this.props.role, this.state.email).
+        this.userByRoleService.getEmailIdAvailability(this.props.role, this.props.emailId).
         then(result=>{
             console.log(result)
             this.setState({isEmailAvailable: true,
@@ -88,11 +87,14 @@ class RegistrationForm extends React.Component {
         })
     }
 
-    handleChange = name => event => {
-        this.setState({
-            [name]: event.target.value,
-        });
-    };
+
+    createNewUserInServer=(userData)=>{
+        const userService = new UserService();
+        userService.createNewUser(userData).then(
+            console.log(userData)
+        ).catch(err=>{console.log(err)})
+    }
+
 
     render() {
         const { classes } = this.props;
@@ -105,11 +107,14 @@ class RegistrationForm extends React.Component {
                     id="firstName"
                     label="First Name"
                     className={classes.textField}
-                    value={this.state.firstName}
-                    onChange={this.handleChange('firstName')}
+                    value={this.props.firstName}
+                    onChange={(event)=>{
+                            this.setState({firstName : event.target.value})
+                            this.props.updateField('firstName',event.target.value) }
+                        }
                     margin="normal"
                     required
-                    helperText={ !this.state.firstName && "Cannot be empty" }
+                    helperText={ !this.props.firstName && "Cannot be empty" }
 
                 />
 
@@ -117,11 +122,14 @@ class RegistrationForm extends React.Component {
                     id="lastName"
                     label="Last Name"
                     className={classes.textField}
-                    value={this.state.lastName}
-                    onChange={this.handleChange('lastName')}
+                    value={this.props.lastName}
+                    onChange={(event)=>{
+                        this.setState({lastName : event.target.value})
+                        this.props.updateField('lastName',event.target.value) }
+                    }
                     margin="normal"
                     required
-                    helperText={ !this.state.lastName && "Cannot be empty" }
+                    helperText={ !this.props.lastName && "Cannot be empty" }
 
                 />
 
@@ -135,7 +143,9 @@ class RegistrationForm extends React.Component {
                     margin="normal"
                     required
                     onChange={(event)=>{
-                        this.setState({password : event.target.value })}}
+                        this.setState({password : event.target.value})
+                        this.props.updateField('password',event.target.value) }
+                    }
                 />
                 <TextField
                     id="confirmPassword"
@@ -144,18 +154,19 @@ class RegistrationForm extends React.Component {
                         type="password"
                     autoComplete="current-password"
                     margin="normal"
-                    error={this.state.password !== this.state.confirmPassword}
-                    helperText={this.state.password !== this.state.confirmPassword  && "Password not matching!" }
+                    error={this.props.password !== this.props.confirmPassword}
+                    helperText={this.props.password !== this.props.confirmPassword  && "Password not matching!" }
                     required
-
                     onChange={(event)=>{
-                        this.setState({confirmPassword : event.target.value })}}
+                        this.setState({confirmPassword : event.target.value})
+                        this.props.updateField('confirmPassword',event.target.value) }
+                    }
 
                 />
 
                 <TextField
                     required
-                    error ={!this.state.username || !this.state.isUsernameAvailable}
+                    error ={!this.props.username || !this.state.isUsernameAvailable}
                     id="username"
                     label="username"
                     defaultValue=""
@@ -165,26 +176,33 @@ class RegistrationForm extends React.Component {
                     onChange={(event=>{
                         this.setState({username : event.target.value},
                         this.getUserNameAvailFromServer
-                        )})}
+                        )
+
+                        this.props.updateField('username',event.target.value)
+
+                    })}
 
                 />
                 <TextField
                     // error={true}
-                    error ={ !EmailValidator.validate(this.state.email) || !this.state.isEmailAvailable}
-                    id="email"
-                    label="email"
+                    error ={ !EmailValidator.validate(this.props.emailId) || !this.state.isEmailAvailable}
+                    id="emailId"
+                    label="emailId"
                     defaultValue=""
                     className={classes.textField}
                     margin="normal"
                     // helperText={true  && "Email already registered!" }
 
                     helperText={ this.state.emailError ||
-                        !EmailValidator.validate(this.state.email) && "Invalid email Id!" }
+                        !EmailValidator.validate(this.props.emailId) && "Invalid email Id!" }
 
 
                     onChange={(event)=>{
-                        this.setState({email : event.target.value },
-                            this.getEmailAvailFromServer)}}
+                        this.setState({emailId: event.target.value },
+                            this.getEmailAvailFromServer)
+                        this.props.updateField('emailId',event.target.value)
+
+                    }}
 
                 />
 
@@ -196,8 +214,10 @@ class RegistrationForm extends React.Component {
                     defaultValue=""
                     className={classes.textField}
                     margin="normal"
-                    onChange={(event=>{this.setState(
-                        {phone : event.target.value})})}
+                    onChange={(event)=>{
+                        this.setState({phone : event.target.value})
+                        this.props.updateField('phone',event.target.value) }
+                    }
 
                 />
 
@@ -208,13 +228,18 @@ class RegistrationForm extends React.Component {
                     defaultValue="2017-05-24"
                     className={classes.textField}
                     margin="normal"
-                    onChange={(event=>{
-                        this.setState({dob : event.target.value})})}
+                    onChange={(event)=>{
+                        this.setState({dob : event.target.value})
+                        this.props.updateField('dob',event.target.value) }
+                    }
                 />
 
 
                 <Button variant="contained" color="primary"
-                        onClick = {()=>{this.props.register(this.state)}}
+                        onClick = {()=>{
+                            this.props.register(this.state)
+                            this.createNewUserInServer(this.props);
+                        }}
                         className={classes.button}
                         fullWidth
                         margin="normal"
@@ -230,9 +255,9 @@ class RegistrationForm extends React.Component {
 
 
     isFormValid=()=>{
-        return this.state.firstName && this.state.lastName &&
-            (this.state.password === this.state.confirmPassword) &&
-            this.state.username && this.state.phone && EmailValidator.validate(this.state.email)
+        return this.props.firstName && this.props.lastName &&
+            (this.props.password === this.props.confirmPassword) &&
+            this.props.username && this.props.phone && EmailValidator.validate(this.props.emailId)
             && this.state.isEmailAvailable & this.state.isUsernameAvailable}
 
 }
@@ -253,10 +278,21 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) =>({
 
-    register:(userData)=>{dispatch({type: REGISTER_USER,
-    payload : {
-        ...userData
-    }})}
+
+    register:(userData)=> {
+        dispatch({
+            type: REGISTER_USER, payload: {
+                ...userData
+            }
+        })
+    },
+
+    updateField : (fieldName, value)=>{dispatch({
+        type: UPDATE_FIELD,
+        payload:{
+            [fieldName] : value
+        }
+    })}
 
 })
 
