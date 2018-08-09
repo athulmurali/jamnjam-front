@@ -1,5 +1,3 @@
-import $ from 'jquery';
-import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
@@ -11,17 +9,17 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import RoutedApp from "./RoutedApp";
 
-import {combineReducers, createStore,applyMiddleware} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {Provider} from "react-redux"
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
+import promise from 'redux-promise-middleware'
 
 import userAccountReducer from './redux/reducers/userAccountReducer';
-import { LOG_IN, LOG_OUT } from './redux/Constants/userAccount';
 import userRegistrationReducer from "./redux/reducers/userRegistrationReducer";
 
 const combinedReducers = combineReducers({userAccountReducer, userRegistrationReducer})
-const middlewares = applyMiddleware(  thunk ,logger)
+const middlewares = applyMiddleware(  promise(), thunk ,logger)
 const store = createStore(combinedReducers,middlewares)
 
 ReactDOM.render(

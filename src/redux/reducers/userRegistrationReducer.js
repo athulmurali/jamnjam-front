@@ -3,6 +3,7 @@ import {
     CREATE_USER, UPDATE_FIELD, CREATE_USER_PENDING, CREATE_USER_FULFILLED, CREATE_USER_REJECTED
 } from "../Constants/userRegister";
 import {UserService} from "../../services/api/user";
+import {FILL_USER_DETAILS, SELECT_ROLE, VERIFY_EMAIL} from "../../const/PageState";
 
 const initialState = {
     firstName : '',
@@ -12,6 +13,8 @@ const initialState = {
     username : '',
     password : '',
     role : '',
+
+    nextStep : SELECT_ROLE
 }
 
 const createNewUserInServer=(userData)=>{
@@ -24,21 +27,11 @@ catch(err => console.log(err))
 const userRegistrationReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case UPDATE_FIRST_NAME:
-            return Object.assign({}, state, {firstName : action.payload.firstName})
-
-        case UPDATE_LAST_NAME:
-            return Object.assign({}, state, )
 
 
-        case UPDATE_EMAIL:
-            return Object.assign({}, state, )
-
-
-
-        case UPDATE_ROLE:return Object.assign({}, state,{role : action.payload.role} )
-
-
+        case UPDATE_ROLE:return Object.assign({}, state,
+            {role : action.payload.role,
+                nextStep : FILL_USER_DETAILS} )
 
         case REGISTER_USER:
             {
@@ -62,14 +55,19 @@ const userRegistrationReducer = (state = initialState, action) => {
 
         case CREATE_USER_FULFILLED:{
 
-            return {...state, fetching : false, error: false, error : false,data : action.payload}
+            return {...state, fetching : false,
+                error: false,
+                data : action.payload.data,
+                nextStep : VERIFY_EMAIL
+            }
 
 
         }
 
 
         case CREATE_USER_REJECTED:{
-            return {...state, fetching : false,  error : action.payload}
+            return {...state, fetching : false,
+                error : action.payload.response.data}
         }
 
 

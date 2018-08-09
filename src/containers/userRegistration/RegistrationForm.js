@@ -6,8 +6,12 @@ import Button from '@material-ui/core/Button';
 import * as EmailValidator from 'email-validator';
 import {UserByRole} from "../../services/api/userByRole";
 import {
-    CREATE_USER_FULFILLED, CREATE_USER_PENDING, CREATE_USER_REJECTED, REGISTER_USER, UPDATE_FIELD,
-    UPDATE_ROLE
+    CREATE_USER,
+    CREATE_USER_FULFILLED,
+    CREATE_USER_PENDING,
+    CREATE_USER_REJECTED,
+    REGISTER_USER,
+    UPDATE_FIELD
 } from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
 import {UserService} from "../../services/api/user";
@@ -91,12 +95,18 @@ class RegistrationForm extends React.Component {
     }
 
 
+    // createNewUserInServer=(userData)=>{
+    //     const userService = new UserService();
+    //     this.props.create_user_start()
+    //     userService.createNewUser(userData).
+    //     then((data)=>this.props.create_user_fulfilled(data))
+    //         .catch(err=>{this.props.create_user_rejected(err)})
+    // }
+
     createNewUserInServer=(userData)=>{
         const userService = new UserService();
-        this.props.create_user_start()
-        userService.createNewUser(userData).
-        then((data)=>this.props.create_user_fulfilled(data))
-            .catch(err=>{this.props.create_user_rejected(err)})
+
+        this.props.create_user_dispatch(userService.createNewUser(userData))
     }
 
 
@@ -114,14 +124,12 @@ class RegistrationForm extends React.Component {
                     value={this.props.firstName}
                     onChange={(event)=>{
                             this.setState({firstName : event.target.value})
-                            this.props.updateField('firstName',event.target.value) }
-                        }
+                            this.props.updateField('firstName',event.target.value) }}
                     margin="normal"
                     required
                     helperText={ !this.props.firstName && "Cannot be empty" }
 
                 />
-
                 <TextField
                     id="lastName"
                     label="Last Name"
@@ -136,8 +144,6 @@ class RegistrationForm extends React.Component {
                     helperText={ !this.props.lastName && "Cannot be empty" }
 
                 />
-
-
                 <TextField
                     id="password"
                     label="Password"
@@ -167,7 +173,6 @@ class RegistrationForm extends React.Component {
                     }
 
                 />
-
                 <TextField
                     required
                     error ={!this.props.username || !this.state.isUsernameAvailable}
@@ -209,7 +214,6 @@ class RegistrationForm extends React.Component {
                     }}
 
                 />
-
                 <TextField
                     error ={false}
                     id="phone"
@@ -224,7 +228,6 @@ class RegistrationForm extends React.Component {
                     }
 
                 />
-
                 <TextField
                     id="dob"
                     label="Birthday"
@@ -237,8 +240,6 @@ class RegistrationForm extends React.Component {
                         this.props.updateField('dob',event.target.value) }
                     }
                 />
-
-
                 <Button variant="contained" color="primary"
                         onClick = {()=>{
                             this.props.register(this.state)
@@ -252,7 +253,6 @@ class RegistrationForm extends React.Component {
                 >
                     Register
                 </Button>
-
             </form>
         );
     }
@@ -322,7 +322,13 @@ const mapDispatchToProps = (dispatch) =>({
         })
     },
 
+    create_user_dispatch:(payload)=>{
+        dispatch({
+            type :  CREATE_USER,
+            payload : payload
+        })
 
+    }
 })
 
 
