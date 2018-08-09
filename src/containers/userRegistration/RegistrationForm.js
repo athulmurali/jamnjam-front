@@ -5,7 +5,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import * as EmailValidator from 'email-validator';
 import {UserByRole} from "../../services/api/userByRole";
-import {REGISTER_USER, UPDATE_FIELD, UPDATE_ROLE} from "../../redux/Constants/userRegister";
+import {
+    CREATE_USER_FULFILLED, CREATE_USER_PENDING, CREATE_USER_REJECTED, REGISTER_USER, UPDATE_FIELD,
+    UPDATE_ROLE
+} from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
 import {UserService} from "../../services/api/user";
 
@@ -90,9 +93,10 @@ class RegistrationForm extends React.Component {
 
     createNewUserInServer=(userData)=>{
         const userService = new UserService();
-        userService.createNewUser(userData).then(
-            console.log(userData)
-        ).catch(err=>{console.log(err)})
+        this.props.create_user_start()
+        userService.createNewUser(userData).
+        then((data)=>this.props.create_user_fulfilled(data))
+            .catch(err=>{this.props.create_user_rejected(err)})
     }
 
 
@@ -292,7 +296,32 @@ const mapDispatchToProps = (dispatch) =>({
         payload:{
             [fieldName] : value
         }
-    })}
+    })},
+
+
+    create_user_start:()=>{
+        dispatch({
+            type : CREATE_USER_PENDING
+        })
+    },
+
+
+
+    create_user_fulfilled:(data)=>{
+        dispatch({
+            type : CREATE_USER_FULFILLED,
+            payload: data
+        })
+    },
+
+
+    create_user_rejected:(err)=>{
+        dispatch({
+            type : CREATE_USER_REJECTED,
+            payload: err
+        })
+    },
+
 
 })
 

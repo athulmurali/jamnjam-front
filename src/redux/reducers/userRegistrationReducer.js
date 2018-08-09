@@ -1,6 +1,6 @@
 import {
     UPDATE_EMAIL, UPDATE_FIRST_NAME, UPDATE_LAST_NAME, UPDATE_ROLE, REGISTER_USER,
-    CREATE_USER, UPDATE_FIELD
+    CREATE_USER, UPDATE_FIELD, CREATE_USER_PENDING, CREATE_USER_FULFILLED, CREATE_USER_REJECTED
 } from "../Constants/userRegister";
 import {UserService} from "../../services/api/user";
 
@@ -52,6 +52,25 @@ const userRegistrationReducer = (state = initialState, action) => {
             return Object.assign({}, state,{...action.payload} )
         }
 
+
+        case CREATE_USER_PENDING:{
+
+            return {...state, fetching : true}
+
+        }
+
+
+        case CREATE_USER_FULFILLED:{
+
+            return {...state, fetching : false, error: false, error : false,data : action.payload}
+
+
+        }
+
+
+        case CREATE_USER_REJECTED:{
+            return {...state, fetching : false,  error : action.payload}
+        }
 
 
 

@@ -12,3 +12,8 @@ export const  CREATE_USER = 'register_user'
 
 
 export const UPDATE_FIELD = 'update_field'
+
+
+export const CREATE_USER_PENDING = 'CREATE_USER_PENDING'
+export const CREATE_USER_FULFILLED= 'CREATE_USER_FULFILLED'
+export const CREATE_USER_REJECTED = 'CREATE_USER_REJECTED'
