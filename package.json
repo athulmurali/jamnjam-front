@@ -10,6 +10,7 @@
     "bootstrap": "^4.1.3",
     "email-validator": "^2.0.4",
     "history": "latest",
+    "jquery": "^3.3.1",
     "material-ui": "^0.20.2",
     "promise": "^8.0.1",
     "prop-types": "^15.6.2",
