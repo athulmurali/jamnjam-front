@@ -1,13 +1,17 @@
 import React from "react";
-import RegistrationForm from "./RegistrationForm";
 import {connect} from "react-redux";
-import {REGISTER_USER, UPDATE_ROLE} from "../../redux/Constants/userRegister";
+import {UPDATE_ROLE} from "../../redux/Constants/userRegister";
+import {VerifyEmail} from "./VerifyEmail";
+import RegistrationForm from "./RegistrationForm";
 import RoleSelect from "./RoleSelect";
 
 
 const UserRegister =(props)=>{
 
+
+
           {return  props.selectedRole? <RegistrationForm/> : <RoleSelect></RoleSelect>}
+        // return <VerifyEmail/>
 
     }
 

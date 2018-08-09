@@ -89,7 +89,7 @@ class App extends Component {
                     onPressSearch={this.handleOnPressSearch}/>
 
 
-          {this.state.artistNames.length !=0 ?
+          {this.state.artistNames.length !==0 ?
               <ul
                   style={{
                   listStyle : "none",
