@@ -17,6 +17,7 @@ import Button from "@material-ui/core/es/Button/Button";
 import {LOG_IN, LOG_IN_ACT, LOG_OUT, LOG_OUT_ACT} from '../redux/actions/userAccountActions';
 import {Link} from "react-router-dom";
 import DrawerMenu from "../containers/DrawerMenu";
+import {OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
 
 const styles = {
     root: {
@@ -70,7 +71,9 @@ class MenuAppBar extends React.Component {
                 <AppBar position="static">
 
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
+                                    onClick={this.props.openSideBar}
+                        >
                             <MenuIcon />
                         </IconButton>
                         <DrawerMenu></DrawerMenu>
@@ -157,7 +160,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) =>({
 
     logIn: () => {dispatch(LOG_IN_ACT)},
-    logOut: () => {dispatch(LOG_OUT_ACT)}
+    logOut: () => {dispatch(LOG_OUT_ACT)},
+    openSideBar: () => {dispatch( {type: OPEN_SIDE_BAR})},
+
 
 })
 
