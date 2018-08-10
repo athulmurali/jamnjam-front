@@ -1,7 +1,7 @@
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import React from "react";
 import App from "./App";
-import ArtistProfile from "./components/ArtistProfile";
+import ArtistProfile from "./containers/profiles/ArtistProfile";
 import Booking from "./components/Booking";
 import NavBarContainer from "./components/NavBarContainer";
 import Admin from "./containers/Admin";

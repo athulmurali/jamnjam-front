@@ -12,7 +12,7 @@ import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
 
 import querySearch from "query-string";
-import Artist from "../services/lostFmServices/Artist";
+import Artist from "../../services/lostFmServices/Artist";
 
 
 
