@@ -13,6 +13,7 @@ import List from "@material-ui/core/es/List/List";
 
 import querySearch from "query-string";
 import Artist from "../../services/lostFmServices/Artist";
+import MembersChip from "../MembersChip";
 
 
 
@@ -104,10 +105,13 @@ export default class BandProfile extends React.Component{
 
     }
 
+
+
     members = [
         {_id : '1axaxcxc', name:'Eminem'},
-        {_id : '1axaxcb',  name:'Eminem'},
-        {_id : '1axaxcd',  name:'Eminem'},]
+        {_id : '1axaxcb',  name:'Usher'},
+        {_id : '1axaxcd',  name:'Ed Sheeran'},]
+
 
 
 
@@ -127,11 +131,7 @@ export default class BandProfile extends React.Component{
             <div style={styles.container}>
 
                 <CardMedia style={styles.card}>
-
-                    {
-                        console.log(this.state.artistInfo.image[2]["#text"])
-                    }
-                        <img style={styles.cardMedia}
+                     <img style={styles.cardMedia}
 
                             src={this.state.artistInfo.image[3]["#text"]}  />
                 </CardMedia>
@@ -143,7 +143,6 @@ export default class BandProfile extends React.Component{
                         <Typography variant="headline" component="h2">
                             {this.state.artistInfo.name}
                         </Typography>
-
                         <List>
                             <ListItem button divider disabled>
                                 <ListItemText primary="Rank" secondary={"Unavailable"}/>
@@ -154,7 +153,15 @@ export default class BandProfile extends React.Component{
                         </List>
 
 
+                        <Typography style={styles.pos} color="textSecondary">
+                            Members
+                        </Typography>
 
+                        <MembersChip
+                            img={this.state.artistInfo.image[1]["#text"]}
+                            members = {this.members}
+                            editMode={false}
+                        />
 
 
                         <Typography style={styles.pos} color="textSecondary">

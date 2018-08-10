@@ -16,7 +16,7 @@ class Login extends Component {
                     padding : '10',
                     justifyContent: 'center',
                     alignItems:'center',
-                    height: 500,
+                    height: '60vh',
                   // backgroundColor: 'green'
               }
     }
