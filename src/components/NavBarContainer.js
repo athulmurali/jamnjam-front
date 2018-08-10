@@ -115,13 +115,23 @@ class MenuAppBar extends React.Component {
                         {!this.props.isLoggedIn && (
                             <div>
 
-                                <Link to={`/register`} style={{ textDecoration: 'none' ,color: 'inherit'}}>
+                                <Link to={'/register'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
                                     <Button color='inherit'
                                             className={classes.button}>
                                            Register
                                     </Button>
 
                                 </Link>
+
+
+                                <Link to={'/login'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
+                                    <Button color='inherit'
+                                            className={classes.button}>
+                                        Login
+                                    </Button>
+
+                                </Link>
+
 
                             </div>
                         )}

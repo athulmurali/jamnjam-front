@@ -7,6 +7,8 @@ import NavBarContainer from "./components/NavBarContainer";
 import Admin from "./containers/Admin";
 import UserRegister from "./containers/userRegistration/UserRegister";
 import roleSelect from "./containers/userRegistration/RoleSelect";
+import BandProfile from "./containers/profiles/BandProfile";
+import UserLoginContainer from "./containers/userLogin/UserLoginContainer";
 
 const  RoutedApp =()=> {
     return(
@@ -20,9 +22,13 @@ const  RoutedApp =()=> {
                         <Route exact path="/"                   component={App}/>
                         <Route  exact  path="/home"             component={App}/>
                         <Route  exact path="/artist/:mbid"      component={ArtistProfile} />
+                        <Route  exact path="/band/:mbid"      component={BandProfile} />
+
                         <Route  exact path="/booking"           component={Booking} />
                         <Route  exact path="/admin"             component={Admin } />
                         <Route  exact path="/register"          component={UserRegister } />
+                        <Route  exact path="/login"          component={UserLoginContainer } />
+
                         <Route  exact path="/roleSelect"          component={roleSelect } />
 
 
