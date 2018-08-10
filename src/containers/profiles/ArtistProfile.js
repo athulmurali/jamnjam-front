@@ -5,15 +5,10 @@ import Typography from "@material-ui/core/es/Typography/Typography";
 import CardActions from "@material-ui/core/es/CardActions/CardActions";
 import Button from "@material-ui/core/es/Button/Button";
 import CardMedia from "@material-ui/core/es/CardMedia/CardMedia";
-import FormGroup from "@material-ui/core/es/FormGroup/FormGroup";
-import FormControlLabel from "@material-ui/core/es/FormControlLabel/FormControlLabel";
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
-
-import querySearch from "query-string";
 import Artist from "../../services/lostFmServices/Artist";
-
 
 
 const artist = Artist.instance
@@ -118,6 +113,7 @@ export default class ArtistProfile extends React.Component{
                 </div>
 
             <div style={styles.container}>
+
 
                 <CardMedia style={styles.card}>
 

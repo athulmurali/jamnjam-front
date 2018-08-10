@@ -14,6 +14,7 @@ import List from "@material-ui/core/es/List/List";
 import querySearch from "query-string";
 import Artist from "../../services/lostFmServices/Artist";
 import MembersChip from "../MembersChip";
+import DrawerMenu from "../DrawerMenu";
 
 
 
@@ -175,6 +176,10 @@ export default class BandProfile extends React.Component{
                         <Button  color="primary" size="small">Contact</Button>
                     </CardActions>
                 </Card>
+
+
+
+
 
             </div>
             </div>

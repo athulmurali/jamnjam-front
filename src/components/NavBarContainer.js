@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { connect } from 'react-redux'
+import {withStyles} from '@material-ui/core/styles';
+import {connect} from 'react-redux'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -14,10 +14,9 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from "@material-ui/core/es/Button/Button";
-import { LOG_IN, LOG_OUT, LOG_IN_ACT, LOG_OUT_ACT } from '../redux/actions/userAccountActions';
-
-import {withRouter} from "react-router";
+import {LOG_IN, LOG_IN_ACT, LOG_OUT, LOG_OUT_ACT} from '../redux/actions/userAccountActions';
 import {Link} from "react-router-dom";
+import DrawerMenu from "../containers/DrawerMenu";
 
 const styles = {
     root: {
@@ -74,6 +73,7 @@ class MenuAppBar extends React.Component {
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
+                        <DrawerMenu></DrawerMenu>
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             Photos
                         </Typography>
