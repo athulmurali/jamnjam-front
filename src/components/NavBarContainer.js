@@ -8,9 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from "@material-ui/core/es/Button/Button";
@@ -18,6 +15,7 @@ import {LOG_IN, LOG_IN_ACT, LOG_OUT, LOG_OUT_ACT} from '../redux/actions/userAcc
 import {Link} from "react-router-dom";
 import DrawerMenu from "../containers/DrawerMenu";
 import {OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
+
 
 const styles = {
     root: {
@@ -58,24 +56,17 @@ class MenuAppBar extends React.Component {
 
         return (
             <div className={classes.root}>
-                <FormGroup>
-                    <FormControlLabel
-                        control={
-                            <Switch checked={this.props.isLoggedIn} onChange={
-                                ()=>this.handleChange(null, this.props.isLoggedIn,
-                                     this.props.logOut,this.props.logIn)} aria-label="LoginSwitch" />
-                        }
-                        label={this.props.isLoggedIn ? 'Logout' : 'Login'}
-                    />
-                </FormGroup>
+
                 <AppBar position="static">
 
                     <Toolbar>
+                        {this.props.isLoggedIn &&
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
                                     onClick={this.props.openSideBar}
                         >
-                            <MenuIcon />
+                            <MenuIcon/>
                         </IconButton>
+                        }
                         <DrawerMenu></DrawerMenu>
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             Photos
@@ -91,7 +82,13 @@ class MenuAppBar extends React.Component {
                                 >
                                     <AccountCircle />
                                 </IconButton>
-                                <Button color="inherit" className={classes.button} onClick={this.props.logOut}>
+                                <Button color="inherit" className={classes.button}
+                                        onClick={()=>{
+                                            this.props.logOut()
+                                            console.log(this.props)
+                                            window.location.href = "/home";
+
+                                        }}>
                                     Logout
                                 </Button>
 
@@ -140,6 +137,17 @@ class MenuAppBar extends React.Component {
                         )}
                     </Toolbar>
                 </AppBar>
+
+                {/*<FormGroup>*/}
+                    {/*<FormControlLabel*/}
+                        {/*control={*/}
+                            {/*<Switch checked={this.props.isLoggedIn} onChange={*/}
+                                {/*()=>this.handleChange(null, this.props.isLoggedIn,*/}
+                                    {/*this.props.logOut,this.props.logIn)} aria-label="LoginSwitch" />*/}
+                        {/*}*/}
+                        {/*label={this.props.isLoggedIn ? 'Logout' : 'Login'}*/}
+                    {/*/>*/}
+                {/*</FormGroup>*/}
             </div>
         );
     }
@@ -160,10 +168,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) =>({
 
     logIn: () => {dispatch(LOG_IN_ACT)},
-    logOut: () => {dispatch(LOG_OUT_ACT)},
+    logOut: () => {
+        dispatch(LOG_OUT_ACT)
+    },
     openSideBar: () => {dispatch( {type: OPEN_SIDE_BAR})},
-
-
 })
 
 const styledAppBar = withStyles(styles)(MenuAppBar);

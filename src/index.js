@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,8 +16,9 @@ import promise from 'redux-promise-middleware'
 
 import userAccountReducer from './redux/reducers/userAccountReducer';
 import userRegistrationReducer from "./redux/reducers/userRegistrationReducer";
+import loginReducer from "./redux/reducers/loginReducer";
 
-const combinedReducers = combineReducers({userAccountReducer, userRegistrationReducer})
+const combinedReducers = combineReducers({userAccountReducer, userRegistrationReducer, loginReducer})
 const middlewares = applyMiddleware(  promise(), thunk ,logger)
 const store = createStore(combinedReducers,middlewares)
 

@@ -95,13 +95,6 @@ class RegistrationForm extends React.Component {
     }
 
 
-    // createNewUserInServer=(userData)=>{
-    //     const userService = new UserService();
-    //     this.props.create_user_start()
-    //     userService.createNewUser(userData).
-    //     then((data)=>this.props.create_user_fulfilled(data))
-    //         .catch(err=>{this.props.create_user_rejected(err)})
-    // }
 
     createNewUserInServer=(userData)=>{
         const userService = new UserService();

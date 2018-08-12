@@ -9,14 +9,14 @@ import UserRegister from "./containers/userRegistration/UserRegister";
 import roleSelect from "./containers/userRegistration/RoleSelect";
 import BandProfile from "./containers/profiles/BandProfile";
 import UserLoginContainer from "./containers/userLogin/UserLoginContainer";
-
+import history from './components/history'
 const  RoutedApp =()=> {
     return(
         <div>
             <Router>
 
                 <div>
-                    <NavBarContainer/>
+                    <NavBarContainer history={history}/>
 
                     <Switch>
                         <Route exact path="/"                   component={App}/>

@@ -19,3 +19,4 @@ export const EMAIL_AVAILABILITY_URL =(userRole, email)=>
         .replace('emailId',email)
 
 
+export const LOGIN_URL =BASE_URL + '/auth/login'

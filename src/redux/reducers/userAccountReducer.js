@@ -12,7 +12,12 @@ const userAccountReducer = (state = initialState, action) => {
         case LOG_IN:
             return Object.assign({}, state, {isLoggedIn: true})
         case LOG_OUT:
+        {
+            localStorage.clear()
             return Object.assign({}, state, {isLoggedIn: false})
+
+        }
+
 
         case OPEN_SIDE_BAR:
             return {...state,isSideBarOpen : true }
@@ -22,8 +27,6 @@ const userAccountReducer = (state = initialState, action) => {
 
          default:
             return Object.assign({}, state, {error: false})
-
-
     }
 
 }

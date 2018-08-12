@@ -1,10 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 import {UPDATE_ROLE} from "../../redux/Constants/userRegister";
-import {VerifyEmail} from "./VerifyEmail";
 import RegistrationForm from "./RegistrationForm";
 import RoleSelect from "./RoleSelect";
 import {FILL_USER_DETAILS, SELECT_ROLE, VERIFY_EMAIL} from "../../const/PageState";
+import VerifyEmail from "./VerifyEmail";
 
 
 const UserRegister =(props)=>{

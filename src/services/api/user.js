@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {CREATE_USER_URL} from "../../const/url";
+import {CREATE_USER_URL, LOGIN_URL} from "../../const/url";
 
 export class UserService{
 
@@ -7,6 +7,14 @@ export class UserService{
         console.log("getUserNameAvailability")
 
         return axios.post(CREATE_USER_URL, userData)
+    }
+
+
+
+    login  =(userData)=>{
+        console.log("getUserNameAvailability")
+
+        return axios.post(LOGIN_URL, userData)
     }
 
 }

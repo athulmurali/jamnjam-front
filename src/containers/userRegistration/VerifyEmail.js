@@ -1,5 +1,25 @@
 import React from "react";
-export   const  VerifyEmail = ()=>{
+import {Button} from "@material-ui/core/es/index";
+import {withStyles} from "@material-ui/core/styles/index";
+import {Link} from "react-router-dom";
+
+
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    flex: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+};
+
+
+export   const  VerifyEmail = (props)=>{
+    const {classes} = props
     return(
         <div className="card rounded" id="successCard">
             <div className="card-img-top row">
@@ -12,9 +32,21 @@ export   const  VerifyEmail = ()=>{
                 <p className="card-text">
                     An activation mail has been sent to your registered email.
                     It should be there within 5 minutes. Please check your inbox. </p>
-                <a href="#" className="btn btn-primary">Login</a>
+
+                <Link to={'/login'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
+                    <Button color='inherit'
+                            className={classes.button}>
+                        Login
+                    </Button>
+
+                </Link>
+
             </div>
         </div>
 
     )
 }
+
+
+export default withStyles(styles)(VerifyEmail);
+

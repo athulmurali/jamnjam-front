@@ -11,7 +11,6 @@ const styles = theme => ({
     root: {
         margin : 'auto',
         flexGrow: 10,
-
     },
     paper: {
         height: 340,
