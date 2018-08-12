@@ -58,7 +58,6 @@ class DrawerMenu extends React.Component {
 
         return (
             <div>
-
                 <Drawer open={this.props.isSideBarOpen}
                         onClose={this.props.closeSideBar}>
                     <div

@@ -10,6 +10,7 @@ import roleSelect from "./containers/userRegistration/RoleSelect";
 import BandProfile from "./containers/profiles/BandProfile";
 import UserLoginContainer from "./containers/userLogin/UserLoginContainer";
 import history from './components/history'
+import profileByRole from "./containers/profiles/profileByRole";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -29,7 +30,8 @@ const  RoutedApp =()=> {
                         <Route  exact path="/register"          component={UserRegister } />
                         <Route  exact path="/login"          component={UserLoginContainer } />
 
-                        <Route  exact path="/roleSelect"          component={roleSelect } />
+                        <Route  exact path="/roleSelect"         component={roleSelect } />
+                    <Route  exact path="/profileByRole"          component={profileByRole } />
 
 
                     </Switch>

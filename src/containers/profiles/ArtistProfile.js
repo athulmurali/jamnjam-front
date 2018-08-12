@@ -101,7 +101,6 @@ export default class ArtistProfile extends React.Component{
 
     render(){
 
-        const bull = <span className={styles.bullet}>•</span>;
 
         if (!this.state.artistInfo.image) return null
 

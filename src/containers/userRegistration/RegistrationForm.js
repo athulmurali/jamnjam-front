@@ -15,6 +15,7 @@ import {
 } from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
 import {UserService} from "../../services/api/user";
+import {ARTIST, BAND} from "../../const/userRoles";
 
 const styles = theme => ({
     container: {
@@ -30,9 +31,17 @@ const styles = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 200,
+        width : 200,
         spacing : 100,
         paddingBottom : 20,
+    },
+
+    fullWidthTextField : {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        spacing : 100,
+        paddingBottom : 20,
+
     },
     menu: {
         width: 200,
@@ -107,36 +116,24 @@ class RegistrationForm extends React.Component {
         const { classes } = this.props;
 
         return (
-            <form className={classes.container}
+          this.props.role == BAND ?
+              <form className={classes.container}
                   noValidate
                   autoComplete="off" centred={true}>
                 <TextField
-                    id="firstName"
-                    label="First Name"
-                    className={classes.textField}
-                    value={this.props.firstName}
-                    onChange={(event)=>{
+                        id="title"
+                        label="title"
+                        className={classes.fullWidthTextField}
+                        value={this.props.title}
+                        onChange={(event)=>{
                             this.setState({firstName : event.target.value})
-                            this.props.updateField('firstName',event.target.value) }}
-                    margin="normal"
-                    required
-                    helperText={ !this.props.firstName && "Cannot be empty" }
+                            this.props.updateField('title',event.target.value) }}
+                        margin="normal"
+                        required
+                        fullWidth={true}
+                        helperText={ !this.props.title && "Cannot be empty" }
 
-                />
-                <TextField
-                    id="lastName"
-                    label="Last Name"
-                    className={classes.textField}
-                    value={this.props.lastName}
-                    onChange={(event)=>{
-                        this.setState({lastName : event.target.value})
-                        this.props.updateField('lastName',event.target.value) }
-                    }
-                    margin="normal"
-                    required
-                    helperText={ !this.props.lastName && "Cannot be empty" }
-
-                />
+                    />
                 <TextField
                     id="password"
                     label="Password"
@@ -241,23 +238,176 @@ class RegistrationForm extends React.Component {
                         className={classes.button}
                         fullWidth
                         margin="normal"
-                        disabled={!this.isFormValid()}
+                        disabled={!this.isBandFormValid()}
 
                 >
                     Register
                 </Button>
-            </form>
+            </form>:
+              <form className={classes.container}
+                    noValidate
+                    autoComplete="off" centred={true}>
+
+                  <TextField
+                      id="firstName"
+                      label="First Name"
+                      className={classes.textField}
+                      value={this.props.firstName}
+                      onChange={(event)=>{
+                          this.setState({firstName : event.target.value})
+                          this.props.updateField('firstName',event.target.value) }}
+                      margin="normal"
+                      required
+                      helperText={ !this.props.firstName && "Cannot be empty" }
+
+                  />
+                  <TextField
+                      id="lastName"
+                      label="Last Name"
+                      className={classes.textField}
+                      value={this.props.lastName}
+                      onChange={(event)=>{
+                          this.setState({lastName : event.target.value})
+                          this.props.updateField('lastName',event.target.value) }
+                      }
+                      margin="normal"
+                      required
+                      helperText={ !this.props.lastName && "Cannot be empty" }
+
+                  />
+                  <TextField
+                      id="password"
+                      label="Password"
+                      className={classes.textField}
+                      type="password"
+                      autoComplete="current-password"
+                      margin="normal"
+                      required
+                      onChange={(event)=>{
+                          this.setState({password : event.target.value})
+                          this.props.updateField('password',event.target.value) }
+                      }
+                  />
+                  <TextField
+                      id="confirmPassword"
+                      label="Confirm Password"
+                      className={classes.textField}
+                      type="password"
+                      autoComplete="current-password"
+                      margin="normal"
+                      error={this.props.password !== this.props.confirmPassword}
+                      helperText={this.props.password !== this.props.confirmPassword  && "Password not matching!" }
+                      required
+                      onChange={(event)=>{
+                          this.setState({confirmPassword : event.target.value})
+                          this.props.updateField('confirmPassword',event.target.value) }
+                      }
+
+                  />
+                  <TextField
+                      required
+                      error ={!this.props.username || !this.state.isUsernameAvailable}
+                      id="username"
+                      label="username"
+                      defaultValue=""
+                      className={classes.textField}
+                      margin="normal"
+                      helperText={this.state.isUsernameAvailable?  "" : this.state.usernameError }
+                      onChange={(event=>{
+                          this.setState({username : event.target.value},
+                              this.getUserNameAvailFromServer
+                          )
+
+                          this.props.updateField('username',event.target.value)
+
+                      })}
+
+                  />
+                  <TextField
+                      // error={true}
+                      error ={ !EmailValidator.validate(this.props.emailId) || !this.state.isEmailAvailable}
+                      id="emailId"
+                      label="emailId"
+                      defaultValue=""
+                      className={classes.textField}
+                      margin="normal"
+                      // helperText={true  && "Email already registered!" }
+
+                      helperText={ this.state.emailError ||
+                      !EmailValidator.validate(this.props.emailId) && "Invalid email Id!" }
+
+
+                      onChange={(event)=>{
+                          this.setState({emailId: event.target.value },
+                              this.getEmailAvailFromServer)
+                          this.props.updateField('emailId',event.target.value)
+
+                      }}
+
+                  />
+                  <TextField
+                      error ={false}
+                      id="phone"
+                      type="number"
+                      label="phone"
+                      defaultValue=""
+                      className={classes.textField}
+                      margin="normal"
+                      onChange={(event)=>{
+                          this.setState({phone : event.target.value})
+                          this.props.updateField('phone',event.target.value) }
+                      }
+
+                  />
+                  <TextField
+                      id="dob"
+                      label="Birthday"
+                      type="date"
+                      defaultValue="2017-05-24"
+                      className={classes.textField}
+                      margin="normal"
+                      onChange={(event)=>{
+                          this.setState({dob : event.target.value})
+                          this.props.updateField('dob',event.target.value) }
+                      }
+                  />
+                  <Button variant="contained" color="primary"
+                          onClick = {()=>{
+                              this.props.register(this.state)
+                              this.createNewUserInServer(this.props);
+                          }}
+                          className={classes.button}
+                          fullWidth
+                          margin="normal"
+                          disabled={!this.isNonBandFormValid()}
+
+                  >
+                      Register
+                  </Button>
+              </form>
         );
     }
 
 
-    isFormValid=()=>{
+    isNonBandFormValid=()=>{
         return this.props.firstName && this.props.lastName &&
             (this.props.password === this.props.confirmPassword) &&
             this.props.username && this.props.phone && EmailValidator.validate(this.props.emailId)
             && this.state.isEmailAvailable & this.state.isUsernameAvailable}
 
+    isBandFormValid=()=>{
+        return this.props.title &&
+            (this.props.password === this.props.confirmPassword) &&
+            this.props.username && this.props.phone && EmailValidator.validate(this.props.emailId)
+            && this.state.isEmailAvailable & this.state.isUsernameAvailable}
+
 }
+
+
+
+
+
+
 
 RegistrationForm.propTypes = {
     classes: PropTypes.object.isRequired,

@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {LOGIN, UPDATE_LOGIN_FIELD} from "../../redux/Constants/userLogin";
 import {UserService} from "../../services/api/user";
 import {LOG_IN} from "../../redux/Constants/userAccount";
+import {Redirect} from "react-router-dom";
 
 
 class Login extends Component {
@@ -29,7 +30,10 @@ class Login extends Component {
 
         if (!!this.props.profile) {
             this.props.updateNavBar()
-            this.props.history.push('/register')}
+            this.props.history.push('/register')
+
+
+        }
         return (
             <div style={this.styles.container}>
 

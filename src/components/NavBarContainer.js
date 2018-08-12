@@ -15,9 +15,14 @@ import {LOG_IN, LOG_IN_ACT, LOG_OUT, LOG_OUT_ACT} from '../redux/actions/userAcc
 import {Link} from "react-router-dom";
 import DrawerMenu from "../containers/DrawerMenu";
 import {OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
+import {Badge} from "material-ui";
+import * as theme from "material-ui";
 
 
-const styles = {
+
+
+const styles = theme => ({
+
     root: {
         flexGrow: 1,
     },
@@ -28,7 +33,16 @@ const styles = {
         marginLeft: -12,
         marginRight: 20,
     },
-};
+
+    margin: {
+        margin: theme.spacing.unit * 2,
+    },
+    padding: {
+        padding: `0 ${theme.spacing.unit * 2}px`,
+    },
+});
+
+
 
 class MenuAppBar extends React.Component {
     state = {
@@ -67,9 +81,9 @@ class MenuAppBar extends React.Component {
                             <MenuIcon/>
                         </IconButton>
                         }
-                        <DrawerMenu></DrawerMenu>
+                        <DrawerMenu role = {!!this.props.profile && this.props.profile.role}></DrawerMenu>
                         <Typography variant="title" color="inherit" className={classes.flex}>
-                            Photos
+                            Jam n' jam
                         </Typography>
                         {!!this.props.isLoggedIn && (
                             <div>
@@ -106,7 +120,17 @@ class MenuAppBar extends React.Component {
                                     open={open}
                                     onClose={this.handleClose}
                                 >
-                                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                                    <Link to={'/profileByRole'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
+
+                                    <MenuItem onClick={this.handleClose}>
+
+                                        {/*<Badge className={classes.padding}*/}
+                                               {/*color="secondary"*/}
+                                               {/*badgeContent={this.props.profile.role}>*/}
+                                            Profile
+                                        {/*</Badge>*/}
+                                    </MenuItem>
+                                    </Link>
                                     <MenuItem onClick={this.handleClose}>My account</MenuItem>
                                 </Menu>
                             </div>
@@ -159,7 +183,8 @@ MenuAppBar.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn : state.userAccountReducer.isLoggedIn
+        isLoggedIn : state.userAccountReducer.isLoggedIn,
+        profile : state.loginReducer.profile
     }
 
 }
