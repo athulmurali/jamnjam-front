@@ -62,12 +62,17 @@ class RegistrationForm extends React.Component {
         password : '',
         confirmPassword : '',
         dob: '',
+        zip : 0,
+        bio: '',
+        img:'',
+
 
 
         isUsernameAvailable : false,
         isEmailAvailable : false,
         emailError :'',
         usernameError:''
+
 
 
     };
@@ -230,6 +235,50 @@ class RegistrationForm extends React.Component {
                         this.props.updateField('dob',event.target.value) }
                     }
                 />
+                <TextField
+                  error ={false}
+                  id="zip"
+                  label="zip"
+                  defaultValue={123466}
+                  className={classes.textField}
+                  margin="normal"
+                  onChange={(event)=>{
+                      this.setState({zip : event.target.value})
+                      this.props.updateField('zip',event.target.value) }
+                  }
+
+                  helperText={ !this.props.zip && "Cannot be empty" }
+
+              />
+                <TextField
+                      error ={false}
+                      id="img"
+                      label="img Url"
+                      defaultValue={''}
+                      className={classes.textField}
+                      margin="normal"
+                      onChange={(event)=>{
+                          this.setState({img : event.target.value})
+                          this.props.updateField('img',event.target.value) }
+                      }
+                      helperText={ !this.props.img && "paste your image url here" }
+
+
+                  />
+                <TextField
+                      id="bio"
+                      label="bio"
+                      multiline
+                      rowsMax="10"
+
+                      fullWidth={true}
+                      className={classes.fullWidthTextField}
+                      margin="normal"
+                      onChange={(event)=>{
+                          this.setState({bio : event.target.value})
+                          this.props.updateField('bio',event.target.value) }
+                      }
+                  />
                 <Button variant="contained" color="primary"
                         onClick = {()=>{
                             this.props.register(this.state)
@@ -371,6 +420,51 @@ class RegistrationForm extends React.Component {
                           this.props.updateField('dob',event.target.value) }
                       }
                   />
+
+                  <TextField
+                      error ={false}
+                      id="zip"
+                      label="zip"
+                      defaultValue={123466}
+                      className={classes.textField}
+                      margin="normal"
+                      onChange={(event)=>{
+                          this.setState({zip : event.target.value})
+                          this.props.updateField('zip',event.target.value) }
+                      }
+
+                      helperText={ !this.props.zip && "Cannot be empty" }
+
+                  />
+                  <TextField
+                      error ={false}
+                      id="img"
+                      label="img Url"
+                      defaultValue={''}
+                      className={classes.textField}
+                      margin="normal"
+                      onChange={(event)=>{
+                          this.setState({img : event.target.value})
+                          this.props.updateField('img',event.target.value) }
+                      }
+                      helperText={ !this.props.img && "paste your image url here" }
+
+
+                  />
+                  <TextField
+                      id="bio"
+                      label="bio"
+                      multiline
+                      rowsMax="10"
+
+                      fullWidth={true}
+                      className={classes.fullWidthTextField}
+                      margin="normal"
+                      onChange={(event)=>{
+                          this.setState({bio : event.target.value})
+                          this.props.updateField('bio',event.target.value) }
+                      }
+                  />
                   <Button variant="contained" color="primary"
                           onClick = {()=>{
                               this.props.register(this.state)
@@ -390,13 +484,13 @@ class RegistrationForm extends React.Component {
 
 
     isNonBandFormValid=()=>{
-        return this.props.firstName && this.props.lastName &&
+        return this.props.firstName && this.props.lastName &&  this.props.zip &&
             (this.props.password === this.props.confirmPassword) &&
             this.props.username && this.props.phone && EmailValidator.validate(this.props.emailId)
             && this.state.isEmailAvailable & this.state.isUsernameAvailable}
 
     isBandFormValid=()=>{
-        return this.props.title &&
+        return this.props.title &&this.props.zip &&
             (this.props.password === this.props.confirmPassword) &&
             this.props.username && this.props.phone && EmailValidator.validate(this.props.emailId)
             && this.state.isEmailAvailable & this.state.isUsernameAvailable}
