@@ -7,6 +7,8 @@ import {LOGIN, UPDATE_LOGIN_FIELD} from "../../redux/Constants/userLogin";
 import {UserService} from "../../services/api/user";
 import {LOG_IN} from "../../redux/Constants/userAccount";
 import {Redirect} from "react-router-dom";
+import {GET_PROFILE} from "../../redux/Constants/userRegister";
+import UserServiceWithToken from "../../services/UserServiceWithToken";
 
 
 class Login extends Component {
@@ -30,7 +32,10 @@ class Login extends Component {
 
         if (!!this.props.profile) {
             this.props.updateNavBar()
-            this.props.history.push('/register')
+
+            const getUserServiceObj = new UserServiceWithToken();
+            this.props.getMyProfile(getUserServiceObj.getProfile)
+            this.props.history.push('/'+this.props.profile.role+'/'+ this.props.profile._id)
 
 
         }
@@ -108,6 +113,14 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = (dispatch) =>({
+
+
+    getMyProfile: (promise)=>{
+        dispatch({
+            type : GET_PROFILE,
+            payload: promise
+        })
+    },
 
         updateField: (fieldName, value) => {
             dispatch({

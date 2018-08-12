@@ -87,6 +87,7 @@ class MenuAppBar extends React.Component {
                         </Typography>
                         {!!this.props.isLoggedIn && (
                             <div>
+                                <span className="badge badge-light">{this.props.profile.role}</span>
 
                                 <IconButton
                                     aria-owns={open ? 'menu-appbar' : null}

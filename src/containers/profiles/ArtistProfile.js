@@ -9,6 +9,11 @@ import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
 import Artist from "../../services/lostFmServices/Artist";
+import {connect} from "react-redux";
+import {LOGIN, UPDATE_LOGIN_FIELD} from "../../redux/Constants/userLogin";
+import {LOG_IN} from "../../redux/Constants/userAccount";
+import {GET_PROFILE} from "../../redux/Constants/userRegister";
+import UserServiceWithToken from "../../services/UserServiceWithToken";
 
 
 const artist = Artist.instance
@@ -70,7 +75,7 @@ const styles = {
 
 
 
-export default class ArtistProfile extends React.Component{
+ class ArtistProfile extends React.Component{
     constructor(props){
         super(props)
         this.state={
@@ -79,11 +84,15 @@ export default class ArtistProfile extends React.Component{
 
     }
     componentDidMount(){
-        this.setState({
-            mbid:this.props.match.params.mbid
-        },()=>{
-            this.getArtistInfo(this.state.mbid)
-        })
+        // this.setState({
+        //     mbid:this.props.match.params.mbid
+        // },
+        //     ()=>{this.getArtistInfo(this.state.mbid)})
+        //
+
+       const getUserServiceObj = new UserServiceWithToken();
+        this.props.getMyProfile(getUserServiceObj.getProfile)
+
 
     }
 
@@ -102,7 +111,7 @@ export default class ArtistProfile extends React.Component{
     render(){
 
 
-        if (!this.state.artistInfo.image) return null
+        if (!this.props.artistProfile) return null
 
         else return(
 
@@ -116,28 +125,35 @@ export default class ArtistProfile extends React.Component{
 
                 <CardMedia style={styles.card}>
 
-                    {
-                        console.log(this.state.artistInfo.image[2]["#text"])
-                    }
+
                         <img style={styles.cardMedia}
 
-                            src={this.state.artistInfo.image[3]["#text"]}  />
+                            // src={this.state.artistInfo.image[3]["#text"]}
+
+                            src={ "https://lastfm-img2.akamaized.net/i/u/300x300/d4feb078525d42fb9e72572c43662c30.png"}
+                        />
                 </CardMedia>
                 <Card style={styles.card}>
                     <CardContent>
+
+                        <div className="row">
+                        </div>
                         <Typography style={styles.title} color="textSecondary">
                             Artist Name
                         </Typography>
                         <Typography variant="headline" component="h2">
-                            {this.state.artistInfo.name}
+                            {/*{this.state.artistInfo.name}*/}
+                            {this.props.artistProfile.firstName + " " + this.props.artistProfile.lastName}
                         </Typography>
 
                         <List>
                             <ListItem button divider disabled>
-                                <ListItemText primary="Rank" secondary={"Unavailable"}/>
+                                <ListItemText primary="Location - Zip" secondary={this.props.artistProfile.zip}/>
                             </ListItem>
                             <ListItem button divider disabled>
-                                <ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />
+                                {/*<ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />*/}
+                                <ListItemText primary="Fans" secondary={12345} />
+
                             </ListItem>
                         </List>
 
@@ -149,11 +165,12 @@ export default class ArtistProfile extends React.Component{
                             ABOUT
                         </Typography>
                         <Typography component="p">
-                            {this.state.artistInfo.bio.summary}
+                            {this.props.artistProfile.bio}
+
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button  color="primary" size="small">Contact</Button>
+                        <Button  color="primary" size="small" disabled>Contact</Button>
                     </CardActions>
                 </Card>
 
@@ -164,3 +181,33 @@ export default class ArtistProfile extends React.Component{
 
     }
 }
+
+
+
+
+const mapStateToProps = state => {
+    return {artistProfile : state.loginReducer.myProfile}
+}
+
+
+const mapDispatchToProps = (dispatch) =>({
+
+    getMyProfile: (promise)=>{
+        dispatch({
+            type : GET_PROFILE,
+            payload: promise
+        })
+    },
+
+
+    // getCurrentArtistProfile:()=>{
+    //
+    // }
+
+})
+
+
+
+
+
+export default  connect(mapStateToProps, mapDispatchToProps)(ArtistProfile);

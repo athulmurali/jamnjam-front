@@ -1,4 +1,5 @@
 export const  BASE_URL = "https://jamnjam-backend.herokuapp.com"
+// export const  BASE_URL = "http://localhost:3000"
 
 
  const usernameAvailability_URL = '/user/userRole/isUserNameAvailable/username'
@@ -19,4 +20,8 @@ export const EMAIL_AVAILABILITY_URL =(userRole, email)=>
         .replace('emailId',email)
 
 
-export const LOGIN_URL =BASE_URL + '/auth/login'
+export const LOGIN_URL   =BASE_URL + '/auth/login'
+
+export const USER_PROFILE_URL =BASE_URL + '/user/profile'
+
+export  const TOKEN_NAME = 'Authorization'

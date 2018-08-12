@@ -15,6 +15,9 @@ import querySearch from "query-string";
 import Artist from "../../services/lostFmServices/Artist";
 import MembersChip from "../MembersChip";
 import DrawerMenu from "../DrawerMenu";
+import {connect} from "react-redux";
+import {GET_PROFILE} from "../../redux/Constants/userRegister";
+import UserServiceWithToken from "../../services/UserServiceWithToken";
 
 
 
@@ -74,10 +77,7 @@ const styles = {
 };
 
 
-
-
-
-export default class BandProfile extends React.Component{
+class BandProfile extends React.Component{
     constructor(props){
         super(props)
         this.state={
@@ -91,6 +91,13 @@ export default class BandProfile extends React.Component{
         },()=>{
             this.getBandInfo(this.state.mbid)
         })
+
+
+
+
+        const getUserServiceObj = new UserServiceWithToken();
+        this.props.getMyProfile(getUserServiceObj.getProfile)
+
 
     }
 
@@ -188,3 +195,25 @@ export default class BandProfile extends React.Component{
 
     }
 }
+
+
+
+const mapStateToProps = state => {
+    return {...state.loginReducer}
+}
+
+
+const mapDispatchToProps = (dispatch) =>({
+
+    getMyProfile: (promise)=>{
+        dispatch({
+            type : GET_PROFILE,
+            payload: promise
+        })
+    }
+
+
+})
+
+export default  connect(mapStateToProps, mapDispatchToProps)(BandProfile);
+

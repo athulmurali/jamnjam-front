@@ -15,18 +15,11 @@ const profileByRole=(props)=>{
         case ARTIST     :   return <Redirect to={'artist/cc197bad-dc9c-440d-a5b5-d52ba2e14234/'}/>
         case BAND       :   return <Redirect to={'band/cc197bad-dc9c-440d-a5b5-d52ba2e14234/'}/>
 
-
-
-
         default :  return<h2>Invalid role obtained from backend</h2>
     }
 
 }
 
-
-const mapDispatchToProps=(dispatch)=>{
-    return null;
-}
 
 const mapStateToProps = state => {
     return {...state.loginReducer}
@@ -34,4 +27,4 @@ const mapStateToProps = state => {
 
 
 
-export default  connect(mapStateToProps, mapDispatchToProps)(profileByRole);
+export default  connect(mapStateToProps)(profileByRole);

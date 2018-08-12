@@ -12,7 +12,7 @@ export class UserService{
 
 
     login  =(userData)=>{
-        console.log("getUserNameAvailability")
+        console.log("login")
 
         return axios.post(LOGIN_URL, userData)
     }
