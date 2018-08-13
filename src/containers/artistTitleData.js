@@ -23,6 +23,13 @@ export const mailFolderListItems = (
             <ListItemText primary="My Network" />
         </ListItem>
 
+        <ListItem button>
+            <ListItemIcon>
+                <StarsIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Artist lookOut" />
+        </ListItem>
+
     </div>
 );
 

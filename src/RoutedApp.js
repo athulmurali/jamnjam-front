@@ -26,7 +26,7 @@ const  RoutedApp =()=> {
                         <Route  exact path="/band/:mbid"      component={BandProfile} />
 
                         <Route  exact path="/booking"           component={Booking} />
-                        <Route  exact path="/admin"             component={Admin } />
+                        <Route  path="/admin"             component={Admin } />
                         <Route  exact path="/register"          component={UserRegister } />
                         <Route  exact path="/login"          component={UserLoginContainer } />
 

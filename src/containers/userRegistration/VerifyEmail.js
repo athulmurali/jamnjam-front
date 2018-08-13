@@ -30,8 +30,7 @@ export   const  VerifyEmail = (props)=>{
             <div className="card-body ">
                 <h5 className="card-title">Registration Successful! </h5>
                 <p className="card-text">
-                    An activation mail has been sent to your registered email.
-                    It should be there within 5 minutes. Please check your inbox. </p>
+                  Please login with the given userId and password </p>
 
                 <Link to={'/login'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
                     <Button color='inherit'

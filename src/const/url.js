@@ -8,6 +8,10 @@ export const  BASE_URL = "https://jamnjam-backend.herokuapp.com"
 
 export const CREATE_USER_URL = BASE_URL + '/user/'
 
+export const GET_USER_BY_ROLE_ID_URL =(role,id)=> {
+ return  BASE_URL + '/'+ role+'/'+ id.toString()}
+
+
  export const USERNAME_AVAILABILITY_URL =(userRole, username)=>
      BASE_URL + usernameAvailability_URL
          .replace('userRole', userRole)

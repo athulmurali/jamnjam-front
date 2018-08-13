@@ -1,9 +1,10 @@
-import {CLOSE_SIDE_BAR, LOG_IN, LOG_OUT, OPEN_SIDE_BAR} from "../Constants/userAccount";
+import {CLOSE_SIDE_BAR, LOG_IN, LOG_OUT, OPEN_SIDE_BAR, SELECT_USER} from "../Constants/userAccount";
 
 const initialState = {
     isLoggedIn: false,
     error: false,
-    errorMessage: ''
+    errorMessage: '',
+    selectedUser : false
 
 }
 const userAccountReducer = (state = initialState, action) => {
@@ -25,7 +26,12 @@ const userAccountReducer = (state = initialState, action) => {
         case CLOSE_SIDE_BAR:
             return {...state,isSideBarOpen : false }
 
-         default:
+
+        case SELECT_USER:
+            return {...state,
+                selectedUser : action.payload  }
+
+        default:
             return Object.assign({}, state, {error: false})
     }
 

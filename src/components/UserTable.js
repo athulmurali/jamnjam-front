@@ -8,8 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import AlertDialog from "./AlertDialog";
+import {UserService} from "../services/api/user";
 
 
 const styles = theme => ({
@@ -19,7 +20,7 @@ const styles = theme => ({
         overflowX: 'auto',
     },
     table: {
-        minWidth: 700,
+
     },
 });
 
@@ -28,14 +29,7 @@ function createData(name, calories, fat, carbs, protein) {
     id += 1;
     return { id, name, calories, fat, carbs, protein };
 }
-//
-// let data = [
-//     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//     createData('Eclair', 262, 16.0, 24, 6.0),
-//     createData('Cupcake', 305, 3.7, 67, 4.3),
-//     createData('Gingerbread', 356, 16.0, 49, 3.9),
-// ];
+
 
 function SimpleTable(props) {
 
@@ -44,11 +38,8 @@ function SimpleTable(props) {
 
     console.log(props)
 
-    const handleClickDelete=()=>{
-
-        this.setState({
-
-        })
+    const handleClickDelete=(role,id)=>{
+        const userService = new UserService();
     }
 
     return (
@@ -58,8 +49,7 @@ function SimpleTable(props) {
                     <TableRow>
                         <TableCell>username</TableCell>
                         <TableCell>role</TableCell>
-                        <TableCell>address</TableCell>
-                        <TableCell>email</TableCell>
+
                         <TableCell>Edit</TableCell>
                     </TableRow>
                 </TableHead>
@@ -70,16 +60,15 @@ function SimpleTable(props) {
                                 <TableCell component="th" scope="row">
                                     {n.username}
                                 </TableCell>
-                                <TableCell numeric>{n.role}</TableCell>
-                                <TableCell numeric>{n.address}</TableCell>
-                                <TableCell numeric>{n.emailId}</TableCell>
-                                <TableCell numeric>
+                                <TableCell >{n.role}</TableCell>
+                                <TableCell>
                                     <IconButton className={classes.button} aria-label="Delete"
                                                 onClick={()=>{alert("hi")}}>
-                                        <EditIcon />
+                                        <DeleteIcon />
                                     </IconButton>
 
-                                    <AlertDialog open={true} message={"Please select confirm to proceed"}/>
+                                    <AlertDialog
+                                        open={true} message={"Please select confirm to proceed"}/>
                                 </TableCell>
                             </TableRow>
                         );

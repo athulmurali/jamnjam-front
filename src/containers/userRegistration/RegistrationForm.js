@@ -108,14 +108,10 @@ class RegistrationForm extends React.Component {
         })
     }
 
-
-
     createNewUserInServer=(userData)=>{
         const userService = new UserService();
-
         this.props.create_user_dispatch(userService.createNewUser(userData))
     }
-
 
     render() {
         const { classes } = this.props;
@@ -482,7 +478,6 @@ class RegistrationForm extends React.Component {
         );
     }
 
-
     isNonBandFormValid=()=>{
         return this.props.firstName && this.props.lastName &&  this.props.zip &&
             (this.props.password === this.props.confirmPassword) &&
@@ -498,16 +493,9 @@ class RegistrationForm extends React.Component {
 }
 
 
-
-
-
-
-
 RegistrationForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-
-
 
 
 const mapStateToProps = state => {

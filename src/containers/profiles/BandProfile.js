@@ -18,6 +18,7 @@ import DrawerMenu from "../DrawerMenu";
 import {connect} from "react-redux";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import UserServiceWithToken from "../../services/UserServiceWithToken";
+import {UserService} from "../../services/api/user";
 
 
 
@@ -92,11 +93,8 @@ class BandProfile extends React.Component{
             this.getBandInfo(this.state.mbid)
         })
 
-
-
-
-        const getUserServiceObj = new UserServiceWithToken();
-        this.props.getMyProfile(getUserServiceObj.getProfile)
+        const getUserServiceObj = new UserService();
+        this.props.getProfile(getUserServiceObj.getUser('band', this.props.match.params.mbid))
 
 
     }
@@ -184,10 +182,6 @@ class BandProfile extends React.Component{
                     </CardActions>
                 </Card>
 
-
-
-
-
             </div>
             </div>
 
@@ -205,7 +199,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) =>({
 
-    getMyProfile: (promise)=>{
+    getProfile: (promise)=>{
         dispatch({
             type : GET_PROFILE,
             payload: promise

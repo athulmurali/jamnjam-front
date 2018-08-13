@@ -7,6 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import UserTable from "./UserTable";
 import {Users} from "../services/api/Users";
+import {ADMIN, ARTIST, BAND} from "../const/userRoles";
+import {connect} from "react-redux";
 
 function TabContainer(props) {
     return (
@@ -85,9 +87,28 @@ const styles = theme => ({
                         <Tab label="All" />
                     </Tabs>
                 </AppBar>
-                {value === 0 && <TabContainer>Item One</TabContainer>}
-                {value === 1 && <TabContainer>Item Two</TabContainer>}
-                {value === 2 && <TabContainer>Item Three</TabContainer>}
+                {value === 0 &&
+                <TabContainer>
+                    <UserTable
+                        users ={users.filter(user=>{return user.role=== ARTIST})}
+                    ></UserTable>
+                </TabContainer>}
+                {value === 1 &&
+                <TabContainer>
+                    <UserTable
+                        users ={users.filter(user=>{return user.role=== BAND})}
+                    ></UserTable>
+
+                </TabContainer>}
+                {value === 2 &&
+                <TabContainer>
+
+                    <UserTable
+                        users ={users.filter(user=>{return user.role=== ADMIN})}
+                    ></UserTable>
+
+
+                </TabContainer>}
                 {value === 3 && <TabContainer>
                     <UserTable users ={users}
                     ></UserTable>
@@ -102,4 +123,22 @@ SimpleTabs.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleTabs);
+const styledSimpleTabs =  withStyles(styles)(SimpleTabs);
+
+const mapStateToProps = state => {
+    return {
+        isLoggedIn : state.userAccountReducer.isLoggedIn,
+        myProfile : state.loginReducer.profile
+    }
+
+}
+
+
+const mapDispatchToProps = (dispatch) =>({
+
+
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(styledSimpleTabs);
+
