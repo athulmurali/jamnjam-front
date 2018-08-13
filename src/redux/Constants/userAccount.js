@@ -6,3 +6,9 @@ export const  CLOSE_SIDE_BAR = 'CLOSE_SIDE_BAR'
 
 
 export const SELECT_USER = "SELECT_USER"
+
+
+export const  DELETE_USER           = "DELETE_USER"
+export const  DELETE_USER_PENDING   = 'DELETE_USER_PENDING'
+export const  DELETE_USER_REJECTED  = 'DELETE_USER_REJECTED'
+export const  DELETE_USER_FULFILLED = 'DELETE_USER_FULFILLED'

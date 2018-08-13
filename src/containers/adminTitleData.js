@@ -14,20 +14,14 @@ export const mailFolderListItems = (
             <ListItemIcon>
                 <PersonIcon />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <StarsIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Manage Members" />
+            <ListItemText primary="AdminTools" />
         </ListItem>
 
         <ListItem button>
             <ListItemIcon>
-                <MailIcon/>
+                <StarsIcon/>
             </ListItemIcon>
-            <ListItemText primary="Band Posts" />
+            <ListItemText primary="Artist lookOut" />
         </ListItem>
 
     </div>

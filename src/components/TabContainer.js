@@ -53,6 +53,7 @@ const styles = theme => ({
     getAllUsersFromServer = ()=>{
     const users = new Users();
 
+
     users.getAllUsers().
     then(result=>{
 
@@ -137,6 +138,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) =>({
 
 
+    getAllUsersFromServer : ()=>{}
 })
 
 

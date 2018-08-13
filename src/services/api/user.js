@@ -1,5 +1,8 @@
 import axios from 'axios';
-import {CREATE_USER_URL, GET_USER_BY_ROLE_ID_URL, LOGIN_URL} from "../../const/url";
+import {
+    CREATE_USER_URL, DEL_USER_BY_ROLE_ID_URL, GET_USER_BY_ROLE_ID_URL, LOGIN_URL,
+    UPDATE_USER_URL
+} from "../../const/url";
 
 export class UserService{
 
@@ -21,6 +24,20 @@ export class UserService{
         return axios.get(GET_USER_BY_ROLE_ID_URL(role,userId))
     }
 
+    deleteUser = (role, userId) => {
+
+        console.log("deleting User ")
+        console.log(role, userId)
+
+
+        return axios.delete(DEL_USER_BY_ROLE_ID_URL(role,userId))
+
+    }
+
+    updateUser = (userData)=>{
+        return axios.put(UPDATE_USER_URL,userData)
+
+    }
 
 }
 

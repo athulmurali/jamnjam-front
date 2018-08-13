@@ -8,9 +8,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import AlertDialog from "./AlertDialog";
 import {UserService} from "../services/api/user";
+import {connect} from "react-redux";
+import {SELECT_USER} from "../redux/Constants/userAccount";
+import {Link, Redirect} from "react-router-dom";
+import {SET_UPDATE_MODE} from "../redux/Constants/userRegister";
 
 
 const styles = theme => ({
@@ -38,9 +42,7 @@ function SimpleTable(props) {
 
     console.log(props)
 
-    const handleClickDelete=(role,id)=>{
-        const userService = new UserService();
-    }
+
 
     return (
         <Paper className={classes.root}>
@@ -54,21 +56,55 @@ function SimpleTable(props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.users.map((n,index) => {
+                    {props.users.map((user,index) => {
                         return (
                             <TableRow key={index}>
                                 <TableCell component="th" scope="row">
-                                    {n.username}
+                                    {user.username}
                                 </TableCell>
-                                <TableCell >{n.role}</TableCell>
+                                <TableCell >{user.role}</TableCell>
                                 <TableCell>
-                                    <IconButton className={classes.button} aria-label="Delete"
-                                                onClick={()=>{alert("hi")}}>
-                                        <DeleteIcon />
-                                    </IconButton>
 
-                                    <AlertDialog
-                                        open={true} message={"Please select confirm to proceed"}/>
+                                    <div className="row">
+
+
+
+                                            <IconButton className={classes.button} aria-label="Edit"
+                                                        onClick={()=>{
+                                                            props.selectUser(user)
+                                                            props.setUpdateMode(true,props.selectedUser)// this.props.history.
+                                                        }}>
+                                                <EditIcon />
+
+                                                {
+                                                    (props.selectedUser && props.updateMode) &&
+                                                    (props.setUpdateMode(true,props.selectedUser)
+
+                                                        ||
+
+                                                        <Redirect
+                                                            to={'/' + props.selectedUser.role +
+                                                            '/editProfile/' +
+                                                            props.selectedUser._id}/>
+
+                                                    )
+
+
+
+
+
+                                                }
+
+
+                                            </IconButton>
+
+
+
+
+                                        <AlertDialog userToDelete={user}
+                                                     open={true} message={"Please select confirm to proceed"}/>
+                                    </div>
+
                                 </TableCell>
                             </TableRow>
                         );
@@ -89,4 +125,34 @@ SimpleTable.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleTable);
+const simpleTable =  withStyles(styles)(SimpleTable);
+const mapStateToProps = state => {
+    return {
+        isLoggedIn : state.userAccountReducer.isLoggedIn,
+        myProfile : state.loginReducer.profile,
+        selectedUser : state.userAccountReducer.selectedUser,
+        updateMode : state.userRegistrationReducer.updateMode
+    }
+
+}
+
+
+const mapDispatchToProps = (dispatch) =>({
+    selectUser : (userData) =>{
+        dispatch({type : SELECT_USER,
+            payload: userData})
+    },
+
+
+    setUpdateMode : (booleanValue,selectedUser) =>{
+        dispatch({type : SET_UPDATE_MODE,
+            payload: {
+                selectedUser : selectedUser,
+                updateMode : booleanValue}})
+    }
+
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(simpleTable);
+

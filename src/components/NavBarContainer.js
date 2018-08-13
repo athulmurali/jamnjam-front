@@ -11,14 +11,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from "@material-ui/core/es/Button/Button";
-import {LOG_IN, LOG_IN_ACT, LOG_OUT, LOG_OUT_ACT} from '../redux/actions/userAccountActions';
+import {LOG_IN_ACT, LOG_OUT_ACT} from '../redux/actions/userAccountActions';
 import {Link} from "react-router-dom";
 import DrawerMenu from "../containers/DrawerMenu";
 import {OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
-import {Badge} from "material-ui";
-import * as theme from "material-ui";
-
-
 
 
 const styles = theme => ({
@@ -82,6 +78,8 @@ class MenuAppBar extends React.Component {
                         </IconButton>
                         }
                         <DrawerMenu role = {!!this.props.profile && this.props.profile.role}></DrawerMenu>
+
+
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             Jam n' jam
                         </Typography>

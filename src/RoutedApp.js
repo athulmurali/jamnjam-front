@@ -11,6 +11,7 @@ import BandProfile from "./containers/profiles/BandProfile";
 import UserLoginContainer from "./containers/userLogin/UserLoginContainer";
 import history from './components/history'
 import profileByRole from "./containers/profiles/profileByRole";
+import EditProfile from "./containers/editProfile/EditProfile";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -32,6 +33,9 @@ const  RoutedApp =()=> {
 
                         <Route  exact path="/roleSelect"         component={roleSelect } />
                     <Route  exact path="/profileByRole"          component={profileByRole } />
+
+                        <Route  exact path="/:userRole/editProfile/:_id"
+                                component={EditProfile } />
 
 
                     </Switch>

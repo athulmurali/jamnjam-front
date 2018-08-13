@@ -10,12 +10,13 @@ import {
     CREATE_USER_FULFILLED,
     CREATE_USER_PENDING,
     CREATE_USER_REJECTED,
-    REGISTER_USER,
-    UPDATE_FIELD
+    REGISTER_USER, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
+    UPDATE_FIELD, UPDATE_USER
 } from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
 import {UserService} from "../../services/api/user";
 import {ARTIST, BAND} from "../../const/userRoles";
+import {Redirect} from "react-router-dom";
 
 const styles = theme => ({
     container: {
@@ -50,6 +51,7 @@ const styles = theme => ({
 
 class RegistrationForm extends React.Component {
 
+
     userByRoleService = new UserByRole();
 
     state = {
@@ -62,7 +64,7 @@ class RegistrationForm extends React.Component {
         password : '',
         confirmPassword : '',
         dob: '',
-        zip : 0,
+        zip : '',
         bio: '',
         img:'',
 
@@ -116,365 +118,412 @@ class RegistrationForm extends React.Component {
     render() {
         const { classes } = this.props;
 
+
+        if( this.props.updateSuccess)
+        {
+           this.props.resetUpdateSuccess();
+            return <Redirect to='/home' />
+
+        }
+
+
+
+
         return (
-          this.props.role == BAND ?
-              <form className={classes.container}
-                  noValidate
-                  autoComplete="off" centred={true}>
-                <TextField
-                        id="title"
-                        label="title"
-                        className={classes.fullWidthTextField}
-                        value={this.props.title}
-                        onChange={(event)=>{
-                            this.setState({firstName : event.target.value})
-                            this.props.updateField('title',event.target.value) }}
-                        margin="normal"
-                        required
-                        fullWidth={true}
-                        helperText={ !this.props.title && "Cannot be empty" }
+            <div>
+                {
+                    this.props.role == BAND || this.props.updateRole === BAND?
+                        <form className={classes.container}
+                              noValidate
+                              autoComplete="off" centred={true}>
+                            <TextField
+                                id="title"
+                                label="title"
+                                className={classes.fullWidthTextField}
+                                defaultValue={this.props.title}
+                                onChange={(event)=>{
+                                    this.setState({firstName : event.target.value})
+                                    this.props.updateField('title',event.target.value) }}
+                                margin="normal"
+                                required
+                                fullWidth={true}
+                                helperText={ !this.props.title && "Cannot be empty" }
 
-                    />
-                <TextField
-                    id="password"
-                    label="Password"
-                    className={classes.textField}
-                    type="password"
-                    autoComplete="current-password"
-                    margin="normal"
-                    required
-                    onChange={(event)=>{
-                        this.setState({password : event.target.value})
-                        this.props.updateField('password',event.target.value) }
-                    }
-                />
-                <TextField
-                    id="confirmPassword"
-                    label="Confirm Password"
-                    className={classes.textField}
-                        type="password"
-                    autoComplete="current-password"
-                    margin="normal"
-                    error={this.props.password !== this.props.confirmPassword}
-                    helperText={this.props.password !== this.props.confirmPassword  && "Password not matching!" }
-                    required
-                    onChange={(event)=>{
-                        this.setState({confirmPassword : event.target.value})
-                        this.props.updateField('confirmPassword',event.target.value) }
-                    }
+                            />
+                            <TextField
+                                id="password"
+                                label="Password"
+                                className={classes.textField}
+                                type="password"
+                                autoComplete="current-password"
+                                margin="normal"
+                                required
+                                defaultValue={this.props.password}
 
-                />
-                <TextField
-                    required
-                    error ={!this.props.username || !this.state.isUsernameAvailable}
-                    id="username"
-                    label="username"
-                    defaultValue=""
-                    className={classes.textField}
-                    margin="normal"
-                    helperText={this.state.isUsernameAvailable?  "" : this.state.usernameError }
-                    onChange={(event=>{
-                        this.setState({username : event.target.value},
-                        this.getUserNameAvailFromServer
-                        )
+                                onChange={(event)=>{
+                                    this.setState({password : event.target.value})
+                                    this.props.updateField('password',event.target.value) }
+                                }
+                            />
+                            <TextField
+                                id="confirmPassword"
+                                label="Confirm Password"
+                                className={classes.textField}
+                                type="password"
+                                autoComplete="current-password"
+                                defaultValue={this.props.confirmPassword}
 
-                        this.props.updateField('username',event.target.value)
+                                margin="normal"
+                                error={this.props.password !== this.props.confirmPassword}
+                                helperText={this.props.password !== this.props.confirmPassword  && "Password not matching!" }
+                                required
+                                onChange={(event)=>{
+                                    this.setState({confirmPassword : event.target.value})
+                                    this.props.updateField('confirmPassword',event.target.value) }
+                                }
 
-                    })}
+                            />
+                            <TextField
+                                required
+                                error ={!this.props.username || !this.state.isUsernameAvailable}
+                                id="username"
+                                label="username"
+                                defaultValue={this.props.username}
+                                className={classes.textField}
+                                margin="normal"
+                                helperText={this.state.isUsernameAvailable?  "" : this.state.usernameError }
+                                onChange={(event=>{
+                                    this.setState({username : event.target.value},
+                                        this.getUserNameAvailFromServer
+                                    )
 
-                />
-                <TextField
-                    // error={true}
-                    error ={ !EmailValidator.validate(this.props.emailId) || !this.state.isEmailAvailable}
-                    id="emailId"
-                    label="emailId"
-                    defaultValue=""
-                    className={classes.textField}
-                    margin="normal"
-                    // helperText={true  && "Email already registered!" }
+                                    this.props.updateField('username',event.target.value)
 
-                    helperText={ this.state.emailError ||
-                        !EmailValidator.validate(this.props.emailId) && "Invalid email Id!" }
+                                })}
 
+                            />
+                            <TextField
+                                // error={true}
+                                error ={ !EmailValidator.validate(this.props.emailId) || !this.state.isEmailAvailable}
+                                id="emailId"
+                                label="emailId"
+                                defaultValue={this.props.emailId}
 
-                    onChange={(event)=>{
-                        this.setState({emailId: event.target.value },
-                            this.getEmailAvailFromServer)
-                        this.props.updateField('emailId',event.target.value)
+                                className={classes.textField}
+                                margin="normal"
+                                // helperText={true  && "Email already registered!" }
 
-                    }}
-
-                />
-                <TextField
-                    error ={false}
-                    id="phone"
-                    type="number"
-                    label="phone"
-                    defaultValue=""
-                    className={classes.textField}
-                    margin="normal"
-                    onChange={(event)=>{
-                        this.setState({phone : event.target.value})
-                        this.props.updateField('phone',event.target.value) }
-                    }
-
-                />
-                <TextField
-                    id="dob"
-                    label="Birthday"
-                    type="date"
-                    defaultValue="2017-05-24"
-                    className={classes.textField}
-                    margin="normal"
-                    onChange={(event)=>{
-                        this.setState({dob : event.target.value})
-                        this.props.updateField('dob',event.target.value) }
-                    }
-                />
-                <TextField
-                  error ={false}
-                  id="zip"
-                  label="zip"
-                  defaultValue={123466}
-                  className={classes.textField}
-                  margin="normal"
-                  onChange={(event)=>{
-                      this.setState({zip : event.target.value})
-                      this.props.updateField('zip',event.target.value) }
-                  }
-
-                  helperText={ !this.props.zip && "Cannot be empty" }
-
-              />
-                <TextField
-                      error ={false}
-                      id="img"
-                      label="img Url"
-                      defaultValue={''}
-                      className={classes.textField}
-                      margin="normal"
-                      onChange={(event)=>{
-                          this.setState({img : event.target.value})
-                          this.props.updateField('img',event.target.value) }
-                      }
-                      helperText={ !this.props.img && "paste your image url here" }
+                                helperText={ this.state.emailError ||
+                                !EmailValidator.validate(this.props.emailId) && "Invalid email Id!" }
 
 
-                  />
-                <TextField
-                      id="bio"
-                      label="bio"
-                      multiline
-                      rowsMax="10"
+                                onChange={(event)=>{
+                                    this.setState({emailId: event.target.value },
+                                        this.getEmailAvailFromServer)
+                                    this.props.updateField('emailId',event.target.value)
 
-                      fullWidth={true}
-                      className={classes.fullWidthTextField}
-                      margin="normal"
-                      onChange={(event)=>{
-                          this.setState({bio : event.target.value})
-                          this.props.updateField('bio',event.target.value) }
-                      }
-                  />
-                <Button variant="contained" color="primary"
-                        onClick = {()=>{
-                            this.props.register(this.state)
-                            this.createNewUserInServer(this.props);
-                        }}
-                        className={classes.button}
-                        fullWidth
-                        margin="normal"
-                        disabled={!this.isBandFormValid()}
+                                }}
 
-                >
-                    Register
-                </Button>
-            </form>:
-              <form className={classes.container}
-                    noValidate
-                    autoComplete="off" centred={true}>
+                            />
+                            <TextField
+                                error ={false}
+                                id="phone"
+                                type="number"
+                                label="phone"
+                                className={classes.textField}
+                                margin="normal"
+                                defaultValue={this.props.phone}
 
-                  <TextField
-                      id="firstName"
-                      label="First Name"
-                      className={classes.textField}
-                      value={this.props.firstName}
-                      onChange={(event)=>{
-                          this.setState({firstName : event.target.value})
-                          this.props.updateField('firstName',event.target.value) }}
-                      margin="normal"
-                      required
-                      helperText={ !this.props.firstName && "Cannot be empty" }
+                                onChange={(event)=>{
+                                    this.setState({phone : event.target.value})
+                                    this.props.updateField('phone',event.target.value) }
+                                }
 
-                  />
-                  <TextField
-                      id="lastName"
-                      label="Last Name"
-                      className={classes.textField}
-                      value={this.props.lastName}
-                      onChange={(event)=>{
-                          this.setState({lastName : event.target.value})
-                          this.props.updateField('lastName',event.target.value) }
-                      }
-                      margin="normal"
-                      required
-                      helperText={ !this.props.lastName && "Cannot be empty" }
+                            />
+                            <TextField
+                                id="dob"
+                                label="Birthday"
+                                type="date"
+                                defaultValue="2017-05-24"
+                                className={classes.textField}
+                                margin="normal"
+                                onChange={(event)=>{
+                                    this.setState({dob : event.target.value})
+                                    this.props.updateField('dob',event.target.value) }
+                                }
+                            />
 
-                  />
-                  <TextField
-                      id="password"
-                      label="Password"
-                      className={classes.textField}
-                      type="password"
-                      autoComplete="current-password"
-                      margin="normal"
-                      required
-                      onChange={(event)=>{
-                          this.setState({password : event.target.value})
-                          this.props.updateField('password',event.target.value) }
-                      }
-                  />
-                  <TextField
-                      id="confirmPassword"
-                      label="Confirm Password"
-                      className={classes.textField}
-                      type="password"
-                      autoComplete="current-password"
-                      margin="normal"
-                      error={this.props.password !== this.props.confirmPassword}
-                      helperText={this.props.password !== this.props.confirmPassword  && "Password not matching!" }
-                      required
-                      onChange={(event)=>{
-                          this.setState({confirmPassword : event.target.value})
-                          this.props.updateField('confirmPassword',event.target.value) }
-                      }
+                            <TextField
+                                error ={false}
+                                id="zip"
+                                label="zip"
+                                defaultValue={this.props.zip}
+                                className={classes.textField}
+                                margin="normal"
+                                onChange={(event)=>{
+                                    this.setState({zip : event.target.value})
+                                    this.props.updateField('zip',event.target.value) }
+                                }
 
-                  />
-                  <TextField
-                      required
-                      error ={!this.props.username || !this.state.isUsernameAvailable}
-                      id="username"
-                      label="username"
-                      defaultValue=""
-                      className={classes.textField}
-                      margin="normal"
-                      helperText={this.state.isUsernameAvailable?  "" : this.state.usernameError }
-                      onChange={(event=>{
-                          this.setState({username : event.target.value},
-                              this.getUserNameAvailFromServer
-                          )
+                                helperText={ !this.props.zip && "Cannot be empty" }
 
-                          this.props.updateField('username',event.target.value)
+                            />
+                            <TextField
+                                error ={false}
+                                id="img"
+                                label="img Url"
+                                defaultValue={this.props.img}
 
-                      })}
-
-                  />
-                  <TextField
-                      // error={true}
-                      error ={ !EmailValidator.validate(this.props.emailId) || !this.state.isEmailAvailable}
-                      id="emailId"
-                      label="emailId"
-                      defaultValue=""
-                      className={classes.textField}
-                      margin="normal"
-                      // helperText={true  && "Email already registered!" }
-
-                      helperText={ this.state.emailError ||
-                      !EmailValidator.validate(this.props.emailId) && "Invalid email Id!" }
+                                className={classes.textField}
+                                margin="normal"
+                                onChange={(event)=>{
+                                    this.setState({img : event.target.value})
+                                    this.props.updateField('img',event.target.value) }
+                                }
+                                helperText={ !this.props.img && "paste your image url here" }
 
 
-                      onChange={(event)=>{
-                          this.setState({emailId: event.target.value },
-                              this.getEmailAvailFromServer)
-                          this.props.updateField('emailId',event.target.value)
+                            />
+                            <TextField
+                                id="bio"
+                                label="bio"
+                                multiline
+                                rowsMax="10"
 
-                      }}
-
-                  />
-                  <TextField
-                      error ={false}
-                      id="phone"
-                      type="number"
-                      label="phone"
-                      defaultValue=""
-                      className={classes.textField}
-                      margin="normal"
-                      onChange={(event)=>{
-                          this.setState({phone : event.target.value})
-                          this.props.updateField('phone',event.target.value) }
-                      }
-
-                  />
-                  <TextField
-                      id="dob"
-                      label="Birthday"
-                      type="date"
-                      defaultValue="2017-05-24"
-                      className={classes.textField}
-                      margin="normal"
-                      onChange={(event)=>{
-                          this.setState({dob : event.target.value})
-                          this.props.updateField('dob',event.target.value) }
-                      }
-                  />
-
-                  <TextField
-                      error ={false}
-                      id="zip"
-                      label="zip"
-                      defaultValue={123466}
-                      className={classes.textField}
-                      margin="normal"
-                      onChange={(event)=>{
-                          this.setState({zip : event.target.value})
-                          this.props.updateField('zip',event.target.value) }
-                      }
-
-                      helperText={ !this.props.zip && "Cannot be empty" }
-
-                  />
-                  <TextField
-                      error ={false}
-                      id="img"
-                      label="img Url"
-                      defaultValue={''}
-                      className={classes.textField}
-                      margin="normal"
-                      onChange={(event)=>{
-                          this.setState({img : event.target.value})
-                          this.props.updateField('img',event.target.value) }
-                      }
-                      helperText={ !this.props.img && "paste your image url here" }
+                                defaultValue={this.props.bio}
+                                fullWidth={true}
+                                className={classes.fullWidthTextField}
+                                margin="normal"
+                                onChange={(event)=>{
+                                    this.setState({bio : event.target.value})
+                                    this.props.updateField('bio',event.target.value) }
+                                }
+                                />
 
 
-                  />
-                  <TextField
-                      id="bio"
-                      label="bio"
-                      multiline
-                      rowsMax="10"
+                        </form>:
+                        <form className={classes.container}
+                              noValidate
+                              autoComplete="off" centred={true}>
+                            <TextField
+                                id="firstName"
+                                label="First Name"
+                                className={classes.textField}
+                                defaultValue={this.props.firstName}
+                                onChange={(event)=>{
+                                    this.setState({firstName : event.target.value})
+                                    this.props.updateField('firstName',event.target.value) }}
+                                margin="normal"
+                                required
+                                helperText={ !this.props.firstName && "Cannot be empty" }
 
-                      fullWidth={true}
-                      className={classes.fullWidthTextField}
-                      margin="normal"
-                      onChange={(event)=>{
-                          this.setState({bio : event.target.value})
-                          this.props.updateField('bio',event.target.value) }
-                      }
-                  />
-                  <Button variant="contained" color="primary"
-                          onClick = {()=>{
-                              this.props.register(this.state)
-                              this.createNewUserInServer(this.props);
-                          }}
-                          className={classes.button}
-                          fullWidth
-                          margin="normal"
-                          disabled={!this.isNonBandFormValid()}
+                            />
+                            <TextField
+                                id="lastName"
+                                label="Last Name"
+                                className={classes.textField}
+                                defaultValue={this.props.lastName}
+                                onChange={(event)=>{
+                                    this.setState({lastName : event.target.value})
+                                    this.props.updateField('lastName',event.target.value) }
+                                }
+                                margin="normal"
+                                required
+                                helperText={ !this.props.lastName && "Cannot be empty" }
 
-                  >
-                      Register
-                  </Button>
-              </form>
+                            />
+                            <TextField
+                                id="password"
+                                label="Password"
+                                className={classes.textField}
+                                type="password"
+                                autoComplete="current-password"
+                                margin="normal"
+                                required
+                                defaultValue={this.props.password}
+
+                                onChange={(event)=>{
+                                    this.setState({password : event.target.value})
+                                    this.props.updateField('password',event.target.value) }
+                                }
+                            />
+                            <TextField
+                                id="confirmPassword"
+                                label="Confirm Password"
+                                className={classes.textField}
+                                type="password"
+                                autoComplete="current-password"
+                                defaultValue={this.props.confirmPassword}
+
+                                margin="normal"
+                                error={this.props.password !== this.props.confirmPassword}
+                                helperText={this.props.password !== this.props.confirmPassword  && "Password not matching!" }
+                                required
+                                onChange={(event)=>{
+                                    this.setState({confirmPassword : event.target.value})
+                                    this.props.updateField('confirmPassword',event.target.value) }
+                                }
+
+                            />
+                            <TextField
+                                required
+                                error ={!this.props.username || !this.state.isUsernameAvailable}
+                                id="username"
+                                label="username"
+                                defaultValue={this.props.username}
+                                className={classes.textField}
+                                margin="normal"
+                                helperText={this.state.isUsernameAvailable?  "" : this.state.usernameError }
+                                onChange={(event=>{
+                                    this.setState({username : event.target.value},
+                                        this.getUserNameAvailFromServer
+                                    )
+
+                                    this.props.updateField('username',event.target.value)
+
+                                })}
+
+                            />
+                            <TextField
+                                // error={true}
+                                error ={ !EmailValidator.validate(this.props.emailId) || !this.state.isEmailAvailable}
+                                id="emailId"
+                                label="emailId"
+                                defaultValue={this.props.emailId}
+
+                                className={classes.textField}
+                                margin="normal"
+                                // helperText={true  && "Email already registered!" }
+
+                                helperText={ this.state.emailError ||
+                                !EmailValidator.validate(this.props.emailId) && "Invalid email Id!" }
+
+
+                                onChange={(event)=>{
+                                    this.setState({emailId: event.target.value },
+                                        this.getEmailAvailFromServer)
+                                    this.props.updateField('emailId',event.target.value)
+
+                                }}
+
+                            />
+                            <TextField
+                                error ={false}
+                                id="phone"
+                                type="number"
+                                label="phone"
+                                className={classes.textField}
+                                margin="normal"
+                                defaultValue={this.props.phone}
+
+                                onChange={(event)=>{
+                                    this.setState({phone : event.target.value})
+                                    this.props.updateField('phone',event.target.value) }
+                                }
+
+                            />
+                            <TextField
+                                id="dob"
+                                label="Birthday"
+                                type="date"
+                                defaultValue="2017-05-24"
+                                className={classes.textField}
+                                margin="normal"
+                                onChange={(event)=>{
+                                    this.setState({dob : event.target.value})
+                                    this.props.updateField('dob',event.target.value) }
+                                }
+                            />
+
+                            <TextField
+                                error ={false}
+                                id="zip"
+                                label="zip"
+                                defaultValue={this.props.zip}
+                                className={classes.textField}
+                                margin="normal"
+                                onChange={(event)=>{
+                                    this.setState({zip : event.target.value})
+                                    this.props.updateField('zip',event.target.value) }
+                                }
+
+                                helperText={ !this.props.zip && "Cannot be empty" }
+
+                            />
+                            <TextField
+                                error ={false}
+                                id="img"
+                                label="img Url"
+                                defaultValue={this.props.img}
+
+                                className={classes.textField}
+                                margin="normal"
+                                onChange={(event)=>{
+                                    this.setState({img : event.target.value})
+                                    this.props.updateField('img',event.target.value) }
+                                }
+                                helperText={ !this.props.img && "paste your image url here" }
+
+
+                            />
+                            <TextField
+                                id="bio"
+                                label="bio"
+                                multiline
+                                rowsMax="10"
+
+                                defaultValue={this.props.bio}
+                                fullWidth={true}
+                                className={classes.fullWidthTextField}
+                                margin="normal"
+                                onChange={(event)=>{
+                                    this.setState({bio : event.target.value})
+                                    this.props.updateField('bio',event.target.value) }
+                                }
+                            />
+
+                        </form>
+                }
+
+
+                    <div className={classes.container}>
+                        <Button variant="contained" color="secondary"
+                                onClick = {()=>{
+
+                                    // this.createNewUserInServer(this.props);
+
+                                    this.props.setUpdateMode(false)
+
+                                    return  <Redirect to ='/home'></Redirect>
+                                }}
+                                className={classes.button}
+
+                                margin="normal">
+                            Cancel
+                        </Button>
+
+                        <Button variant="contained" color="primary"
+                                onClick = {()=>{
+
+                                    const updateUserService = new UserService();
+                                    if(!this.props.updateMode)
+                                        this.createNewUserInServer(this.props);
+
+                                   else this.props.updateUser(
+                                       updateUserService.updateUser(this.props));
+
+                                }}
+                                className={classes.button}
+
+                                margin="normal"
+                                disabled={(this.props.role === BAND && this.isBandFormValid())
+                                    ||  this.isNonBandFormValid()} >
+                            Ok
+                        </Button>
+                    </div>
+
+            </div>
+
         );
     }
 
@@ -482,13 +531,14 @@ class RegistrationForm extends React.Component {
         return this.props.firstName && this.props.lastName &&  this.props.zip &&
             (this.props.password === this.props.confirmPassword) &&
             this.props.username && this.props.phone && EmailValidator.validate(this.props.emailId)
-            && this.state.isEmailAvailable & this.state.isUsernameAvailable}
+            && this.state.isEmailAvailable && this.state.isUsernameAvailable}
 
     isBandFormValid=()=>{
         return this.props.title &&this.props.zip &&
             (this.props.password === this.props.confirmPassword) &&
-            this.props.username && this.props.phone && EmailValidator.validate(this.props.emailId)
-            && this.state.isEmailAvailable & this.state.isUsernameAvailable}
+            this.props.username && this.props.phone
+            && EmailValidator.validate(this.props.emailId)
+            && this.state.isEmailAvailable && this.state.isUsernameAvailable}
 
 }
 
@@ -499,8 +549,13 @@ RegistrationForm.propTypes = {
 
 
 const mapStateToProps = state => {
-    return {
-        ...state.userRegistrationReducer
+
+    if(state.userAccountReducer.selectedUser)
+        return {
+            ...state.userRegistrationReducer,...state.userAccountReducer.selectedUser
+        }
+    else {
+     return  { ...state.userRegistrationReducer}
     }
 }
 
@@ -553,7 +608,33 @@ const mapDispatchToProps = (dispatch) =>({
             payload : payload
         })
 
+    },
+
+
+    updateUser:(payload)=>{
+        console.log("update user called")
+        dispatch({
+            type :  UPDATE_USER,
+            payload : payload
+        })
+
+    },
+
+    setUpdateMode : (booleanValue) =>{
+        dispatch({type : SET_UPDATE_MODE,
+            payload: {
+            updateMode : booleanValue,
+                selectedUser : false
+            }})
+    },
+
+
+    resetUpdateSuccess: ()=>{
+        dispatch({
+            type: RESET_UPDATE_SUCCESS
+        })
     }
+
 })
 
 

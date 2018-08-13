@@ -48,11 +48,10 @@ const loginReducer = (state = initialState, action) => {
         case GET_PROFILE_FULFILLED :
         {
 
-            localStorage.setItem('myProfile', action.payload.data)
+            localStorage.setItem('currentProfile', action.payload.data)
             return {...state,
-                myProfile: action.payload.data,
+                currentProfile: action.payload.data,
                 fetching : false, error : false,
-
             }
         }
 

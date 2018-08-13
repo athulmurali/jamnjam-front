@@ -186,7 +186,7 @@ const styles = {
 
 
 const mapStateToProps = state => {
-    return {artistProfile : state.loginReducer.myProfile}
+    return {artistProfile : state.loginReducer.currentProfile}
 }
 
 

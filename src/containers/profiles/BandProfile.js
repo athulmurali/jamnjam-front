@@ -5,21 +5,14 @@ import Typography from "@material-ui/core/es/Typography/Typography";
 import CardActions from "@material-ui/core/es/CardActions/CardActions";
 import Button from "@material-ui/core/es/Button/Button";
 import CardMedia from "@material-ui/core/es/CardMedia/CardMedia";
-import FormGroup from "@material-ui/core/es/FormGroup/FormGroup";
-import FormControlLabel from "@material-ui/core/es/FormControlLabel/FormControlLabel";
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
-
-import querySearch from "query-string";
 import Artist from "../../services/lostFmServices/Artist";
 import MembersChip from "../MembersChip";
-import DrawerMenu from "../DrawerMenu";
 import {connect} from "react-redux";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
-import UserServiceWithToken from "../../services/UserServiceWithToken";
 import {UserService} from "../../services/api/user";
-
 
 
 const artist = Artist.instance
@@ -81,35 +74,23 @@ const styles = {
 class BandProfile extends React.Component{
     constructor(props){
         super(props)
-        this.state={
-            artistInfo: {}
-        }
+
 
     }
     componentDidMount(){
-        this.setState({
-            mbid:this.props.match.params.mbid
-        },()=>{
-            this.getBandInfo(this.state.mbid)
-        })
+
+        this.getBandInfo()
+
+    }
+
+
+    getBandInfo=()=>{
 
         const getUserServiceObj = new UserService();
+
         this.props.getProfile(getUserServiceObj.getUser('band', this.props.match.params.mbid))
-
-
     }
 
-
-    getBandInfo=(mbid)=>{
-
-        artist.getArtistInfo(mbid).then(response=>{
-            if (!!response.artist) this.setState({
-                artistInfo : response.artist
-            })
-
-        })
-
-    }
 
 
 
@@ -121,25 +102,19 @@ class BandProfile extends React.Component{
 
 
 
-    render(){
+    render(){ return <div>
 
-        const bull = <span className={styles.bullet}>•</span>;
-
-        if (!this.state.artistInfo.image) return null
-
-        else return(
-
-            <div style={styles.masterContainer}>
-                <div style={styles.container}>
-                    <h1>Band page</h1>
-                </div>
+        {this.props.currentProfile && <div style={styles.masterContainer}>
+            <div style={styles.container}>
+                <h1>Band page</h1>
+            </div>
 
             <div style={styles.container}>
 
                 <CardMedia style={styles.card}>
-                     <img style={styles.cardMedia}
-
-                            src={this.state.artistInfo.image[3]["#text"]}  />
+                    <img style={styles.cardMedia}
+                         src={this.props.currentProfile.img}
+                    />
                 </CardMedia>
                 <Card style={styles.card}>
                     <CardContent>
@@ -147,14 +122,16 @@ class BandProfile extends React.Component{
                             Band Name
                         </Typography>
                         <Typography variant="headline" component="h2">
-                            {this.state.artistInfo.name}
+                            {/*{this.state.artistInfo.name}*/}
+                            {this.props.currentProfile.title}
                         </Typography>
                         <List>
                             <ListItem button divider disabled>
                                 <ListItemText primary="Rank" secondary={"Unavailable"}/>
                             </ListItem>
                             <ListItem button divider >
-                                <ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />
+                                <ListItemText primary="Fans"
+                                              secondary={123456} />
                             </ListItem>
                         </List>
 
@@ -164,7 +141,9 @@ class BandProfile extends React.Component{
                         </Typography>
 
                         <MembersChip
-                            img={this.state.artistInfo.image[1]["#text"]}
+
+                            img={""}
+
                             members = {this.members}
                             editMode={false}
                         />
@@ -174,7 +153,8 @@ class BandProfile extends React.Component{
                             ABOUT
                         </Typography>
                         <Typography component="p">
-                            {this.state.artistInfo.bio.summary}
+                            {/*{this.state.artistInfo.bio.summary}*/}
+                            {this.props.currentProfile.bio}
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -183,9 +163,12 @@ class BandProfile extends React.Component{
                 </Card>
 
             </div>
-            </div>
+        </div>}
 
-        )
+    </div>
+
+
+
 
     }
 }
