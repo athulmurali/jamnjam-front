@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/es/Button/Button";
-import Redirect from "react-router-dom/es/Redirect";
 import Link from "react-router-dom/es/Link";
 
 const styles = theme => ({
@@ -55,13 +54,14 @@ function ArtistCard(props) {
                     <CardContent className={classes.content}>
                         <Typography variant="headline">{props.title}</Typography>
                         <Typography variant="subheading" color="textSecondary">
-                            {props.subtitle}
+                            {props.subtitle + "(PRO)"}
                         </Typography>
                     </CardContent>
                     <div className={classes.controls}>
 
 
-                            <Button variant="contained" color="primary" className={classes.button}>
+                            <Button variant="contained" color="primary"
+                                    className={classes.button}>
 
                                 {
                                     !!props.loggedIn ?

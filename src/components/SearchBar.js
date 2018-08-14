@@ -9,6 +9,10 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from "@material-ui/core/es/Button/Button";
+import {connect} from "react-redux";
+import {LOG_IN_ACT, LOG_OUT_ACT} from "../redux/actions/userAccountActions";
+import {OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
+import {UPDATE_SEARCH_ACCOUNT_TYPE, UPDATE_SEARCH_ROLE, UPDATE_ZIP} from "../redux/Constants/searchConstants";
 
 
 const styles = theme => ({
@@ -75,7 +79,7 @@ const theme = createMuiTheme({
 
 
 
- export default class  SearchBar extends React.Component {
+ class  SearchBar extends React.Component {
 
 
      constructor(props){
@@ -83,7 +87,7 @@ const theme = createMuiTheme({
 
          this.state = {
              value: 'artist',
-             accountType : 'CELEBRITY'
+             accountType : "FREE"
          };
 
      }
@@ -95,18 +99,17 @@ const theme = createMuiTheme({
 
      handleChange = event => {
          this.setState({ value: event.target.value });
+
+         this.props.updateSearchRole(event.target.value)
      };
 
 
      handleAccountTypeChange =event=>{
          this.setState({ accountType: event.target.value });
 
-     }
-     fun=()=>{
-         console.log("material ui is fun !")
+         this.props.updateSearchAccountType(event.target.value)
 
      }
-
 
      render() {
          return (
@@ -133,13 +136,13 @@ const theme = createMuiTheme({
                          }}
                      >
 
-                         <FormControlLabel value="CELEBRITY" control={<Radio color="primary"/>} label="CELEBRITY"/>
+                         <FormControlLabel value="PRO" control={<Radio color="primary"/>} label="PRO"/>
                          <FormControlLabel value="FREE" control={<Radio color="primary"/>} label="Free"/>
                      </RadioGroup>
                      <TextField
                          defaultValue=""
-                         fullWidth={true}
-                         placeholder="Enter a country name"
+                         width ={'100%'}
+                         placeholder="Country or zip"
                          label="Search"
                          id="bootstrap-input"
                          InputProps={{
@@ -156,13 +159,15 @@ const theme = createMuiTheme({
                          onChange={(event)=>{
                              this.props.onChangeText(event.target.value)
 
+                             this.props.updateSearchZip(event.target.value)
+
                          }}
                      />
 
 
 
 
-                     {this.state.accountType == "CELEBRITY"
+                     {this.state.accountType == "PRO"
                      &&
                      <div>
                          <Button variant="contained" color="default"
@@ -205,6 +210,7 @@ const theme = createMuiTheme({
 
                                  <FormControlLabel value="artist" control={<Radio color="primary"/>} label="Artist"/>
                                  <FormControlLabel value="band" control={<Radio color="primary"/>} label="Band"/>
+                                 <FormControlLabel value="" control={<Radio color="primary"/>} label="All"/>
                              </RadioGroup>
                          </div>
 
@@ -225,4 +231,52 @@ const theme = createMuiTheme({
 
 
 
+
+const mapStateToProps = state => {
+    return {
+        isLoggedIn : state.userAccountReducer.isLoggedIn,
+        profile : state.loginReducer.profile
+    }
+
+}
+
+
+const mapDispatchToProps = (dispatch) =>({
+
+  updateSearchAccountType:(searchAccountType)=>{
+      dispatch({
+          type:  UPDATE_SEARCH_ACCOUNT_TYPE,
+          payload : {
+              searchAccountType  :searchAccountType
+          }
+
+      })
+  },
+
+
+  updateSearchZip:(zip)=>{
+
+      dispatch({
+          type:  UPDATE_ZIP,
+          payload:{
+              searchZip : zip
+          }
+
+      })
+  },
+
+
+  updateSearchRole:(searchRole)=>{
+      dispatch({
+          type:  UPDATE_SEARCH_ROLE,
+          payload : {
+              searchRole  :searchRole
+          }
+
+      })
+  }
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)( withStyles(styles)(SearchBar));
 

@@ -13,6 +13,7 @@ import UserCard from "./components/UserCard";
 import {connect} from "react-redux";
 import {CLOSE_SIDE_BAR} from "./redux/Constants/userAccount";
 import {SET_UPDATE_MODE} from "./redux/Constants/userRegister";
+import {searchReducer} from "./redux/reducers/searchReducer";
 const artist = Artist.instance
 class App extends Component {
     constructor(props)
@@ -108,6 +109,36 @@ class App extends Component {
     }
 
   render(){
+
+
+        const filteredUsers = this.state.freeUsers.filter(user=> {
+                console.log(user.zip)
+
+                    if (this.props.filters.searchAccountType == "PRO")
+
+                        return false
+
+                    if (!user.zip) return false;
+
+                    if (!user.role) return false;
+
+                    if(! user.role.includes(this.props.filters.searchRole))
+                        return false;
+
+                    if(! user.zip.toString().includes(this.props.filters.searchZip))
+                        return false
+                    else return true
+            })
+
+
+      console.log(filteredUsers)
+
+
+        //     return( user.role.includes(this.props.filters.searchRole)
+        //     && user.zip.includes(this.props.filters.searchZip))
+        // })
+
+
     return (
       <div className="App">
               <header className="App-header">
@@ -142,7 +173,9 @@ class App extends Component {
 
 
 
-                  {this.state.artistNames.length !== 0 &&
+                  {this.props.filters.searchAccountType == "PRO"
+                  &&
+                      this.state.artistNames.length !== 0 &&
                       <ul style={{
                           listStyle: "none",
                           backgroundColor: "grey",
@@ -169,7 +202,7 @@ class App extends Component {
                           backgroundColor: "grey",
                           padding: 0
                       }}>
-                      {this.state.freeUsers.map((userObj, index) => {
+                      {filteredUsers.map((userObj, index) => {
                           return <li key={index}>
                               <UserCard title={(userObj.role === BAND && userObj.title)
                               || (userObj.firstName + " " + userObj.lastName)}
@@ -195,7 +228,10 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn : state.userAccountReducer.isLoggedIn,
-        myProfile : state.loginReducer.profile
+        myProfile : state.loginReducer.profile,
+
+        filters : {...state.searchReducer}
+
     }
 
 }
