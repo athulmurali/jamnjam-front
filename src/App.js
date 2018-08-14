@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/es/Typography/Typography";
 import Logout from './components/Logout'
 import {BAND} from "./const/userRoles";
 import {Users} from "./services/api/Users";
+import UserCard from "./components/UserCard";
 const artist = Artist.instance
 class App extends Component {
     constructor(props)
@@ -18,7 +19,8 @@ class App extends Component {
             artistNames : [],
             currentUserName: "",
             country:"",
-            freeUsers : []
+            freeUsers : [],
+            accountType : "FREE",
         }
     }
 
@@ -60,6 +62,13 @@ class App extends Component {
         })
     }
 
+
+    handleAccountTypeChange=(accountType)=>{
+        this.setState({
+        accountType : accountType
+    })
+
+    }
 
     handleOnChangeText=(text)=>{
         this.setState({
@@ -120,61 +129,60 @@ class App extends Component {
 
           <SearchBar
                   onChangeText={this.handleOnChangeText}
-                    onPressSearch={this.handleOnPressSearch}/>
+                    onPressSearch={this.handleOnPressSearch}
+                  onAccountTypeChange = {
+                      this.handleAccountTypeChange
+                  }
+          />
 
 
-          {(this.state.accountType== "FREE" && this.state.freeUsers.length ) !==0 ?
-              <div>
-                  <ul
-                      style={{
-                          listStyle : "none",
-                          backgroundColor:"grey",
-                          padding : 0}}>
-                      {this.state.artistNames.map((artistObj,index) => {
+
+
+                  {this.state.artistNames.length !== 0 &&
+                      <ul style={{
+                          listStyle: "none",
+                          backgroundColor: "grey",
+                          padding: 0
+                      }}>
+                          {this.state.artistNames.map((artistObj, index) => {
+                              return <li key={index}>
+                                  <CelebrityCard title={artistObj.name}
+                                                 imageUrl={artistObj.image[2]["#text"]}
+                                                 subtitle={"#" + (index + 1) + " Fans : " + artistObj.listeners}
+                                                 loggedIn={!!this.state.currentUserName}
+                                                 mbid={artistObj.mbid}
+                                                 site={artistObj.url}
+                                  />
+
+                              </li>
+                          })}
+                      </ul>
+                  }
+
+                  {this.state.accountType =="FREE"  &&
+                  <ul style={{
+                          listStyle: "none",
+                          backgroundColor: "grey",
+                          padding: 0
+                      }}>
+                      {this.state.freeUsers.map((userObj, index) => {
                           return <li key={index}>
-                              <CelebrityCard title         =   {artistObj.name}
-                                          imageUrl      =   {artistObj.image[2]["#text"]}
-                                          subtitle      =    {"#" +(index+1) + " Fans : " + artistObj.listeners }
-                                          loggedIn      = {!!this.state.currentUserName}
-                                          mbid ={artistObj.mbid}
-                                          site={artistObj.url}
+                              <UserCard title={(userObj.role === BAND && userObj.title)
+                              || (userObj.firstName + " " + userObj.lastName)}
+                                             imageUrl={"https://lastfm-img2.akamaized.net/i/u/300x300/d4feb078525d42fb9e72572c43662c30.png"}
+                                             subtitle={"role : " + userObj.role}
+                                             loggedIn={!!this.state.currentUserName}
+                                             mbid={userObj._id}
+
+                                             role={userObj.role}
                               />
 
                           </li>
-                      })
-
-                      }
+                      })}
                   </ul>
+                  }
 
-                  <ul
-                      style={{
-                          listStyle : "none",
-                          backgroundColor:"grey",
-                          padding : 0}}>
-                      {this.state.freeUsers.map((userObj,index) => {
-                          return <li key={index}>
-                              <CelebrityCard title         =   {(userObj.role === BAND &&  userObj.title)
-                                                            || ( userObj.firstName + " "+ userObj.lastName)}
-                                          imageUrl      =   {"https://lastfm-img2.akamaized.net/i/u/300x300/d4feb078525d42fb9e72572c43662c30.png"}
-                                          subtitle      =    {"role : " + userObj.role }
-                                          loggedIn      =   {!!this.state.currentUserName}
-                                          mbid ={userObj._id}
-
-                                          role ={userObj.role}
-                              />
-
-                          </li>
-                      })
-
-                      }
-                  </ul>
               </div>
-
-
-
-              :<h1>No results</h1>}
-
-      </div>
     );
   }
 }

@@ -39,8 +39,6 @@ const styles = theme => ({
 function UserCard(props) {
     const { classes, theme } = props;
 
-    let mbid =props.mbid
-    const MY_ROUTE = `/artist/${mbid}/`;
 
     return (
         <div>
@@ -77,7 +75,7 @@ function UserCard(props) {
 
 
                         <Button variant="contained" color="secondary" className={classes.button}>
-                            <Link to={MY_ROUTE.toString()} params={{ mbid: "12311111" }}
+                            <Link to={'/'+ props.role + "/" + props.mbid }
                                   style={{color:"White",  textDecoration:"none"
                             }}>more</Link>
 
