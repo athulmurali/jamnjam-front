@@ -80,7 +80,7 @@ export default class MyLookOuts extends React.Component{
         return<div>
             <div className="container-fluid ">
                 <div className="row">
-                    <h1>Artist  Lookout</h1>
+                    <h1>My  Lookouts</h1>
 
                 </div>
 

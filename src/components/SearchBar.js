@@ -83,6 +83,7 @@ const theme = createMuiTheme({
 
          this.state = {
              value: 'artist',
+             accountType : 'CELEBRITY'
          };
 
      }
@@ -95,6 +96,12 @@ const theme = createMuiTheme({
      handleChange = event => {
          this.setState({ value: event.target.value });
      };
+
+
+     handleAccountTypeChange =event=>{
+         this.setState({ accountType: event.target.value });
+
+     }
      fun=()=>{
          console.log("material ui is fun !")
 
@@ -111,6 +118,24 @@ const theme = createMuiTheme({
                       alignItems: "center"
                   }}>
                  <Paper>
+
+                     <RadioGroup
+                         aria-label="Type"
+                         name="type"
+                         className={styles.group}
+                         value={this.state.accountType}
+                         onChange={this.handleAccountTypeChange}
+                         style={{
+                             alignContent: "center",
+                             justifyContent: "center",
+                             alignItems: "center",
+                             flexDirection: "row"
+                         }}
+                     >
+
+                         <FormControlLabel value="CELEBRITY" control={<Radio color="primary"/>} label="CELEBRITY"/>
+                         <FormControlLabel value="FREE" control={<Radio color="primary"/>} label="Free"/>
+                     </RadioGroup>
                      <TextField
                          defaultValue=""
                          fullWidth={true}
@@ -135,31 +160,55 @@ const theme = createMuiTheme({
                      />
 
 
-                     <Button variant="contained" color="default"
-                             onClick={
-                                 ()=>{
-                                     console.log("asdasd")
-                                     this.props.onPressSearch();
-                                 }}>
-                         Search
-                     </Button>
-                     <RadioGroup
-                         aria-label="Type"
-                         name="type"
-                         className={styles.group}
-                         value={this.state.value}
-                         onChange={this.handleChange}
-                         style={{
-                             alignContent: "center",
-                             justifyContent: "center",
-                             alignItems: "center",
-                             flexDirection: "row"
-                         }}
-                     >
 
-                         <FormControlLabel value="artist" control={<Radio color="primary"/>} label="Artist"/>
-                         <FormControlLabel value="band" control={<Radio color="primary"/>} label="Band"/>
-                     </RadioGroup>
+
+                     {this.state.accountType == "CELEBRITY"
+                     &&
+                     <div>
+                         <Button variant="contained" color="default"
+                                 onClick={
+                                     ()=>{
+                                         console.log("asdasd")
+                                         this.props.onPressSearch();
+                                     }}>
+                             Search
+                         </Button>
+
+                     </div>
+
+                     }
+
+                     {this.state.accountType == "FREE"
+                     &&
+                         <div>
+                             <Button variant="contained" color="default"
+                                     onClick={
+                                         ()=>{
+                                             console.log("asdasd")
+                                             this.props.onPressSearch();
+                                         }}>
+                                 Search
+                             </Button>
+                             <RadioGroup
+                                 aria-label="Type"
+                                 name="type"
+                                 className={styles.group}
+                                 value={this.state.value}
+                                 onChange={this.handleChange}
+                                 style={{
+                                     alignContent: "center",
+                                     justifyContent: "center",
+                                     alignItems: "center",
+                                     flexDirection: "row"
+                                 }}
+                             >
+
+                                 <FormControlLabel value="artist" control={<Radio color="primary"/>} label="Artist"/>
+                                 <FormControlLabel value="band" control={<Radio color="primary"/>} label="Band"/>
+                             </RadioGroup>
+                         </div>
+
+                     }
 
                  </Paper>
 
