@@ -14,6 +14,8 @@ import {LOGIN, UPDATE_LOGIN_FIELD} from "../../redux/Constants/userLogin";
 import {LOG_IN} from "../../redux/Constants/userAccount";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import UserServiceWithToken from "../../services/UserServiceWithToken";
+import * as roles from "../../const/userRoles";
+import {UserService} from "../../services/api/user";
 
 
 const artist = Artist.instance
@@ -84,34 +86,40 @@ const styles = {
 
     }
     componentDidMount(){
-        // this.setState({
-        //     mbid:this.props.match.params.mbid
-        // },
-        //     ()=>{this.getArtistInfo(this.state.mbid)})
-        //
 
        const getUserServiceObj = new UserServiceWithToken();
         this.props.getMyProfile(getUserServiceObj.getProfile)
 
 
+        const currentArtistId = this.props.match.params.artistId
+         const currentRole = roles.ARTIST
+        alert(currentArtistId  + currentRole);
+
+        const userService = new UserService()
+        userService.getUser(currentRole,currentArtistId ).then(
+            res=>{
+                console.log(res.data)
+                this.setState({
+                    artistProfile : res.data
+                })
+            }
+        ).catch(
+            error=>{
+                alert("error");
+                console.log(error)
+
+            }
+        )
+
+
     }
 
 
-    getArtistInfo=(mbid)=>{
-
-        artist.getArtistInfo(mbid).then(response=>{
-            if (!!response.artist) this.setState({
-                artistInfo : response.artist
-            })
-
-        })
-
-    }
 
     render(){
 
 
-        if (!this.props.artistProfile) return null
+        if (!this.state.artistProfile) return null
 
         else return(
 
@@ -143,12 +151,12 @@ const styles = {
                         </Typography>
                         <Typography variant="headline" component="h2">
                             {/*{this.state.artistInfo.name}*/}
-                            {this.props.artistProfile.firstName + " " + this.props.artistProfile.lastName}
+                            {this.state.artistProfile.firstName + " " + this.state.artistProfile.lastName}
                         </Typography>
 
                         <List>
                             <ListItem button divider disabled>
-                                <ListItemText primary="Location - Zip" secondary={this.props.artistProfile.zip}/>
+                                <ListItemText primary="Location - Zip" secondary={this.state.artistProfile.zip}/>
                             </ListItem>
                             <ListItem button divider disabled>
                                 {/*<ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />*/}
@@ -165,7 +173,7 @@ const styles = {
                             ABOUT
                         </Typography>
                         <Typography component="p">
-                            {this.props.artistProfile.bio}
+                            {this.state.artistProfile.bio}
 
                         </Typography>
                     </CardContent>
@@ -186,7 +194,7 @@ const styles = {
 
 
 const mapStateToProps = state => {
-    return {artistProfile : state.loginReducer.currentProfile}
+    return {...state}
 }
 
 

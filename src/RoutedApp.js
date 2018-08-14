@@ -27,7 +27,7 @@ const  RoutedApp =()=> {
                     <Switch>
                         <Route exact path="/"                   component={App}/>
                         <Route  exact  path="/home"             component={App}/>
-                        <Route  exact path="/artist/:mbid"      component={ArtistProfile} />
+                        <Route  exact path="/artist/:artistId"      component={ArtistProfile} />
                         <Route exact path={"/artist/:artistId/artistLookOuts/"}
                                component ={ArtistLookOuts}/>
 
