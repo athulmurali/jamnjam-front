@@ -80,8 +80,6 @@ const theme = createMuiTheme({
 
 
  class  SearchBar extends React.Component {
-
-
      constructor(props){
          super(props);
 

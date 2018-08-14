@@ -14,6 +14,7 @@ import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import UserServiceWithToken from "../../services/UserServiceWithToken";
 import * as roles from "../../const/userRoles";
 import {UserService} from "../../services/api/user";
+import {Link} from "react-router-dom";
 
 
 const artist = Artist.instance
@@ -118,6 +119,7 @@ const styles = {
 
         if (!this.state.artistProfile) return null
 
+
         else return(
 
             <div style={styles.masterContainer}>
@@ -125,65 +127,82 @@ const styles = {
                     <h1>Artist page</h1>
                 </div>
 
-            <div style={styles.container}>
+
+                <div style={styles.container}>
 
 
-                <CardMedia style={styles.card}>
+                    <CardMedia style={styles.card}>
 
 
                         <img style={styles.cardMedia}
 
                             // src={this.state.artistInfo.image[3]["#text"]}
 
-                            src={ "https://lastfm-img2.akamaized.net/i/u/300x300/d4feb078525d42fb9e72572c43662c30.png"}
+                             src={ "https://lastfm-img2.akamaized.net/i/u/300x300/d4feb078525d42fb9e72572c43662c30.png"}
                         />
-                </CardMedia>
-                <Card style={styles.card}>
-                    <CardContent>
+                    </CardMedia>
+                    <Card style={styles.card}>
+                        <CardContent>
 
-                        <div className="row">
-                        </div>
-                        <Typography style={styles.title} color="textSecondary">
-                            Artist Name
-                        </Typography>
-                        <Typography variant="headline" component="h2">
-                            {/*{this.state.artistInfo.name}*/}
-                            {this.state.artistProfile.firstName + " " + this.state.artistProfile.lastName}
-                        </Typography>
+                            <div className="row">
+                            </div>
+                            <Typography style={styles.title} color="textSecondary">
+                                Artist Name
+                            </Typography>
+                            <Typography variant="headline" component="h2">
+                                {/*{this.state.artistInfo.name}*/}
+                                {this.state.artistProfile.firstName + " " + this.state.artistProfile.lastName}
+                            </Typography>
 
-                        <List>
-                            <ListItem button divider disabled>
-                                <ListItemText primary="Location - Zip" secondary={this.state.artistProfile.zip}/>
-                            </ListItem>
-                            <ListItem button divider disabled>
-                                {/*<ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />*/}
-                                <ListItemText primary="Fans" secondary={12345} />
+                            <List>
+                                <ListItem button divider disabled>
+                                    <ListItemText primary="Location - Zip" secondary={this.state.artistProfile.zip}/>
+                                </ListItem>
+                                <ListItem button divider disabled>
+                                    {/*<ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />*/}
+                                    <ListItemText primary="Fans" secondary={12345} />
 
-                            </ListItem>
-                        </List>
-
-
+                                </ListItem>
+                            </List>
 
 
 
-                        <Typography style={styles.pos} color="textSecondary">
-                            ABOUT
-                        </Typography>
-                        <Typography component="p">
-                            {this.state.artistProfile.bio}
 
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button  color="primary" size="small" disabled>Contact</Button>
-                    </CardActions>
-                </Card>
 
-            </div>
+                            <Typography style={styles.pos} color="textSecondary">
+                                ABOUT
+                            </Typography>
+                            <Typography component="p">
+                                {this.state.artistProfile.bio}
+
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <div className="row">
+                                <div className="col-6">
+                                    <Button  color="primary" size="small" disabled>Contact</Button>
+                                </div>
+                                { (this.props.match.params.artistId ==
+                                    localStorage.getItem('currentId') )  &&
+                                <div className="col-6">
+                                    <Link to={'/artist/editProfile/'+ localStorage.getItem('currentId')  }
+                                          style={{ textDecoration: 'none' ,color: 'inherit'}}>
+                                        <Button   color="primary" size="small">Edit</Button>
+                                    </Link>
+
+                                </div>}
+                            </div>
+
+
+
+                        </CardActions>
+
+                    </Card>
+
+                </div>
             </div>
 
         )
-
     }
 }
 

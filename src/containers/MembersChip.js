@@ -30,32 +30,38 @@ function handleClick() {
 function MembersChip(props) {
     const { classes } = props;
 
-        return (
+            if(props.members)
+                return (
 
-            props.members.map( (member,index)=>{
+                    props.members.map( (member,index)=>{
 
-                return !!props.editMode ?
-                <Chip
-                    key = {index}
-                    avatar={<Avatar src={props.img} />}
-                    label={member.name}
-                    onDelete={handleDelete}
-                    className={classes.chip}
-                />
+                        return !!props.editMode ?
+                            <Chip
+                                key = {index}
+                                avatar={<Avatar src={props.img} />}
+                                label={member.name}
+                                onDelete={handleDelete}
+                                className={classes.chip}
+                            />
 
-                :
-                <Chip
-                    key = {index}
-                    avatar={<Avatar>{member.firstName.charAt(0) +
-                    member.lastName.charAt(0)}</Avatar>}
-                    label={member.firstName + " " + member.lastName}
-                    onClick={handleClick}
-                    className={classes.chip}
-                />
+                            :
+                            <Chip
+                                key = {index}
+                                avatar={<Avatar>{member.firstName.charAt(0) +
+                                member.lastName.charAt(0)}</Avatar>}
+                                label={member.firstName + " " + member.lastName}
+                                onClick={handleClick}
+                                className={classes.chip}
+                            />
 
 
 
-            }))}
+                    }))
+
+            else return <div>Loading</div>
+
+
+}
 
 MembersChip.propTypes = {
     classes: PropTypes.object.isRequired,

@@ -13,6 +13,7 @@ import MembersChip from "../MembersChip";
 import {connect} from "react-redux";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import {UserService} from "../../services/api/user";
+import {Link} from "react-router-dom";
 
 
 const artist = Artist.instance
@@ -159,8 +160,25 @@ class BandProfile extends React.Component{
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button  color="primary" size="small">Contact</Button>
+                        <div className="row">
+                            <div className="col-6">
+                                <Button  color="primary" size="small" disabled>Contact</Button>
+                            </div>
+                            { (this.props.match.params.mbid ==
+                                localStorage.getItem('currentId') )  &&         <div className="col-6">
+                                <Link to={'/artist/editProfile/'+ localStorage.getItem('currentId')  }
+                                      style={{ textDecoration: 'none' ,color: 'inherit'}}>
+                                    <Button   color="primary" size="small">Edit</Button>
+                                </Link>
+
+                            </div>}
+
+                        </div>
+
+
+
                     </CardActions>
+
                 </Card>
 
             </div>
