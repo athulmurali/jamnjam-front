@@ -10,8 +10,6 @@ import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
 import Artist from "../../services/lostFmServices/Artist";
 import {connect} from "react-redux";
-import {LOGIN, UPDATE_LOGIN_FIELD} from "../../redux/Constants/userLogin";
-import {LOG_IN} from "../../redux/Constants/userAccount";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import UserServiceWithToken from "../../services/UserServiceWithToken";
 import * as roles from "../../const/userRoles";
@@ -93,7 +91,6 @@ const styles = {
 
         const currentArtistId = this.props.match.params.artistId
          const currentRole = roles.ARTIST
-        alert(currentArtistId  + currentRole);
 
         const userService = new UserService()
         userService.getUser(currentRole,currentArtistId ).then(
