@@ -9,17 +9,6 @@ export default class ArtistLookOuts extends React.Component{
         this.state= {}
     }
 
-    lookOuts = [{
-        _id: 1234,
-        firstName : "member1"
-    },
-        { _id: 1234,
-            firstName : "member2"
-        },
-
-        {_id: 1234,
-            firstName : "member3"
-        },]
 
 
     getLookOuts = ()=>{

@@ -14,6 +14,7 @@ import profileByRole from "./containers/profiles/profileByRole";
 import EditProfile from "./containers/editProfile/EditProfile";
 import ManageNetwork from "./containers/ManageNetwork";
 import ArtistLookOuts from "./containers/ArtistLookOuts";
+import AddLookOut from "./containers/AddLookOut";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -26,7 +27,19 @@ const  RoutedApp =()=> {
                         <Route exact path="/"                   component={App}/>
                         <Route  exact  path="/home"             component={App}/>
                         <Route  exact path="/artist/:mbid"      component={ArtistProfile} />
+                        <Route exact path={"/artist/:artistId/artistLookOuts/"}
+                               component ={ArtistLookOuts}/>
+
+
+
                         <Route  exact path="/band/:mbid"      component={BandProfile} />
+
+                        <Route  exact path="/band/:bandId/manageNetwork/"
+                                component={ManageNetwork } />
+                        <Route  exact path="/band/:bandId/addLookOut/"
+                                component={AddLookOut } />
+
+
 
                         <Route  exact path="/booking"           component={Booking} />
                         <Route  path="/admin"             component={Admin } />
@@ -40,11 +53,7 @@ const  RoutedApp =()=> {
                                 component={EditProfile } />
 
 
-                        <Route  exact path="/band/:bandId/manageNetwork/"
-                                component={ManageNetwork } />
-                        <Route exact path={"/artist/:artistId/artistLookOuts/"}
-                               component ={ArtistLookOuts}
-                               />
+
 
                     </Switch>
 

@@ -9,6 +9,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import PersonIcon from '@material-ui/icons/PersonOutline'
 import HomeIcon from '@material-ui/icons/Home'
 
+import AlertIcon from '@material-ui/icons/AddAlert'
+
 import {Link} from "react-router-dom";
 
 export const mailFolderListItems = (
@@ -33,6 +35,19 @@ export const mailFolderListItems = (
                     <HomeIcon />
                 </ListItemIcon>
                 <ListItemText primary="Home" />
+            </ListItem>
+        </Link>
+
+
+
+
+        <Link to={'/band/'+ localStorage.getItem('currentId') + '/addLookOut/'}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+            <ListItem button>
+                <ListItemIcon>
+                    <AlertIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Lookout" />
             </ListItem>
         </Link>
 
