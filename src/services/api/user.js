@@ -71,7 +71,7 @@ export class UserService{
 
     createArtistLookOuts=(payload)=> {
 
-        return axios.get(ARTIST_LOOKOUT_URL)
+        return axios.post(ARTIST_LOOKOUT_URL,payload)
 
     }
 }

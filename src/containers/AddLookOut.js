@@ -30,9 +30,9 @@ class AddLookOut extends  React.Component{
                console.log(res.data)
                console.log("success")
                 alert("success!")
-               // this.setState({
-               //     completed : true
-               // } )
+               this.setState({
+                   completed : true
+               } )
             }
         ).catch(err=>{
             console.log(err)
@@ -48,10 +48,8 @@ class AddLookOut extends  React.Component{
 
     render()
     {
-        {
-            this.state.completed &&
-                <Redirect to={'/home'}/>
-        }
+            this.state.completed && this.props.history.push('/home')
+
 
 
         return<div className="container-fluid ">
