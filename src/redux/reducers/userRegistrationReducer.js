@@ -137,9 +137,17 @@ const userRegistrationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedRole : false,
-                role : false
+                role : false,
+                nextStep: SELECT_ROLE
             }
         }
+
+
+
+
+
+
+
 
 
         default:

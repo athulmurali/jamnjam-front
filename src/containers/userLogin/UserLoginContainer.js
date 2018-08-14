@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {LOGIN, UPDATE_LOGIN_FIELD} from "../../redux/Constants/userLogin";
 import {UserService} from "../../services/api/user";
 import {LOG_IN} from "../../redux/Constants/userAccount";
-import {GET_PROFILE} from "../../redux/Constants/userRegister";
+import {GET_PROFILE, RESET_SELECTED_ROLE} from "../../redux/Constants/userRegister";
 import UserServiceWithToken from "../../services/UserServiceWithToken";
 
 
@@ -28,6 +28,9 @@ class Login extends Component {
 
 
 
+    componentDidMount(){
+        this.props.resetSelectedRole()
+    }
 
     render() {
 
@@ -36,6 +39,7 @@ class Login extends Component {
 
             const getUserServiceObj = new UserServiceWithToken();
             this.props.getMyProfile(getUserServiceObj.getProfile)
+            localStorage.setItem('currentId', this.props.profile._id)
             this.props.history.push('/'+this.props.profile.role+'/'+ this.props.profile._id)
 
 
@@ -141,7 +145,9 @@ const mapDispatchToProps = (dispatch) =>({
     updateNavBar: () => {
         dispatch({
             type: LOG_IN,})
-    }
+    },
+
+    resetSelectedRole: () =>{dispatch({type: RESET_SELECTED_ROLE})}
 })
 
 

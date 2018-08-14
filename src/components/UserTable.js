@@ -60,9 +60,14 @@ function SimpleTable(props) {
                     {props.users.map((user,index) => {
                         return (
                             <TableRow key={index}>
-                                <TableCell component="th" scope="row">
-                                    {user.username}
-                                </TableCell>
+                                 <TableCell component="th" scope="row">
+                                        <Link to={"/" + user.role +"/" + user._id}
+                                              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+                                        {user.username}
+                                        </Link>
+                                    </TableCell>
+
+
                                 <TableCell >{user.role}</TableCell>
                                 <TableCell>
 
