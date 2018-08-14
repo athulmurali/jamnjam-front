@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import {LOGIN, UPDATE_LOGIN_FIELD} from "../../redux/Constants/userLogin";
 import {UserService} from "../../services/api/user";
 import {LOG_IN} from "../../redux/Constants/userAccount";
-import {Redirect} from "react-router-dom";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import UserServiceWithToken from "../../services/UserServiceWithToken";
 
@@ -26,6 +25,8 @@ class Login extends Component {
                   // backgroundColor: 'green'
               }
     }
+
+
 
 
     render() {
