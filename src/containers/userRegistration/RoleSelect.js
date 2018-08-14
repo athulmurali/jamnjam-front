@@ -44,6 +44,15 @@ class RoleSelect extends React.Component {
 
         return (
             <Grid container className={classes.root} spacing={16}>
+
+                <Grid item xs={12}>
+                    <div className="row  text-center">
+                        <div className="col">
+                            <h1> Select a role</h1>
+
+                        </div>
+                    </div>
+                </Grid>
                 <Grid item xs={12}>
                     <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
 
@@ -51,25 +60,24 @@ class RoleSelect extends React.Component {
                                 <Paper className={classes.paper}
                                 onClick={()=> this.props.selectRole(ADMIN)    }>
                                     <div>
-                                        Admin
+                                        <h2>Admin</h2>
                                     </div>
                                 </Paper>
                             </Grid>
 
                             <Grid key={1} item>
                                 <Paper className={classes.paper}
-                                       onClick={()=> this.props.selectRole(ARTIST)    }>
 
-                                Artist
+                                       onClick={()=> this.props.selectRole(ARTIST)    }>
+                                <h2>Artist</h2>
                                 </Paper>
                             </Grid>
 
 
                             <Grid key={2} item>
                                 <Paper className={classes.paper}
-                                       onClick={()=> this.props.selectRole(BAND)    }>
-
-                                Band
+                                       onClick={()=> this.props.selectRole(BAND)}>
+                                <h2>Band</h2>
                                 </Paper>
                             </Grid>
 

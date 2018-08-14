@@ -7,6 +7,9 @@ import Divider from '@material-ui/core/Divider';
 import {mailFolderListItems, otherMailFolderListItems} from './titleData';
 import {connect} from "react-redux";
 import {CLOSE_SIDE_BAR, OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
+import * as roles from "../const/userRoles";
+import {AdminListBottom, AdminListTop} from "./adminTitleData";
+import {ArtistListBottom, ArtistListTop} from "./artistTitleData";
 
 
 const styles = {
@@ -45,15 +48,38 @@ class DrawerMenu extends React.Component {
 
     render() {
         const { classes } = this.props;
+        if(this.props.profile)
+        {
+            localStorage.setItem('currentId', this.props.profile._id)
 
-        const sideList = (
+        }
+
+        const sideListAdmin = (
+            <div className={classes.list}>
+                <List>{AdminListTop}</List>
+                <Divider />
+                <List>{AdminListBottom}</List>
+            </div>
+        );
+
+
+
+        const sideListArtist = (
+            <div className={classes.list}>
+                <List>{ArtistListTop}</List>
+                <Divider />
+                <List>{ArtistListBottom}</List>
+            </div>
+        );
+
+
+        const sideListBand = (
             <div className={classes.list}>
                 <List>{mailFolderListItems}</List>
                 <Divider />
                 <List>{otherMailFolderListItems}</List>
             </div>
         );
-
 
 
         return (
@@ -66,7 +92,13 @@ class DrawerMenu extends React.Component {
                         onClick={this.toggleDrawer('left', false)}
                         onKeyDown={this.toggleDrawer('left', false)}
                     >
-                        {sideList}
+                        {this.props.role== roles.ADMIN && sideListAdmin}
+
+                        {this.props.role== roles.BAND && sideListBand}
+
+
+                        {this.props.role== roles.ARTIST && sideListArtist}
+
                     </div>
                 </Drawer>
             </div>
@@ -80,7 +112,8 @@ DrawerMenu.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        isSideBarOpen : state.userAccountReducer.isSideBarOpen
+        isSideBarOpen : state.userAccountReducer.isSideBarOpen,
+        profile : state.loginReducer.profile
     }
 
 }

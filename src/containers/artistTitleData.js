@@ -7,21 +7,23 @@ import ListItemText from '@material-ui/core/ListItemText';
 import StarsIcon from '@material-ui/icons/Star';
 import MailIcon from '@material-ui/icons/Mail';
 import PersonIcon from '@material-ui/icons/PersonOutline'
+import {Link} from "react-router-dom";
 
-export const mailFolderListItems = (
+export const ArtistListTop = (
     <div>
+        <Link to={'/profileByRole'}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+
         <ListItem button>
             <ListItemIcon>
                 <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
         </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <StarsIcon/>
-            </ListItemIcon>
-            <ListItemText primary="My Network" />
-        </ListItem>
+        </Link>
+
+
+        <Link to={'/artist/'+localStorage.getItem('currentId')+'/artistLookOuts'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
 
         <ListItem button>
             <ListItemIcon>
@@ -30,10 +32,12 @@ export const mailFolderListItems = (
             <ListItemText primary="Artist lookOut" />
         </ListItem>
 
+        </Link>
+
     </div>
 );
 
-export const otherMailFolderListItems = (
+export const ArtistListBottom = (
     <div>
         <ListItem button>
             <ListItemIcon>

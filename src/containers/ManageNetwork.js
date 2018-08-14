@@ -91,6 +91,7 @@ export default class ManageNetwork extends React.Component{
         this.userService.deleteMember(payload).then(
             data=>{
                 console.log("deleted Successfully")
+                alert("Deleted successfully ! Please refresh to see the changes")
                 console.log(data)
                 this.getArtists();
             }
@@ -115,6 +116,7 @@ export default class ManageNetwork extends React.Component{
         this.userService.addMember(payload).then(
             data=>{
                 console.log("added successfully")
+                alert("Added successfully ! Please refresh to see the changes")
                 console.log(data)
                 this.getArtists();
             }

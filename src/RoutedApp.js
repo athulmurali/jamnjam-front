@@ -13,6 +13,7 @@ import history from './components/history'
 import profileByRole from "./containers/profiles/profileByRole";
 import EditProfile from "./containers/editProfile/EditProfile";
 import ManageNetwork from "./containers/ManageNetwork";
+import ArtistLookOuts from "./containers/ArtistLookOuts";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -41,6 +42,9 @@ const  RoutedApp =()=> {
 
                         <Route  exact path="/band/:bandId/manageNetwork/"
                                 component={ManageNetwork } />
+                        <Route exact path={"/artist/:artistId/artistLookOuts/"}
+                               component ={ArtistLookOuts}
+                               />
 
                     </Switch>
 

@@ -11,7 +11,7 @@ import {Link} from "react-router-dom";
 
 export const mailFolderListItems = (
     <div>
-        <Link to={'/admin'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
+        <Link to={'/profileByRole'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
         <ListItem button>
 
 
@@ -23,24 +23,13 @@ export const mailFolderListItems = (
         </ListItem>
         </Link>
 
-        <Link to={'/band/:_id/manageNetwork'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
+        <Link to={'/band/'+localStorage.getItem('currentId')+'/manageNetwork'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
         <ListItem button>
             <ListItemIcon>
                 <StarsIcon/>
             </ListItemIcon>
             <ListItemText primary="My Network" />
         </ListItem>
-        </Link>
-
-
-        <Link to={'/artist/:_id/artistLookOuts'}
-              style={{ textDecoration: 'none' ,color: 'inherit'}}>
-            <ListItem button>
-                <ListItemIcon>
-                    <StarsIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Artist Lookouts" />
-            </ListItem>
         </Link>
 
     </div>

@@ -41,3 +41,4 @@ export const UPDATE_USER_URL = BASE_URL +'/update/user'
 
 
 export const ADD_DEL_MEMBER_URL = BASE_URL + '/artist/band'
+export const ARTIST_LOOKOUT_URL = BASE_URL +'/artistLookOut'

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    ADD_DEL_MEMBER_URL,
+    ADD_DEL_MEMBER_URL, ARTIST_LOOKOUT_URL,
     BASE_URL,
     CREATE_USER_URL, DEL_USER_BY_ROLE_ID_URL, GET_USER_BY_ROLE_ID_URL, LOGIN_URL,
     UPDATE_USER_URL
@@ -60,6 +60,12 @@ export class UserService{
         return axios.delete(ADD_DEL_MEMBER_URL,{
             data : userData
         })
+    }
+
+
+    getArtistLookOuts=()=>{
+        return axios.get(ARTIST_LOOKOUT_URL)
+
     }
 }
 

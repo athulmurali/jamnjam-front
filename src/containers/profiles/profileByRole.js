@@ -12,8 +12,8 @@ const profileByRole=(props)=>{
         // case BAND       : return <Redirect to={'/BandProfile/' + props.profile._id}/>
 
         case ADMIN      :   return <Redirect to={'admin/'}/>
-        case ARTIST     :   return <Redirect to={'artist/cc197bad-dc9c-440d-a5b5-d52ba2e14234/'}/>
-        case BAND       :   return <Redirect to={'band/cc197bad-dc9c-440d-a5b5-d52ba2e14234/'}/>
+        case ARTIST     :   return <Redirect to={'artist/'+props.profile._id}/>
+        case BAND       :   return <Redirect to={'band/'+ props.profile._id}/>
 
         default :  return<h2>Invalid role obtained from backend</h2>
     }

@@ -83,7 +83,7 @@ const userRegistrationReducer = (state = initialState, action) => {
             {
                 return {...state, fetching : false,
                     updateMode: action.payload.updateMode,
-                    ...action.payload.selectedUser
+                    selectedUser: false
                 }
             }
 

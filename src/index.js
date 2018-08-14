@@ -26,7 +26,5 @@ ReactDOM.render(
     <Provider store ={store}>
         <RoutedApp />
     </Provider>
-
-
     , document.getElementById('root'));
 registerServiceWorker();

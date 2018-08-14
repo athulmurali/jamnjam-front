@@ -1,5 +1,13 @@
 import React from "react";
+import {UserService} from "../services/api/user";
 export default class ArtistLookOuts extends React.Component{
+
+    constructor(props)
+    {
+        super(props)
+
+        this.state= {}
+    }
 
     lookOuts = [{
         _id: 1234,
@@ -14,34 +22,53 @@ export default class ArtistLookOuts extends React.Component{
         },]
 
 
-    getBand=()=>{
+    getLookOuts = ()=>{
+
+        const userService = new UserService();
+
+        userService.getArtistLookOuts().then(
+            res=>{
+                this.setState({
+                    lookOuts : res.data
+                })
+            }
+        )
 
     }
 
     componentDidMount(){
-
-
+        this.getLookOuts();
     }
     render(){
         return<div>
             <div className="container-fluid ">
                 <div className="row">
-                    <h1>Manage Network</h1>
+                    <h1>Artist  Lookout</h1>
 
                 </div>
 
                 <div className="row">
-                    <h4>Current Band Members</h4>
 
+                    <div className="container-fluid mx-auto ">
 
-                    <div className="container-fluid card-deck">
+                        {this.state.lookOuts && this.state.lookOuts.map((lookOut,index)=> {
+                            return<div  key = {index}
+                                className="container-fluid col-sm-10 col-md-12 col-lg-12">
 
+                            <div className="jumbotron row">
+                                <div className="container-fluid">
+                                <h3>{lookOut.title}</h3>
+                                    <div className="container-fluid">
+                                        <p>{lookOut.description}</p>
+                                    </div>
 
-                        {this.lookOuts.map(lookOut=>{
-                             return <div className="jumbotron">
-                                <h1>Bootstrap Tutorial</h1>
-                                <p>Bootstrap is the most popular HTML, CSS...</p>
+                                    <div className="container-fluid">
+                                        <p>{lookOut.createdAt}</p>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+
 
 
                         })}

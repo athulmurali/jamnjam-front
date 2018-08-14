@@ -9,12 +9,11 @@ import MailIcon from '@material-ui/icons/Mail';
 import PersonIcon from '@material-ui/icons/PersonOutline'
 import {Link} from "react-router-dom";
 
-export const bandMailFolderListItems = (
+export const bandMailFolderListItems = ()=>(
     <div>
-        <Link to={'/admin'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
+        <Link to={'/profileByRole'}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
             <ListItem button>
-
-
                 <ListItemIcon>
                     <PersonIcon />
                 </ListItemIcon>
@@ -22,6 +21,8 @@ export const bandMailFolderListItems = (
 
             </ListItem>
         </Link>
+
+
         <ListItem button>
             <ListItemIcon>
                 <StarsIcon/>
@@ -29,6 +30,12 @@ export const bandMailFolderListItems = (
             <ListItemText primary="My Network" />
         </ListItem>
 
+        <ListItem button>
+            <ListItemIcon>
+                <StarsIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Post a lookout" />
+        </ListItem>
     </div>
 );
 
