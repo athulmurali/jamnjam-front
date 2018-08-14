@@ -10,6 +10,9 @@ import Logout from './components/Logout'
 import {BAND} from "./const/userRoles";
 import {Users} from "./services/api/Users";
 import UserCard from "./components/UserCard";
+import {connect} from "react-redux";
+import {CLOSE_SIDE_BAR} from "./redux/Constants/userAccount";
+import {SET_UPDATE_MODE} from "./redux/Constants/userRegister";
 const artist = Artist.instance
 class App extends Component {
     constructor(props)
@@ -100,6 +103,7 @@ class App extends Component {
     }
 
     componentDidMount(){
+        this.props.resetSideBar()
         this.getAllUsersFromServer()
     }
 
@@ -149,7 +153,7 @@ class App extends Component {
                                   <CelebrityCard title={artistObj.name}
                                                  imageUrl={artistObj.image[2]["#text"]}
                                                  subtitle={"#" + (index + 1) + " Fans : " + artistObj.listeners}
-                                                 loggedIn={!!this.state.currentUserName}
+                                                 loggedIn={!!this.state.currentUserName  || this.props.myProfile}
                                                  mbid={artistObj.mbid}
                                                  site={artistObj.url}
                                   />
@@ -171,7 +175,7 @@ class App extends Component {
                               || (userObj.firstName + " " + userObj.lastName)}
                                              imageUrl={"https://lastfm-img2.akamaized.net/i/u/300x300/d4feb078525d42fb9e72572c43662c30.png"}
                                              subtitle={"role : " + userObj.role}
-                                             loggedIn={!!this.state.currentUserName}
+                                             loggedIn={!!this.state.currentUserName  || this.props.myProfile}
                                              mbid={userObj._id}
 
                                              role={userObj.role}
@@ -187,4 +191,26 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+    return {
+        isLoggedIn : state.userAccountReducer.isLoggedIn,
+        myProfile : state.loginReducer.profile
+    }
+
+}
+
+
+const mapDispatchToProps = (dispatch) =>({
+
+   resetSideBar: ()=> {
+       dispatch({type :CLOSE_SIDE_BAR})
+   }
+
+
+
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+

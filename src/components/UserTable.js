@@ -12,7 +12,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import AlertDialog from "./AlertDialog";
 import {UserService} from "../services/api/user";
 import {connect} from "react-redux";
-import {SELECT_USER} from "../redux/Constants/userAccount";
+import {CLOSE_SIDE_BAR, SELECT_USER} from "../redux/Constants/userAccount";
 import {Link, Redirect} from "react-router-dom";
 import {SET_UPDATE_MODE} from "../redux/Constants/userRegister";
 
@@ -42,6 +42,7 @@ function SimpleTable(props) {
 
     console.log(props)
 
+    props.resetSideBar()
 
 
     return (
@@ -149,7 +150,12 @@ const mapDispatchToProps = (dispatch) =>({
             payload: {
                 selectedUser : selectedUser,
                 updateMode : booleanValue}})
+    },
+
+    resetSideBar: ()=> {
+        dispatch({type :CLOSE_SIDE_BAR})
     }
+
 
 })
 
