@@ -30,6 +30,9 @@ const loginReducer = (state = initialState, action) => {
 
             localStorage.clear()
             localStorage.setItem(TOKEN_NAME, action.payload.data.token)
+            localStorage.setItem('currentId', action.payload.data.user._id)
+
+
             return {...state,
                 profile: action.payload.data.user,
                 fetching : false, error : false,

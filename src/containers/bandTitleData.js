@@ -23,6 +23,18 @@ export const bandMailFolderListItems = ()=>(
         </Link>
 
 
+        <Link to={'/home'}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+            <ListItem button>
+                <ListItemIcon>
+                    <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+            </ListItem>
+        </Link>
+
+
+
         <ListItem button>
             <ListItemIcon>
                 <StarsIcon/>

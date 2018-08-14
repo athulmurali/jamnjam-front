@@ -7,19 +7,31 @@ import ListItemText from '@material-ui/core/ListItemText';
 import StarsIcon from '@material-ui/icons/Star';
 import MailIcon from '@material-ui/icons/Mail';
 import PersonIcon from '@material-ui/icons/PersonOutline'
+import HomeIcon from '@material-ui/icons/Home'
+
 import {Link} from "react-router-dom";
 
 export const ArtistListTop = (
     <div>
         <Link to={'/profileByRole'}
               style={{ textDecoration: 'none' ,color: 'inherit'}}>
-
         <ListItem button>
             <ListItemIcon>
                 <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
         </ListItem>
+        </Link>
+
+
+        <Link to={'/home'}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+            <ListItem button>
+                <ListItemIcon>
+                    <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+            </ListItem>
         </Link>
 
 
