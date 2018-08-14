@@ -127,7 +127,8 @@ class BandProfile extends React.Component{
                         </Typography>
                         <List>
                             <ListItem button divider disabled>
-                                <ListItemText primary="Rank" secondary={"Unavailable"}/>
+                                <ListItemText primary="Location -zip"
+                                              secondary={this.props.currentProfile.zip}/>
                             </ListItem>
                             <ListItem button divider >
                                 <ListItemText primary="Fans"
@@ -144,7 +145,7 @@ class BandProfile extends React.Component{
 
                             img={""}
 
-                            members = {this.members}
+                            members = {this.props.currentProfile.members}
                             editMode={false}
                         />
 

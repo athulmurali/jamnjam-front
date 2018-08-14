@@ -44,11 +44,11 @@ function MembersChip(props) {
                 />
 
                 :
-
                 <Chip
                     key = {index}
-                    avatar={<Avatar>MB</Avatar>}
-                    label={member.name}
+                    avatar={<Avatar>{member.firstName.charAt(0) +
+                    member.lastName.charAt(0)}</Avatar>}
+                    label={member.firstName + " " + member.lastName}
                     onClick={handleClick}
                     className={classes.chip}
                 />
