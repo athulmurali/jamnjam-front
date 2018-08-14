@@ -10,8 +10,8 @@ import {
     CREATE_USER_FULFILLED,
     CREATE_USER_PENDING,
     CREATE_USER_REJECTED,
-    REGISTER_USER, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
-    UPDATE_FIELD, UPDATE_USER
+    REGISTER_USER, RESET_SELECTED_ROLE, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
+    UPDATE_FIELD, UPDATE_ROLE, UPDATE_USER
 } from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
 import {UserService} from "../../services/api/user";
@@ -492,6 +492,7 @@ class RegistrationForm extends React.Component {
 
                                     // this.createNewUserInServer(this.props);
 
+                                    this.props.resetSelectedRole()
                                     this.props.setUpdateMode(false)
 
                                     return  <Redirect to ='/home'></Redirect>
@@ -633,7 +634,11 @@ const mapDispatchToProps = (dispatch) =>({
         dispatch({
             type: RESET_UPDATE_SUCCESS
         })
-    }
+    },
+
+
+
+    resetSelectedRole: () =>{dispatch({type: RESET_SELECTED_ROLE})}
 
 })
 

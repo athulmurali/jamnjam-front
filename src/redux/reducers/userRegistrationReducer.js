@@ -2,7 +2,7 @@ import {
     CREATE_USER_FULFILLED,
     CREATE_USER_PENDING,
     CREATE_USER_REJECTED,
-    REGISTER_USER, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
+    REGISTER_USER, RESET_SELECTED_ROLE, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
     UPDATE_FIELD,
     UPDATE_ROLE, UPDATE_USER_FULFILLED, UPDATE_USER_PENDING, UPDATE_USER_REJECTED
 } from "../Constants/userRegister";
@@ -129,6 +129,15 @@ const userRegistrationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 updateSuccess : false
+            }
+        }
+
+
+        case RESET_SELECTED_ROLE : {
+            return {
+                ...state,
+                selectedRole : false,
+                role : false
             }
         }
 

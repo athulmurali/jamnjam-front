@@ -7,7 +7,7 @@ import {FILL_USER_DETAILS, VERIFY_EMAIL} from "../const/PageState";
 import UserRegister from "./userRegistration/UserRegister";
 import * as userRoles from "../const/userRoles";
 
- const AdminScreen = (props) =>{
+const AdminScreen = (props) =>{
      if (props.selectedRole && props.nextStep!= VERIFY_EMAIL){
              return<div>
                  <UserRegister></UserRegister>
@@ -63,6 +63,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) =>({
     selectRole: (role) =>{dispatch({type: UPDATE_ROLE,
         payload : {role :role,nextStep: FILL_USER_DETAILS}})},
+
+
 
 })
 

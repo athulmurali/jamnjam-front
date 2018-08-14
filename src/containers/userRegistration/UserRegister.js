@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import {UPDATE_ROLE} from "../../redux/Constants/userRegister";
 import RegistrationForm from "./RegistrationForm";
 import RoleSelect from "./RoleSelect";
 import {FILL_USER_DETAILS, SELECT_ROLE, VERIFY_EMAIL} from "../../const/PageState";
@@ -29,9 +28,9 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = (dispatch) =>({
-    selectRole: (role) =>{dispatch({type: UPDATE_ROLE,
-        payload : {role :role,nextStep: FILL_USER_DETAILS}})},
+
 })
+
 
 
 
