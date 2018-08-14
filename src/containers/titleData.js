@@ -22,12 +22,26 @@ export const mailFolderListItems = (
 
         </ListItem>
         </Link>
+
+        <Link to={'/band/:_id/manageNetwork'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
         <ListItem button>
             <ListItemIcon>
                 <StarsIcon/>
             </ListItemIcon>
             <ListItemText primary="My Network" />
         </ListItem>
+        </Link>
+
+
+        <Link to={'/artist/:_id/artistLookOuts'}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+            <ListItem button>
+                <ListItemIcon>
+                    <StarsIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Artist Lookouts" />
+            </ListItem>
+        </Link>
 
     </div>
 );

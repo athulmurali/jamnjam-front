@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {
+    ADD_DEL_MEMBER_URL,
+    BASE_URL,
     CREATE_USER_URL, DEL_USER_BY_ROLE_ID_URL, GET_USER_BY_ROLE_ID_URL, LOGIN_URL,
     UPDATE_USER_URL
 } from "../../const/url";
@@ -39,5 +41,25 @@ export class UserService{
 
     }
 
+
+    getArtists =()=>{
+        return axios.get(BASE_URL + '/users/artist')
+    }
+
+
+    addMember=(payload)=>{
+        return axios.post(  ADD_DEL_MEMBER_URL,payload)
+    }
+
+
+    addMember=(userData)=>{
+        return axios.post(ADD_DEL_MEMBER_URL,userData)
+    }
+
+    deleteMember=(userData)=>{
+        return axios.delete(ADD_DEL_MEMBER_URL,{
+            data : userData
+        })
+    }
 }
 
