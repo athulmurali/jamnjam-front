@@ -15,6 +15,7 @@ import EditProfile from "./containers/editProfile/EditProfile";
 import ManageNetwork from "./containers/ManageNetwork";
 import ArtistLookOuts from "./containers/ArtistLookOuts";
 import AddLookOut from "./containers/AddLookOut";
+import MyLookOuts from "./containers/MyLookOuts";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -38,6 +39,9 @@ const  RoutedApp =()=> {
                                 component={ManageNetwork } />
                         <Route  exact path="/band/:bandId/addLookOut/"
                                 component={AddLookOut } />
+
+                        <Route  exact path="/band/:bandId/myLookOuts/"
+                                component={MyLookOuts } />
 
 
 

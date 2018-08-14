@@ -74,5 +74,12 @@ export class UserService{
         return axios.post(ARTIST_LOOKOUT_URL,payload)
 
     }
+
+
+    deleteLookOut=(lookOutId)=> {
+
+        return axios.delete(ARTIST_LOOKOUT_URL +'/'+ lookOutId.toString())
+
+    }
 }
 

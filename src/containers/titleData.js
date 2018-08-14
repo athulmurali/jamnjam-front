@@ -8,7 +8,7 @@ import StarsIcon from '@material-ui/icons/Star';
 import MailIcon from '@material-ui/icons/Mail';
 import PersonIcon from '@material-ui/icons/PersonOutline'
 import HomeIcon from '@material-ui/icons/Home'
-
+import EditIcon from '@material-ui/icons/Edit'
 import AlertIcon from '@material-ui/icons/AddAlert'
 
 import {Link} from "react-router-dom";
@@ -62,6 +62,21 @@ export const mailFolderListItems = (
             <ListItemText primary="My Network" />
         </ListItem>
         </Link>
+
+
+
+
+
+        <Link to={'/band/'+localStorage.getItem('currentId')+'/myLookOuts'}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+            <ListItem button>
+                <ListItemIcon>
+                    <EditIcon/>
+                </ListItemIcon>
+                <ListItemText primary="My LookOuts" />
+            </ListItem>
+        </Link>
+
 
     </div>
 );

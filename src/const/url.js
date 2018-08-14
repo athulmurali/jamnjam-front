@@ -12,8 +12,6 @@ export const GET_USER_BY_ROLE_ID_URL =(role,id)=> {
  return  BASE_URL + '/user/' + role+'/profile/'+ id.toString()}
 
 
-
-
 export const DEL_USER_BY_ROLE_ID_URL =(role,id)=> {
     return  BASE_URL + '/user/'+ role+'/'+ id.toString()}
 
