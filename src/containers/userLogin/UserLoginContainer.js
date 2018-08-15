@@ -96,9 +96,9 @@ class Login extends Component {
 
                 <div className="px-1 px-2 py-2">
 
-                    <GoogleSignIn>
-                        Google login
-                    </GoogleSignIn>
+                    {/*<GoogleSignIn>*/}
+                        {/*Google login*/}
+                    {/*</GoogleSignIn>*/}
 
                 </div>
 
