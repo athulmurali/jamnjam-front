@@ -189,7 +189,6 @@ const userRegistrationReducer = (state = initialState, action) => {
             const myProfile = JSON.parse(localStorage.getItem('myProfile'))
 
 
-            alert("myProfile : " + myProfile.toString())
             return{
                 ...state, ...myProfile, updateMode : true
             }

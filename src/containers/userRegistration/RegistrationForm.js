@@ -317,7 +317,7 @@ class RegistrationForm extends React.Component {
                     />
 
                     <TextField
-                        error ={this.props.zip}
+                        error ={!this.props.zip}
                         id="zip"
                         label="zip"
                         defaultValue={this.props.zip}
