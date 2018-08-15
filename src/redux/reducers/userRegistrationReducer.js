@@ -6,8 +6,8 @@ import {
     UPDATE_FIELD,
     UPDATE_ROLE, UPDATE_USER_FULFILLED, UPDATE_USER_PENDING, UPDATE_USER_REJECTED
 } from "../Constants/userRegister";
-import {UserService} from "../../services/api/user";
 import {FILL_USER_DETAILS, SELECT_ROLE, VERIFY_EMAIL} from "../../const/PageState";
+import {SELECT_USER} from "../Constants/userAccount";
 
 const initialState = {
     firstName : '',
@@ -17,17 +17,17 @@ const initialState = {
     username : '',
     password : '',
     role : '',
+    title : '',
+    zip : '',
+
+
+    toExtract : false,
 
     updateMode : false,
 
     nextStep : SELECT_ROLE
 }
 
-const createNewUserInServer=(userData)=>{
-    const userService = new UserService();
-    userService.createNewUser(userData).then(result => console.log(result)).
-catch(err => console.log(err))
-}
 
 
 const userRegistrationReducer = (state = initialState, action) => {
@@ -42,13 +42,15 @@ const userRegistrationReducer = (state = initialState, action) => {
         case REGISTER_USER:
             {
                 console.log(state.role)
-                return Object.assign({}, state,{...action.payload,...{role : state.role}} )
+                return Object.assign({},
+                    state,{...action.payload,
+                        ...{role : state.role}} )
             }
 
 
         case UPDATE_FIELD :
         {
-            return Object.assign({}, state,{...action.payload} )
+            return Object.assign({}, state,{...action.payload, toExtract: false} )
         }
 
 
@@ -58,7 +60,6 @@ const userRegistrationReducer = (state = initialState, action) => {
 
         }
 
-
         case CREATE_USER_FULFILLED:{
 
             return {...state, fetching : false,
@@ -66,37 +67,47 @@ const userRegistrationReducer = (state = initialState, action) => {
                 data : action.payload.data,
                 nextStep : VERIFY_EMAIL
             }
-
-
         }
-
 
         case CREATE_USER_REJECTED:{
             return {...state, fetching : false,
                 error : action.payload.response.data}
         }
 
+        case SELECT_USER:
+            return {...state, toExtract : true}
 
-        case SET_UPDATE_MODE:{
 
-            if (!!action.payload.selectedUser)
-            {
-                return {...state, fetching : false,
-                    updateMode: action.payload.updateMode,
-                    selectedUser: false
-                }
+
+        case SET_UPDATE_MODE: {
+
+            let selectedUser = false;
+            let updateMode = false;
+            let toExtract = false
+
+            if (!!action.payload.selectedUser) {
+                selectedUser = action.payload.selectedUser
             }
 
-            else
-                return {...state, fetching : false,
-                    updateMode: action.payload.updateMode,
-                    ...action.payload.selectedUser
-                }
+            if (!!action.payload.updateMode) {
+                updateMode = true
+            }
 
+            if (updateMode) {
+                toExtract = true
+            }
+
+
+            return {
+                ...state,
+                ...selectedUser,
+                selectedUser: selectedUser,
+                updateMode: updateMode,
+                toExtract: toExtract
+
+            }
 
         }
-
-
 
 
         case UPDATE_USER_PENDING:{
@@ -107,6 +118,8 @@ const userRegistrationReducer = (state = initialState, action) => {
 
 
         case UPDATE_USER_FULFILLED:{
+            console.log("printing received data after update")
+            console.log(action.payload)
 
             return {...state, fetching : false,
                 error: false,
@@ -137,17 +150,12 @@ const userRegistrationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedRole : false,
+                updateMode : false,
                 role : false,
+                selectedUser: false,
                 nextStep: SELECT_ROLE
             }
         }
-
-
-
-
-
-
-
 
 
         default:

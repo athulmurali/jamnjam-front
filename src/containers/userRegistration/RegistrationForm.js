@@ -7,15 +7,16 @@ import * as EmailValidator from 'email-validator';
 import {UserByRole} from "../../services/api/userByRole";
 import {
     CREATE_USER,
-    CREATE_USER_FULFILLED,
-    CREATE_USER_PENDING,
-    CREATE_USER_REJECTED,
-    REGISTER_USER, RESET_SELECTED_ROLE, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
-    UPDATE_FIELD, UPDATE_ROLE, UPDATE_USER
+    REGISTER_USER,
+    RESET_SELECTED_ROLE,
+    RESET_UPDATE_SUCCESS,
+    SET_UPDATE_MODE,
+    UPDATE_FIELD,
+    UPDATE_USER
 } from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
 import {UserService} from "../../services/api/user";
-import {ARTIST, BAND} from "../../const/userRoles";
+import {BAND} from "../../const/userRoles";
 import {Redirect} from "react-router-dom";
 
 const styles = theme => ({
@@ -52,6 +53,15 @@ const styles = theme => ({
 class RegistrationForm extends React.Component {
 
 
+    componentWillReceiveProps(nextProps,any){
+        if(this.props.selectedUser && this.props.toExtract)
+        {
+            alert("Mounted selectedUser  : " + JSON.stringify(this.props.selectedUser) )
+
+        }
+
+    }
+
     userByRoleService = new UserByRole();
 
     state = {
@@ -67,6 +77,9 @@ class RegistrationForm extends React.Component {
         zip : '',
         bio: '',
         img:'',
+
+
+        goBack : false,
 
 
 
@@ -119,6 +132,18 @@ class RegistrationForm extends React.Component {
         const { classes } = this.props;
 
 
+        if(this.props.toExtract){
+            alert("Yet to extract")
+
+        }
+        if( this.state.goBack)
+        {
+
+            return <Redirect to='/home' />
+
+        }
+
+
         if( this.props.updateSuccess)
         {
            this.props.resetUpdateSuccess();
@@ -129,8 +154,7 @@ class RegistrationForm extends React.Component {
 
 
 
-        return (
-            <div>
+        return (<div>
                 {
                     this.props.role == BAND || this.props.updateRole === BAND?
                         <form className={classes.container}
@@ -507,11 +531,34 @@ class RegistrationForm extends React.Component {
                                 onClick = {()=>{
 
                                     const updateUserService = new UserService();
+
+
+
                                     if(!this.props.updateMode)
+                                    {
                                         this.createNewUserInServer(this.props);
 
-                                   else this.props.updateUser(
-                                       updateUserService.updateUser(this.props));
+                                    }
+
+                                   else {
+
+                                        var userToUpdate ={
+                                            _id         : this.props._id,
+                                            firstName   : this.props.firstName,
+                                            lastName    : this.props.lastName,
+                                            emailId     : this.props.emailId,
+                                            phone       : this.props.phone,
+                                            username    : this.props.username,
+                                            password    : this.props.password,
+                                            role        : this.props.role,
+                                            title       : this.props.title,
+                                            zip         : this.props.zip,
+                                        }
+
+                                        alert("userTOUpdate : "+ JSON.stringify(userToUpdate))
+                                        this.props.updateUser(
+                                            updateUserService.updateUser(userToUpdate));
+                                    }
 
                                 }}
                                 className={classes.button}
@@ -523,9 +570,7 @@ class RegistrationForm extends React.Component {
                         </Button>
                     </div>
 
-            </div>
-
-        );
+            </div>);
     }
 
     isNonBandFormValid=()=>{
@@ -551,14 +596,10 @@ RegistrationForm.propTypes = {
 
 const mapStateToProps = state => {
 
-    if(state.userAccountReducer.selectedUser)
-        return {
-            ...state.userRegistrationReducer,...state.userAccountReducer.selectedUser
-        }
-    else {
+
      return  { ...state.userRegistrationReducer}
     }
-}
+
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -579,30 +620,6 @@ const mapDispatchToProps = (dispatch) =>({
         }
     })},
 
-
-    create_user_start:()=>{
-        dispatch({
-            type : CREATE_USER_PENDING
-        })
-    },
-
-
-
-    create_user_fulfilled:(data)=>{
-        dispatch({
-            type : CREATE_USER_FULFILLED,
-            payload: data
-        })
-    },
-
-
-    create_user_rejected:(err)=>{
-        dispatch({
-            type : CREATE_USER_REJECTED,
-            payload: err
-        })
-    },
-
     create_user_dispatch:(payload)=>{
         dispatch({
             type :  CREATE_USER,
@@ -614,6 +631,7 @@ const mapDispatchToProps = (dispatch) =>({
 
     updateUser:(payload)=>{
         console.log("update user called")
+
         dispatch({
             type :  UPDATE_USER,
             payload : payload
@@ -641,7 +659,5 @@ const mapDispatchToProps = (dispatch) =>({
     resetSelectedRole: () =>{dispatch({type: RESET_SELECTED_ROLE})}
 
 })
-
-
 
 export default  connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(RegistrationForm));
