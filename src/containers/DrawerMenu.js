@@ -48,6 +48,7 @@ class DrawerMenu extends React.Component {
 
     render() {
         const { classes } = this.props;
+
         if(this.props.profile)
         {
             localStorage.setItem('currentId', this.props.profile._id)
@@ -113,7 +114,9 @@ DrawerMenu.propTypes = {
 const mapStateToProps = state => {
     return {
         isSideBarOpen : state.userAccountReducer.isSideBarOpen,
-        profile : state.loginReducer.profile
+        profile : state.loginReducer.profile,
+        myProfile: JSON.parse(localStorage.getItem('myProfile'))
+
     }
 
 }

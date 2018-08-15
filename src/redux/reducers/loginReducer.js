@@ -52,6 +52,7 @@ const loginReducer = (state = initialState, action) => {
         {
 
             localStorage.setItem('currentProfile', action.payload.data)
+            localStorage.setItem('myProfile', JSON.stringify(action.payload.data))
             return {...state,
                 currentProfile: action.payload.data,
                 fetching : false, error : false,

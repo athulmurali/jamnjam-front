@@ -70,22 +70,22 @@ class MenuAppBar extends React.Component {
                 <AppBar position="static">
 
                     <Toolbar>
-                        {this.props.isLoggedIn &&
+                        {this.props.myProfile &&
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
                                     onClick={this.props.openSideBar}
                         >
                             <MenuIcon/>
                         </IconButton>
                         }
-                        <DrawerMenu role = {!!this.props.profile && this.props.profile.role}></DrawerMenu>
+                        <DrawerMenu role = {!!this.props.myProfile && this.props.myProfile.role}></DrawerMenu>
 
 
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             Jam n' jam
                         </Typography>
-                        {!!this.props.isLoggedIn && (
+                        {!!this.props.myProfile && (
                             <div>
-                                <span className="badge badge-light">{this.props.profile.role}</span>
+                                <span className="badge badge-light">{this.props.myProfile.role}</span>
 
                                 <IconButton
                                     aria-owns={open ? 'menu-appbar' : null}
@@ -125,7 +125,7 @@ class MenuAppBar extends React.Component {
 
                                         {/*<Badge className={classes.padding}*/}
                                                {/*color="secondary"*/}
-                                               {/*badgeContent={this.props.profile.role}>*/}
+                                               {/*badgeContent={this.props.myProfile.role}>*/}
                                             Profile
                                         {/*</Badge>*/}
                                     </MenuItem>
@@ -135,7 +135,7 @@ class MenuAppBar extends React.Component {
                             </div>
                         )}
 
-                        {!this.props.isLoggedIn && (
+                        {!this.props.myProfile && (
                             <div>
 
                                 <Link to={'/register'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
@@ -164,11 +164,11 @@ class MenuAppBar extends React.Component {
                 {/*<FormGroup>*/}
                     {/*<FormControlLabel*/}
                         {/*control={*/}
-                            {/*<Switch checked={this.props.isLoggedIn} onChange={*/}
-                                {/*()=>this.handleChange(null, this.props.isLoggedIn,*/}
+                            {/*<Switch checked={this.props.myProfile} onChange={*/}
+                                {/*()=>this.handleChange(null, this.props.myProfile,*/}
                                     {/*this.props.logOut,this.props.logIn)} aria-label="LoginSwitch" />*/}
                         {/*}*/}
-                        {/*label={this.props.isLoggedIn ? 'Logout' : 'Login'}*/}
+                        {/*label={this.props.myProfile ? 'Logout' : 'Login'}*/}
                     {/*/>*/}
                 {/*</FormGroup>*/}
             </div>
@@ -183,7 +183,10 @@ MenuAppBar.propTypes = {
 const mapStateToProps = state => {
     return {
         isLoggedIn : state.userAccountReducer.isLoggedIn,
-        profile : state.loginReducer.profile
+        profile : state.loginReducer.profile,
+        myProfile: JSON.parse(localStorage.getItem('myProfile'))
+
+
     }
 
 }
