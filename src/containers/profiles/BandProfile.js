@@ -95,12 +95,6 @@ class BandProfile extends React.Component{
 
 
 
-    members = [
-        {_id : '1axaxcxc', name:'Eminem'},
-        {_id : '1axaxcb',  name:'Usher'},
-        {_id : '1axaxcd',  name:'Ed Sheeran'},]
-
-
 
 
     render(){ return <div>

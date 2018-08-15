@@ -245,7 +245,7 @@ class RegistrationForm extends React.Component {
                         }
 
                     />
-                    {(!this.props.updateMode  || !this.props.myProfileEdit) &&
+                    {(!this.props.updateMode  && !this.props.myProfileEdit) &&
                     <TextField
                         required
                         error ={!this.props.username || !this.state.isUsernameAvailable}
@@ -264,7 +264,7 @@ class RegistrationForm extends React.Component {
 
                     />}
 
-                    {(!this.props.updateMode  || !this.props.myProfileEdit) &&
+                    {(!this.props.updateMode  && !this.props.myProfileEdit) &&
                     <TextField
                         // error={true}
                         error ={ !EmailValidator.validate(this.props.emailId) || !this.state.isEmailAvailable}
