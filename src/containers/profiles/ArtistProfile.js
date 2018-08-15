@@ -15,6 +15,7 @@ import UserServiceWithToken from "../../services/UserServiceWithToken";
 import * as roles from "../../const/userRoles";
 import {UserService} from "../../services/api/user";
 import {Link} from "react-router-dom";
+import {NO_IMG_PICTURE} from "../../const/url";
 
 
 const artist = Artist.instance
@@ -138,7 +139,8 @@ const styles = {
 
                             // src={this.state.artistInfo.image[3]["#text"]}
 
-                             src={this.state.artistProfile.img}
+                             src={this.state.artistProfile.img ||
+                                 NO_IMG_PICTURE}
                         />
                     </CardMedia>
                     <Card style={styles.card}>

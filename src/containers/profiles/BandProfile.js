@@ -14,6 +14,7 @@ import {connect} from "react-redux";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import {UserService} from "../../services/api/user";
 import {Link} from "react-router-dom";
+import {NO_IMG_PICTURE} from "../../const/url";
 
 
 const artist = Artist.instance
@@ -108,7 +109,7 @@ class BandProfile extends React.Component{
 
                 <CardMedia style={styles.card}>
                     <img style={styles.cardMedia}
-                         src={this.props.currentProfile.img}
+                         src={    this.props.currentProfile.img || NO_IMG_PICTURE}
                     />
                 </CardMedia>
                 <Card style={styles.card}>

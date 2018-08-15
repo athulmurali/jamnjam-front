@@ -14,6 +14,7 @@ import {connect} from "react-redux";
 import {CLOSE_SIDE_BAR} from "./redux/Constants/userAccount";
 import {SET_UPDATE_MODE} from "./redux/Constants/userRegister";
 import {searchReducer} from "./redux/reducers/searchReducer";
+import {NO_IMG_PICTURE} from "./const/url";
 const artist = Artist.instance
 class App extends Component {
     constructor(props)
@@ -206,7 +207,8 @@ class App extends Component {
                           return <li key={index}>
                               <UserCard title={(userObj.role === BAND && userObj.title)
                               || (userObj.firstName + " " + userObj.lastName)}
-                                             imageUrl={"https://lastfm-img2.akamaized.net/i/u/300x300/d4feb078525d42fb9e72572c43662c30.png"}
+                                             imageUrl={userObj.img ||
+                                             NO_IMG_PICTURE}
                                              subtitle={"role : " + userObj.role}
                                              loggedIn={!!this.state.currentUserName  || this.props.myProfile}
                                              mbid={userObj._id}
