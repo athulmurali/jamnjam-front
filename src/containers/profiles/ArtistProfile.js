@@ -53,7 +53,13 @@ const styles = {
         borderWidth:"2"
 
     },
-    cardMedia:{alignSelf:"center",justifyContent:"space-around", borderRadius: 10},
+    cardMedia:{
+        alignSelf:"center",
+        justifyContent:"space-around",
+        borderRadius: 10,
+        maxWidth :300,
+        maxHeight : 300
+    },
     cover: {
         height: 0,
         paddingTop: '56.25%', // 16:9
@@ -146,8 +152,7 @@ const styles = {
                     <Card style={styles.card}>
                         <CardContent>
 
-                            <div className="row">
-                            </div>
+
                             <Typography style={styles.title} color="textSecondary">
                                 Artist Name
                             </Typography>
