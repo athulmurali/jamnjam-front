@@ -16,6 +16,7 @@ import * as roles from "../../const/userRoles";
 import {UserService} from "../../services/api/user";
 import {Link} from "react-router-dom";
 import {NO_IMG_PICTURE} from "../../const/url";
+import MembersChip from "../MembersChip";
 
 
 const artist = Artist.instance
@@ -161,6 +162,8 @@ const styles = {
                                 {this.state.artistProfile.firstName + " " + this.state.artistProfile.lastName}
                             </Typography>
 
+
+
                             <List>
                                 <ListItem button divider disabled>
                                     <ListItemText primary="Location - Zip" secondary={this.state.artistProfile.zip}/>
@@ -168,6 +171,19 @@ const styles = {
                                 <ListItem button divider disabled>
                                     {/*<ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />*/}
                                     <ListItemText primary="Fans" secondary={12345} />
+
+                                </ListItem>
+                                <Typography style={styles.pos} color="textSecondary">
+                                    Plays with
+                                </Typography>
+                                <ListItem>
+                                    <MembersChip
+
+                                        img={""}
+
+                                        members = {this.state.artistProfile.memberOf}
+                                        editMode={false}
+                                    />
 
                                 </ListItem>
                             </List>

@@ -5,6 +5,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
+import {NO_IMG_PICTURE} from "../const/url";
+import {Link, Redirect} from "react-router-dom";
 
 const styles = theme => ({
     root: {
@@ -14,6 +16,7 @@ const styles = theme => ({
     },
     chip: {
         margin: theme.spacing.unit,
+        cursor: 'pointer'
     },
 });
 
@@ -25,15 +28,23 @@ function handleDelete() {
 
 function handleClick() {
     alert('You clicked the Chip.'); // eslint-disable-line no-alert
+    return
+
 }
 
 function MembersChip(props) {
     const { classes } = props;
 
-            if(props.members)
+            const people =props.members
+
+            if(people)
                 return (
 
-                    props.members.map( (member,index)=>{
+                    people.map( (member,index)=>{
+
+
+                        const name = member.title || member.firstName + " " +member.lastName
+                        const  firstChar= name.charAt(0)
 
                         return !!props.editMode ?
                             <Chip
@@ -45,14 +56,18 @@ function MembersChip(props) {
                             />
 
                             :
+                            <Link to={"/"+member.role + "/"+ member._id} style={{cursor:'pointer'}} key={index}>
                             <Chip
                                 key = {index}
-                                avatar={<Avatar>{member.firstName.charAt(0) +
-                                member.lastName.charAt(0)}</Avatar>}
-                                label={member.firstName + " " + member.lastName}
-                                onClick={handleClick}
+                                // avatar={<Avatar>{firstChar}</Avatar>}
+                                avatar={<Avatar src={member.img || NO_IMG_PICTURE} />}
+
+                                label={name}
+
                                 className={classes.chip}
                             />
+                            </Link>
+
 
 
 
