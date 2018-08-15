@@ -148,7 +148,6 @@ const userRegistrationReducer = (state = initialState, action) => {
             }
         }
 
-
         case RESET_SELECTED_ROLE : {
             return {
                 ...state,
