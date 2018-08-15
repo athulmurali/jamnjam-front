@@ -2,7 +2,7 @@ import {
     CREATE_USER_FULFILLED,
     CREATE_USER_PENDING,
     CREATE_USER_REJECTED,
-    REGISTER_USER, RESET_SELECTED_ROLE, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
+    REGISTER_USER, RESET_ADMIN_SCREEN, RESET_SELECTED_ROLE, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
     UPDATE_FIELD,
     UPDATE_ROLE, UPDATE_USER_FULFILLED, UPDATE_USER_PENDING, UPDATE_USER_REJECTED
 } from "../Constants/userRegister";
@@ -103,7 +103,9 @@ const userRegistrationReducer = (state = initialState, action) => {
                 ...selectedUser,
                 selectedUser: selectedUser,
                 updateMode: updateMode,
-                toExtract: toExtract
+                toExtract: toExtract,
+                nextStep: FILL_USER_DETAILS
+
 
             }
 
@@ -124,7 +126,8 @@ const userRegistrationReducer = (state = initialState, action) => {
             return {...state, fetching : false,
                 error: false,
                 data : action.payload.data,
-                updateSuccess: true
+                updateSuccess: true,
+                selectedRole : false
             }
 
 
@@ -153,9 +156,35 @@ const userRegistrationReducer = (state = initialState, action) => {
                 updateMode : false,
                 role : false,
                 selectedUser: false,
-                nextStep: SELECT_ROLE
+                nextStep: SELECT_ROLE,
+                firstName : '',
+                lastName : '',
+                emailId : '',
+                phone : '',
+                username : '',
+                password : '',
+                role : '',
+                title : '',
+                zip : '',
+
+
+
             }
         }
+
+
+
+
+        case RESET_ADMIN_SCREEN : {
+            return {
+                ...state,
+                selectedRole : false,
+                updateMode : false,
+                role : false,
+                selectedUser: false,
+            }
+        }
+
 
 
         default:

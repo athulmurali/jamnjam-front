@@ -10,10 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import AlertDialog from "./AlertDialog";
-import {UserService} from "../services/api/user";
 import {connect} from "react-redux";
 import {CLOSE_SIDE_BAR, SELECT_USER} from "../redux/Constants/userAccount";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {SET_UPDATE_MODE} from "../redux/Constants/userRegister";
 
 
@@ -28,23 +27,14 @@ const styles = theme => ({
     },
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein };
-}
+
+
 
 
 function SimpleTable(props) {
-
-
     const { classes } = props;
-
     console.log(props)
-
     props.resetSideBar()
-
-
     return (
         <Paper className={classes.root}>
             <Table className={classes.table}>
@@ -60,53 +50,28 @@ function SimpleTable(props) {
                     {props.users.map((user,index) => {
                         return (
                             <TableRow key={index}>
-                                 <TableCell component="th" scope="row">
+                                <TableCell component="th" scope="row">
                                         <Link to={"/" + user.role +"/" + user._id}
                                               style={{ textDecoration: 'none' ,color: 'inherit'}}>
                                         {user.username}
                                         </Link>
                                     </TableCell>
-
-
-                                <TableCell >{user.role}</TableCell>
+                                <TableCell >
+                                    {user.role}
+                                </TableCell>
                                 <TableCell>
-
                                     <div className="row">
-
-
-
-                                            <IconButton className={classes.button} aria-label="Edit"
+                                        <IconButton className={classes.button} aria-label="Edit"
                                                         onClick={()=>{
+                                                            props.setUpdateMode(true,props.selectedUser)
                                                             props.selectUser(user)
-                                                            props.setUpdateMode(true,props.selectedUser)// this.props.history.
                                                         }}>
                                                 <EditIcon />
-
                                                 {
                                                     (props.selectedUser && props.updateMode) &&
-                                                    (props.setUpdateMode(true,props.selectedUser)
-
-                                                        ||
-
-                                                        <Redirect
-                                                            to={'/' + props.selectedUser.role +
-                                                            '/editProfile/' +
-                                                            props.selectedUser._id}/>
-
-                                                    )
-
-
-
-
-
+                                                    (props.setUpdateMode(true,props.selectedUser))
                                                 }
-
-
                                             </IconButton>
-
-
-
-
                                         <AlertDialog userToDelete={user}
                                                      open={true} message={"Please select confirm to proceed"}/>
                                     </div>

@@ -2,6 +2,11 @@ import React from "react";
 import RegistrationForm from "../userRegistration/RegistrationForm";
 
 const EditProfile =(props)=>{
+
+
+
+
+
     return <div className="container-fluid">
         <div className="row">
             <div className="container-fluid text-center">

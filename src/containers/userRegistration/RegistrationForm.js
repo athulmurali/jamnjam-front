@@ -56,7 +56,7 @@ class RegistrationForm extends React.Component {
     componentWillReceiveProps(nextProps,any){
         if(this.props.selectedUser && this.props.toExtract)
         {
-            alert("Mounted selectedUser  : " + JSON.stringify(this.props.selectedUser) )
+            // alert("Mounted selectedUser  : " + JSON.stringify(this.props.selectedUser) )
 
         }
 
@@ -133,7 +133,7 @@ class RegistrationForm extends React.Component {
 
 
         if(this.props.toExtract){
-            alert("Yet to extract")
+            // alert("Yet to extract")
 
         }
         if( this.state.goBack)
@@ -555,7 +555,7 @@ class RegistrationForm extends React.Component {
                                             zip         : this.props.zip,
                                         }
 
-                                        alert("userTOUpdate : "+ JSON.stringify(userToUpdate))
+                                        // alert("userTOUpdate : "+ JSON.stringify(userToUpdate))
                                         this.props.updateUser(
                                             updateUserService.updateUser(userToUpdate));
                                     }

@@ -32,11 +32,15 @@ const loginReducer = (state = initialState, action) => {
             localStorage.setItem(TOKEN_NAME, action.payload.data.token)
             localStorage.setItem('currentId', action.payload.data.user._id)
 
+            localStorage.setItem('myProfile',
+                JSON.stringify(action.payload.data.user))
+
 
             return {...state,
                 profile: action.payload.data.user,
                 fetching : false, error : false,
                 token : action.payload.data.token
+
             }
         }
 
@@ -52,7 +56,7 @@ const loginReducer = (state = initialState, action) => {
         {
 
             localStorage.setItem('currentProfile', action.payload.data)
-            localStorage.setItem('myProfile', JSON.stringify(action.payload.data))
+
             return {...state,
                 currentProfile: action.payload.data,
                 fetching : false, error : false,

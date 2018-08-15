@@ -3,6 +3,7 @@ import {
     OPEN_SIDE_BAR,
     SELECT_USER
 } from "../Constants/userAccount";
+import {RESET_SELECTED_ROLE} from "../Constants/userRegister";
 
 const initialState = {
     isLoggedIn: false,
@@ -34,6 +35,15 @@ const userAccountReducer = (state = initialState, action) => {
         case SELECT_USER:
             return {...state,
                 selectedUser : action.payload  }
+
+
+
+        case RESET_SELECTED_ROLE:{
+            return {
+                ...state,
+                selectedUser : false
+            }
+        }
 
 
 
