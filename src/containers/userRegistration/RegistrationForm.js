@@ -403,6 +403,8 @@ class RegistrationForm extends React.Component {
                                     role        : this.props.role,
                                     title       : this.props.title,
                                     zip         : this.props.zip,
+                                    img         : this.props.img,
+                                    bio         : this.props.bio
                                 }
 
                                 // alert("userTOUpdate : "+ JSON.stringify(userToUpdate))

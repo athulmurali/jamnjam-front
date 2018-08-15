@@ -138,7 +138,7 @@ const styles = {
 
                             // src={this.state.artistInfo.image[3]["#text"]}
 
-                             src={ "https://lastfm-img2.akamaized.net/i/u/300x300/d4feb078525d42fb9e72572c43662c30.png"}
+                             src={this.state.artistProfile.img}
                         />
                     </CardMedia>
                     <Card style={styles.card}>
