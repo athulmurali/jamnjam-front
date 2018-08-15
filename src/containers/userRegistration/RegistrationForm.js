@@ -248,7 +248,7 @@ class RegistrationForm extends React.Component {
                     {(!this.props.updateMode  && !this.props.myProfileEdit) &&
                     <TextField
                         required
-                        error ={!this.props.username || !this.state.isUsernameAvailable}
+                        error ={!this.props.username && !this.state.isUsernameAvailable}
                         id="username"
                         label="username"
                         defaultValue={this.props.username}
