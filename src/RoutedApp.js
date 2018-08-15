@@ -31,9 +31,7 @@ const  RoutedApp =()=> {
                         <Route exact path={"/artist/:artistId/artistLookOuts/"}
                                component ={ArtistLookOuts}/>
 
-
-
-                        <Route  exact path="/band/:mbid"      component={BandProfile} />
+                        <Route  exact path="/band/:userId"      component={BandProfile} />
 
                         <Route  exact path="/band/:bandId/manageNetwork/"
                                 component={ManageNetwork } />
@@ -53,8 +51,7 @@ const  RoutedApp =()=> {
                         <Route  exact path="/roleSelect"         component={roleSelect } />
                     <Route  exact path="/profileByRole"          component={profileByRole } />
 
-                        <Route  exact path="/:userRole/editProfile/:_id"
-                                component={EditProfile } />
+                        <Route  exact path="/:userRole/editProfile/:_id" component={EditProfile } />
 
 
 

@@ -89,7 +89,7 @@ class BandProfile extends React.Component{
 
         const getUserServiceObj = new UserService();
 
-        this.props.getProfile(getUserServiceObj.getUser('band', this.props.match.params.mbid))
+        this.props.getProfile(getUserServiceObj.getUser('band', this.props.match.params.userId))
     }
 
 
@@ -164,9 +164,9 @@ class BandProfile extends React.Component{
                             <div className="col-6">
                                 <Button  color="primary" size="small" disabled>Contact</Button>
                             </div>
-                            { (this.props.match.params.mbid ==
+                            { (this.props.match.params.userId ==
                                 localStorage.getItem('currentId') )  &&         <div className="col-6">
-                                <Link to={'/artist/editProfile/'+ localStorage.getItem('currentId')  }
+                                <Link to={'/band/editProfile/'+ localStorage.getItem('currentId')  }
                                       style={{ textDecoration: 'none' ,color: 'inherit'}}>
                                     <Button   color="primary" size="small">Edit</Button>
                                 </Link>

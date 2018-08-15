@@ -245,7 +245,8 @@ class RegistrationForm extends React.Component {
                         }
 
                     />
-                    {!this.props.updateMode && <TextField
+                    {(!this.props.updateMode  || !this.props.myProfileEdit) &&
+                    <TextField
                         required
                         error ={!this.props.username || !this.state.isUsernameAvailable}
                         id="username"
@@ -258,14 +259,12 @@ class RegistrationForm extends React.Component {
                             this.setState({username : event.target.value},
                                 this.getUserNameAvailFromServer
                             )
-
                             this.props.updateField('username',event.target.value)
-
                         })}
 
                     />}
 
-                    {!this.props.updateMode &&
+                    {(!this.props.updateMode  || !this.props.myProfileEdit) &&
                     <TextField
                         // error={true}
                         error ={ !EmailValidator.validate(this.props.emailId) || !this.state.isEmailAvailable}
@@ -288,7 +287,6 @@ class RegistrationForm extends React.Component {
                         }}
 
                     />}
-
                     <TextField
                         error ={!this.props.phone}
                         id="phone"
@@ -303,9 +301,6 @@ class RegistrationForm extends React.Component {
                             this.props.updateField('phone',event.target.value) }
                         }
                         helperText={!this.props.phone  && "Phone cannot be empty" }
-
-
-
 
                     />
                     <TextField
@@ -322,7 +317,7 @@ class RegistrationForm extends React.Component {
                     />
 
                     <TextField
-                        error ={false}
+                        error ={this.props.zip}
                         id="zip"
                         label="zip"
                         defaultValue={this.props.zip}
