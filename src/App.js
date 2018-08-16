@@ -230,7 +230,7 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn : state.userAccountReducer.isLoggedIn,
-        myProfile : state.loginReducer.profile,
+        myProfile :  JSON.parse(localStorage.getItem('myProfile')),
 
         filters : {...state.searchReducer}
 

@@ -69,8 +69,9 @@ function CelebrityCard(props) {
                                         color: "White", textDecoration: "none"
                                     }}>Book</Link>
 
-                                        : "Login to Book"
-
+                                        :  <Link to="/login" style={{
+                                            color: "White", textDecoration: "none"
+                                        }}>Login to book</Link>
                                 }
 
                             </Button>
