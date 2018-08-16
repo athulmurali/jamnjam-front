@@ -10,9 +10,23 @@ import Redirect from "react-router-dom/es/Redirect";
 import Link from "react-router-dom/es/Link";
 
 const styles = theme => ({
+
     card: {
         display: 'flex',
+        justifyContent: "space-between",
     },
+
+    [theme.breakpoints.up('md')]: {
+        card: {
+            display: 'flex',
+            justifyContent: "space-between",
+            paddingLeft: '150px',
+            paddingRight: '150px'
+
+        },
+    },
+
+
     details: {
         display: 'flex',
         flexDirection: 'column',
@@ -42,12 +56,7 @@ function UserCard(props) {
 
     return (
         <div>
-            <Card className={classes.card}
-            style={{
-
-                justifyContent: "space-around"
-            }}>
-
+            <Card className={classes.card}>
 
                 <div className={classes.details}>
                     <CardContent className={classes.content}>

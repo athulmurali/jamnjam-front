@@ -196,8 +196,7 @@ class Home extends Component {
                           return <li key={index}>
                               <UserCard title={(userObj.role === BAND && userObj.title)
                               || (userObj.firstName + " " + userObj.lastName)}
-                                             imageUrl={userObj.img ||
-                                             NO_IMG_PICTURE}
+                                             imageUrl={userObj.img || NO_IMG_PICTURE}
                                              subtitle={"role : " + userObj.role}
                                              loggedIn={!!this.state.currentUserName  || this.props.myProfile}
                                              mbid={userObj._id}

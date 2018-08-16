@@ -11,13 +11,27 @@ import Link from "react-router-dom/es/Link";
 const styles = theme => ({
     card: {
         display: 'flex',
+        justifyContent: "space-between",
     },
     details: {
         display: 'flex',
         flexDirection: 'column',
     },
+    [theme.breakpoints.up('md')]: {
+        card: {
+            display: 'flex',
+            justifyContent: "space-between",
+            paddingLeft: '150px',
+            paddingRight: '150px'
+
+        },
+    },
+
+
     content: {
         flex: '1 0 auto',
+        justifyContent: 'flex-start',
+
     },
     cover: {
         width: 151,
@@ -43,13 +57,7 @@ function CelebrityCard(props) {
 
     return (
         <div>
-            <Card className={classes.card}
-            style={{
-
-                justifyContent: "space-around"
-            }}>
-
-
+            <Card className={classes.card}>
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
                         <Typography variant="headline">{props.title}</Typography>
@@ -58,9 +66,7 @@ function CelebrityCard(props) {
                         </Typography>
                     </CardContent>
                     <div className={classes.controls}>
-
-
-                            <Button variant="contained" color="primary"
+                        <Button variant="contained" color="primary"
                                     className={classes.button}>
 
                                 {
@@ -75,16 +81,12 @@ function CelebrityCard(props) {
                                 }
 
                             </Button>
-
-
                         <Button variant="contained" color="secondary" className={classes.button}>
                             <Link to={MY_ROUTE.toString()} params={{ mbid: "" }}
                                   style={{color:"White",  textDecoration:"none"
                             }}>more</Link>
 
                         </Button>
-
-
                     </div>
                 </div>
                 <CardMedia
