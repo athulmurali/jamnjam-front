@@ -8,15 +8,15 @@ import VerifyEmail from "./VerifyEmail";
 
 const UserRegister =(props)=>{
 
-    console.log(props)
+    console.log(props);
     switch (props.nextStep)
     {
-        case SELECT_ROLE : return <RoleSelect/>
-        case FILL_USER_DETAILS :  return <RegistrationForm/>
+        case SELECT_ROLE : return <RoleSelect/>;
+        case FILL_USER_DETAILS :  return <RegistrationForm/>;
         case VERIFY_EMAIL : return <VerifyEmail/>
     }
 
-    }
+    };
 
 
 const mapStateToProps = state => {
@@ -24,12 +24,12 @@ const mapStateToProps = state => {
         selectedRole : state.userRegistrationReducer.role,
         nextStep : state.userRegistrationReducer.nextStep
     }
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
 
-})
+});
 
 
 

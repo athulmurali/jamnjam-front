@@ -99,14 +99,14 @@ const mapStateToProps = state => {
     return {
         selectedRole : state.userRegistrationReducer.role
     }
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
 
     selectRole: (role) =>{dispatch({type: UPDATE_ROLE, payload : {role :role}})}
 
-})
+});
 
 
 

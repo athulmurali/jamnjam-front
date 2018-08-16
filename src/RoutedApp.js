@@ -16,6 +16,7 @@ import ManageNetwork from "./containers/ManageNetwork";
 import ArtistLookOuts from "./containers/ArtistLookOuts";
 import AddLookOut from "./containers/AddLookOut";
 import MyLookOuts from "./containers/MyLookOuts";
+import CelebrityProfile from "./containers/profiles/CelebrityProfile";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -32,6 +33,8 @@ const  RoutedApp =()=> {
                                component ={ArtistLookOuts}/>
 
                         <Route  exact path="/band/:userId"      component={BandProfile} />
+                        <Route  exact path="/celebrity/:userId"      component={CelebrityProfile} />
+
 
                         <Route  exact path="/band/:bandId/manageNetwork/"
                                 component={ManageNetwork } />
@@ -65,6 +68,6 @@ const  RoutedApp =()=> {
 
 
         )
-}
+};
 
 export default  RoutedApp

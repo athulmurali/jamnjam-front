@@ -6,7 +6,7 @@ export default class ManageNetwork extends React.Component{
 
     constructor(props)
     {
-        super(props)
+        super(props);
 
         this.userService = new UserService();
 
@@ -19,35 +19,35 @@ export default class ManageNetwork extends React.Component{
     setBandMembers =()=>{
         const bandMembers =  this.state.artists.filter(
             (artist, index)=>{
-                console.log(artist.memberOf)
-                console.log(this.props.match.params.bandId)
-                console.log(artist.memberOf.indexOf(this.props.match.params.bandId) > -1)
+                console.log(artist.memberOf);
+                console.log(this.props.match.params.bandId);
+                console.log(artist.memberOf.indexOf(this.props.match.params.bandId) > -1);
                 return artist.memberOf.indexOf(this.props.match.params.bandId) > -1 }
-        )
+        );
         this.setState({bandMembers: bandMembers },
             this.setNonBandMembers)
-    }
+    };
 
     setNonBandMembers =()=>{
         const nonBandMembers =  this.state.artists.filter(
             (artist, index)=>{return artist.memberOf.indexOf(this.props.match.params.bandId) === -1 }
-        )
+        );
         this.setState({nonBandMembers: nonBandMembers })
-    }
+    };
 
     nonBandMembersStartWith=()=>{
 
-        const typedUsername = this.state.typedUsername
+        const typedUsername = this.state.typedUsername;
 
 
-        const addMemberToBand = this.addMemberToBand
+        const addMemberToBand = this.addMemberToBand;
 
 
         let toDisplayArtists =this.state.nonBandMembers.filter((artist, index)=>{
 
             return artist.username.startsWith(typedUsername)
 
-        })
+        });
 
 
 
@@ -64,73 +64,73 @@ export default class ManageNetwork extends React.Component{
         </ul>
 
 
-    }
+    };
 
     getArtists=(cb)=>{
         this.userService.getArtists().then(
-            artists=>{console.log(artists)
+            artists=>{console.log(artists);
                 this.setState({artists : artists.data},
                     ()=>{if(cb) cb()}
                     )
             }
         ).catch(err=>this.setState({error : err.response.data}))
 
-    }
+    };
 
     handleKickOut=( artistId)=>{
-        const bandId = this.props.match.params.bandId
+        const bandId = this.props.match.params.bandId;
 
         const payload = {
             artistId : artistId,
             bandId: bandId
-        }
+        };
 
 
-        alert(bandId + " ----" + artistId)
+        alert(bandId + " ----" + artistId);
         console.log(payload);
         this.userService.deleteMember(payload).then(
             data=>{
-                console.log("deleted Successfully")
-                alert("Deleted successfully ! Please refresh to see the changes")
-                console.log(data)
+                console.log("deleted Successfully");
+                alert("Deleted successfully ! Please refresh to see the changes");
+                console.log(data);
                 this.getArtists();
             }
         ).catch(
             err =>{
-                alert("error while kicking out meber")
-                console.log(err)
-                const errorString =  JSON.stringify( err.data)
+                alert("error while kicking out meber");
+                console.log(err);
+                const errorString =  JSON.stringify( err.data);
                 this.setState({error : errorString})
             }
 
         )
 
-    }
+    };
 
     addMemberToBand=(artistId,cb)=>{
         const bandId = this.props.match.params.bandId;
         const payload= {
             artistId: artistId,
             bandId: bandId
-        }
+        };
         this.userService.addMember(payload).then(
             data=>{
-                console.log("added successfully")
-                alert("Added successfully ! Please refresh to see the changes")
-                console.log(data)
+                console.log("added successfully");
+                alert("Added successfully ! Please refresh to see the changes");
+                console.log(data);
                 this.getArtists();
             }
         ).catch(err=>{
-            console.log(err.response.data)
+            console.log(err.response.data);
 
             this.setState({ error : err.response.data.error.toString()})
-        })
+        });
 
         this.getArtists( this.setState({typedUsername:''})
         );
         if (cb) cb();
 
-    }
+    };
 
     componentDidMount(){
 

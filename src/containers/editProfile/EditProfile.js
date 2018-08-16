@@ -35,7 +35,7 @@ class  EditProfile extends React.Component {
 
 const mapStateToProps = state => {
     return {...state.userRegistrationReducer}
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) =>({
 
     getProfileFromLocalStorage:()=>{dispatch({type : GET_PROFILE_FROM_LOCAL_ST})}
 
-})
+});
 
 
 

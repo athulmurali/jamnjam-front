@@ -17,7 +17,7 @@ import {Link} from "react-router-dom";
 import {NO_IMG_PICTURE} from "../../const/url";
 
 
-const artist = Artist.instance
+const artist = Artist.instance;
 
 const styles = {
     masterContainer:{
@@ -98,7 +98,7 @@ class BandProfile extends React.Component{
         const getUserServiceObj = new UserService();
 
         this.props.getProfile(getUserServiceObj.getUser('band', this.props.match.params.userId))
-    }
+    };
 
 
 
@@ -198,7 +198,7 @@ class BandProfile extends React.Component{
 
 const mapStateToProps = state => {
     return {...state.loginReducer}
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -211,7 +211,7 @@ const mapDispatchToProps = (dispatch) =>({
     }
 
 
-})
+});
 
 export default  connect(mapStateToProps, mapDispatchToProps)(BandProfile);
 

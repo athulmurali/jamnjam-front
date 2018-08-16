@@ -15,11 +15,11 @@ import {CLOSE_SIDE_BAR} from "./redux/Constants/userAccount";
 import {SET_UPDATE_MODE} from "./redux/Constants/userRegister";
 import {searchReducer} from "./redux/reducers/searchReducer";
 import {NO_IMG_PICTURE} from "./const/url";
-const artist = Artist.instance
+const artist = Artist.instance;
 class App extends Component {
     constructor(props)
     {
-        super(props)
+        super(props);
         this.state ={
             artistNames : [],
             currentUserName: "",
@@ -38,18 +38,18 @@ class App extends Component {
         then(result=>{
 
             const data =result.data;
-            const allUsers = []
-            const jointArray = allUsers.concat( data.bands, data.artists)
+            const allUsers = [];
+            const jointArray = allUsers.concat( data.bands, data.artists);
             this.setState({
                 freeUsers : jointArray
-            })
+            });
 
-            console.log(jointArray)
+            console.log(jointArray);
 
             return jointArray
 
         })
-    }
+    };
 
 
 
@@ -57,7 +57,7 @@ class App extends Component {
 
 
     handleLogin=(response)=>{
-        console.log("return from google login ")
+        console.log("return from google login ");
         console.log(response);
 
         this.setState({
@@ -65,7 +65,7 @@ class App extends Component {
             currentUserName:response.profileObj.givenName
 
         })
-    }
+    };
 
 
     handleAccountTypeChange=(accountType)=>{
@@ -73,13 +73,13 @@ class App extends Component {
         accountType : accountType
     })
 
-    }
+    };
 
     handleOnChangeText=(text)=>{
         this.setState({
             country:text
         })
-    }
+    };
 
     handleOnPressSearch=()=>{
         this.setState({artistNames:[]},
@@ -90,10 +90,10 @@ class App extends Component {
             )
 
 
-    }
+    };
 
     getArtistNames=(country)=>{
-        let artistNames =[]
+        let artistNames =[];
 
         artist.getTopArtistsInLocation(country).then(response=>{
             if (!!response.topartists) this.setState({
@@ -102,10 +102,10 @@ class App extends Component {
 
         })
 
-    }
+    };
 
     componentDidMount(){
-        this.props.resetSideBar()
+        this.props.resetSideBar();
         this.getAllUsersFromServer()
     }
 
@@ -113,11 +113,11 @@ class App extends Component {
 
 
         const filteredUsers = this.state.freeUsers.filter(user=> {
-                console.log(user.zip)
+                console.log(user.zip);
 
                     if (this.props.filters.searchAccountType == "PRO")
 
-                        return false
+                        return false;
 
                     if (!user.zip) return false;
 
@@ -127,12 +127,12 @@ class App extends Component {
                         return false;
 
                     if(! user.zip.toString().includes(this.props.filters.searchZip))
-                        return false
+                        return false;
                     else return true
-            })
+            });
 
 
-      console.log(filteredUsers)
+      console.log(filteredUsers);
 
 
         //     return( user.role.includes(this.props.filters.searchRole)
@@ -236,7 +236,7 @@ const mapStateToProps = state => {
 
     }
 
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -247,7 +247,7 @@ const mapDispatchToProps = (dispatch) =>({
 
 
 
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

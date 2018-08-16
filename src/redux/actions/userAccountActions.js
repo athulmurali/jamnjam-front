@@ -5,7 +5,7 @@ export const LOG_IN_ACT     = (dispatch, )=>{
         type: LOG_IN,
         payload : {
         }
-    })}
+    })};
 
 
 export const LOG_OUT_ACT    = (dispatch )=>{
@@ -13,4 +13,4 @@ export const LOG_OUT_ACT    = (dispatch )=>{
             type: LOG_OUT,
             payload : {
             }})
-    }
+    };

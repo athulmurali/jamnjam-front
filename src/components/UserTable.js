@@ -33,8 +33,8 @@ const styles = theme => ({
 
 function SimpleTable(props) {
     const { classes } = props;
-    console.log(props)
-    props.resetSideBar()
+    console.log(props);
+    props.resetSideBar();
     return (
         <Paper className={classes.root}>
             <Table className={classes.table}>
@@ -63,7 +63,7 @@ function SimpleTable(props) {
                                     <div className="row">
                                         <IconButton className={classes.button} aria-label="Edit"
                                                         onClick={()=>{
-                                                            props.setUpdateMode(true,props.selectedUser)
+                                                            props.setUpdateMode(true,props.selectedUser);
                                                             props.selectUser(user)
                                                         }}>
                                                 <EditIcon />
@@ -105,7 +105,7 @@ const mapStateToProps = state => {
         updateMode : state.userRegistrationReducer.updateMode
     }
 
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -127,7 +127,7 @@ const mapDispatchToProps = (dispatch) =>({
     }
 
 
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(simpleTable);

@@ -97,8 +97,8 @@ class MenuAppBar extends React.Component {
                                 </IconButton>
                                 <Button color="inherit" className={classes.button}
                                         onClick={()=>{
-                                            this.props.logOut()
-                                            console.log(this.props)
+                                            this.props.logOut();
+                                            console.log(this.props);
                                             window.location.href = "/home";
 
                                         }}>
@@ -189,7 +189,7 @@ const mapStateToProps = state => {
 
     }
 
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -199,7 +199,7 @@ const mapDispatchToProps = (dispatch) =>({
         dispatch(LOG_OUT_ACT)
     },
     openSideBar: () => {dispatch( {type: OPEN_SIDE_BAR})},
-})
+});
 
 const styledAppBar = withStyles(styles)(MenuAppBar);
 // export default withStyles(styles)(MenuAppBar);

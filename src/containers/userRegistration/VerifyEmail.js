@@ -19,7 +19,7 @@ const styles = {
 
 
 export   const  VerifyEmail = (props)=>{
-    const {classes} = props
+    const {classes} = props;
     return(
         <div className="card rounded" id="successCard">
             <div className="card-img-top row">
@@ -44,7 +44,7 @@ export   const  VerifyEmail = (props)=>{
         </div>
 
     )
-}
+};
 
 
 export default withStyles(styles)(VerifyEmail);

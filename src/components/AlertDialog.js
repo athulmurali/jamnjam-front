@@ -16,7 +16,7 @@ class AlertDialog extends React.Component {
     };
 
     handleClickOpen = () => {
-        this.props.selectUser( this.props.userToDelete)
+        this.props.selectUser( this.props.userToDelete);
         this.setState({ open: true });
     };
 
@@ -28,10 +28,10 @@ class AlertDialog extends React.Component {
             const userService = new UserService();
             const promise = userService.deleteUser(
                 this.props.selectedUser.role,
-                this.props.selectedUser._id)
-            this.props.deleteUser(promise)
+                this.props.selectedUser._id);
+            this.props.deleteUser(promise);
             this.handleClose();
-    }
+    };
 
     componentDidMount(){
 
@@ -79,7 +79,7 @@ const mapStateToProps = state => {
         selectedUser : state.userAccountReducer.selectedUser
     }
 
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -97,7 +97,7 @@ const mapDispatchToProps = (dispatch) =>({
 
     }
 
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlertDialog);

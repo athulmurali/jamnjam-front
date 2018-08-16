@@ -4,11 +4,11 @@ export default class MyLookOuts extends React.Component{
 
     constructor(props)
     {
-        super(props)
+        super(props);
 
         this.state= {
             completed : false
-        }
+        };
         this.userService = new UserService();
 
     }
@@ -23,16 +23,16 @@ export default class MyLookOuts extends React.Component{
             res=>{
 
                 const result = res.data;
-                console.log("unfiltered")
-                console.log(result)
-                console.log("filtered")
+                console.log("unfiltered");
+                console.log(result);
+                console.log("filtered");
 
                 const myResults = result.filter((lookOut)=>{
                     return lookOut.postedBy == this.props.match.params.bandId
 
-                })
+                });
 
-                console.log(myResults)
+                console.log(myResults);
                 this.setState({
                     lookOuts : myResults
 
@@ -40,24 +40,24 @@ export default class MyLookOuts extends React.Component{
             }
         )
 
-    }
+    };
 
     deleteLookOut=(lookOutId)=>{
         this.userService.deleteLookOut(lookOutId).then(
             res=> {
-                console.log(res.data)
+                console.log(res.data);
 
-                alert("success")
+                alert("success");
 
                 this.setState({
                     completed: true
                 })
             }).catch(err=>{
-                alert("error!")
+                alert("error!");
                     console.log(err);
                 })
 
-            }
+            };
 
 
 
@@ -68,7 +68,7 @@ export default class MyLookOuts extends React.Component{
 
         if(!!this.state.completed)
         {
-            this.getLookOuts()
+            this.getLookOuts();
             this.setState({
                 completed : false
             })

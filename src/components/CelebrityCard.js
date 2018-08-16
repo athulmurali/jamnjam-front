@@ -35,11 +35,11 @@ const styles = theme => ({
     },
 });
 
-function ArtistCard(props) {
+function CelebrityCard(props) {
     const { classes, theme } = props;
 
-    let mbid =props.mbid
-    const MY_ROUTE = `/artist/${mbid}/`;
+    let mbid =props.mbid;
+    const MY_ROUTE = `/celebrity/${mbid}/`;
 
     return (
         <div>
@@ -77,7 +77,7 @@ function ArtistCard(props) {
 
 
                         <Button variant="contained" color="secondary" className={classes.button}>
-                            <Link to={MY_ROUTE.toString()} params={{ mbid: "12311111" }}
+                            <Link to={MY_ROUTE.toString()} params={{ mbid: "" }}
                                   style={{color:"White",  textDecoration:"none"
                             }}>more</Link>
 
@@ -103,9 +103,9 @@ function ArtistCard(props) {
     );
 }
 
-ArtistCard.propTypes = {
+CelebrityCard.propTypes = {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ArtistCard);
+export default withStyles(styles, { withTheme: true })(CelebrityCard);

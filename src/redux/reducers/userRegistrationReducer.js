@@ -26,7 +26,7 @@ const initialState = {
     updateMode : false,
 
     nextStep : SELECT_ROLE
-}
+};
 
 
 
@@ -37,11 +37,11 @@ const userRegistrationReducer = (state = initialState, action) => {
 
         case UPDATE_ROLE:return Object.assign({}, state,
             {role : action.payload.role,
-                nextStep : FILL_USER_DETAILS} )
+                nextStep : FILL_USER_DETAILS} );
 
         case REGISTER_USER:
             {
-                console.log(state.role)
+                console.log(state.role);
                 return Object.assign({},
                     state,{...action.payload,
                         ...{role : state.role}} )
@@ -75,7 +75,7 @@ const userRegistrationReducer = (state = initialState, action) => {
         }
 
         case SELECT_USER:
-            return {...state, toExtract : true}
+            return {...state, toExtract : true};
 
 
 
@@ -83,7 +83,7 @@ const userRegistrationReducer = (state = initialState, action) => {
 
             let selectedUser = false;
             let updateMode = false;
-            let toExtract = false
+            let toExtract = false;
 
             if (!!action.payload.selectedUser) {
                 selectedUser = action.payload.selectedUser
@@ -120,8 +120,8 @@ const userRegistrationReducer = (state = initialState, action) => {
 
 
         case UPDATE_USER_FULFILLED:{
-            console.log("printing received data after update")
-            console.log(action.payload)
+            console.log("printing received data after update");
+            console.log(action.payload);
 
             return {...state, fetching : false,
                 error: false,
@@ -135,7 +135,7 @@ const userRegistrationReducer = (state = initialState, action) => {
 
 
         case UPDATE_USER_REJECTED:{
-            console.log(action.payload)
+            console.log(action.payload);
             return {...state,
                 fetching : false,
                 error : action.payload.response.data}
@@ -186,7 +186,7 @@ const userRegistrationReducer = (state = initialState, action) => {
 
         case GET_PROFILE_FROM_LOCAL_ST :{
 
-            const myProfile = JSON.parse(localStorage.getItem('myProfile'))
+            const myProfile = JSON.parse(localStorage.getItem('myProfile'));
 
 
             return{
@@ -202,6 +202,6 @@ const userRegistrationReducer = (state = initialState, action) => {
 
     }
 
-}
+};
 
 export default userRegistrationReducer;

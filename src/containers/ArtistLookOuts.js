@@ -4,7 +4,7 @@ export default class ArtistLookOuts extends React.Component{
 
     constructor(props)
     {
-        super(props)
+        super(props);
 
         this.state= {}
     }
@@ -23,7 +23,7 @@ export default class ArtistLookOuts extends React.Component{
             }
         )
 
-    }
+    };
 
     componentDidMount(){
         this.getLookOuts();

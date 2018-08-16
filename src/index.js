@@ -20,9 +20,9 @@ import loginReducer from "./redux/reducers/loginReducer";
 import {searchReducer} from "./redux/reducers/searchReducer";
 
 const combinedReducers = combineReducers({userAccountReducer, userRegistrationReducer,
-    loginReducer, searchReducer})
-const middlewares = applyMiddleware(  promise(), thunk ,logger)
-const store = createStore(combinedReducers,middlewares)
+    loginReducer, searchReducer});
+const middlewares = applyMiddleware(  promise(), thunk ,logger);
+const store = createStore(combinedReducers,middlewares);
 
 ReactDOM.render(
     <Provider store ={store}>

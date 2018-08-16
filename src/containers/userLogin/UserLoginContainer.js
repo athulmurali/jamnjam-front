@@ -24,7 +24,7 @@ class Login extends Component {
                     height: '60vh',
                   // backgroundColor: 'green'
               }
-    }
+    };
 
 
 
@@ -35,11 +35,11 @@ class Login extends Component {
     render() {
 
         if (!!this.props.profile) {
-            this.props.updateNavBar()
+            this.props.updateNavBar();
 
             const getUserServiceObj = new UserServiceWithToken();
-            this.props.getMyProfile(getUserServiceObj.getProfile)
-            localStorage.setItem('currentId', this.props.profile._id)
+            this.props.getMyProfile(getUserServiceObj.getProfile);
+            localStorage.setItem('currentId', this.props.profile._id);
             this.props.history.push('/'+this.props.profile.role+'/'+ this.props.profile._id)
 
 
@@ -114,7 +114,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {...state.loginReducer}
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -148,7 +148,7 @@ const mapDispatchToProps = (dispatch) =>({
     },
 
     resetSelectedRole: () =>{dispatch({type: RESET_SELECTED_ROLE})}
-})
+});
 
 
 

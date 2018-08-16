@@ -58,18 +58,18 @@ const styles = theme => ({
     then(result=>{
 
         const data =result.data;
-        const allUsers = []
-        const jointArray = allUsers.concat(data.admins, data.bands, data.artists)
+        const allUsers = [];
+        const jointArray = allUsers.concat(data.admins, data.bands, data.artists);
         this.setState({
              users : jointArray
-        })
+        });
 
-        console.log(jointArray)
+        console.log(jointArray);
 
         return jointArray
 
     })
-}
+};
 
 
     render(){
@@ -133,14 +133,14 @@ const mapStateToProps = state => {
         myProfile : state.loginReducer.profile
     }
 
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
 
 
     getAllUsersFromServer : ()=>{}
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(styledSimpleTabs);

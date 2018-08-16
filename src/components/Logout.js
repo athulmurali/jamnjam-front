@@ -6,5 +6,5 @@ const Logout =()=>{
     return (
         < GoogleLogout>Logout</GoogleLogout>
     )
-}
+};
 export default Logout;

@@ -105,28 +105,28 @@ class RegistrationForm extends React.Component {
             this.setState({isUsernameAvailable : false,
                 usernameError : 'username taken!',})
         })
-    }
+    };
 
     getEmailAvailFromServer=()=>{
 
         this.userByRoleService.getEmailIdAvailability(this.props.role, this.props.emailId).
         then(result=>{
-            console.log(result)
+            console.log(result);
             this.setState({isEmailAvailable: true,
                 emailError : ''
             })
         }).
         catch(err=>{
-            console.log(err)
+            console.log(err);
             this.setState({isEmailAvailable: false,
                 emailError : 'emailId  already registered!'})
         })
-    }
+    };
 
     createNewUserInServer=(userData)=>{
         const userService = new UserService();
         this.props.create_user_dispatch(userService.createNewUser(userData))
-    }
+    };
 
     render() {
         const { classes } = this.props;
@@ -164,7 +164,7 @@ class RegistrationForm extends React.Component {
                                 className={classes.fullWidthTextField}
                                 defaultValue={this.props.title}
                                 onChange={(event) => {
-                                    this.setState({firstName: event.target.value})
+                                    this.setState({firstName: event.target.value});
                                     this.props.updateField('title', event.target.value)
                                 }}
                                 margin="normal"
@@ -182,7 +182,7 @@ class RegistrationForm extends React.Component {
                                             className={classes.textField}
                                             defaultValue={this.props.firstName}
                                             onChange={(event) => {
-                                                this.setState({firstName: event.target.value})
+                                                this.setState({firstName: event.target.value});
                                                 this.props.updateField('firstName', event.target.value)
                                             }}
                                             margin="normal"
@@ -198,7 +198,7 @@ class RegistrationForm extends React.Component {
                                             className={classes.textField}
                                             defaultValue={this.props.lastName}
                                             onChange={(event) => {
-                                                this.setState({lastName: event.target.value})
+                                                this.setState({lastName: event.target.value});
                                                 this.props.updateField('lastName', event.target.value)
                                             }
                                             }
@@ -223,7 +223,7 @@ class RegistrationForm extends React.Component {
                         defaultValue={this.props.password}
 
                         onChange={(event)=>{
-                            this.setState({password : event.target.value})
+                            this.setState({password : event.target.value});
                             this.props.updateField('password',event.target.value) }
                         }
                     />
@@ -240,7 +240,7 @@ class RegistrationForm extends React.Component {
                         helperText={this.props.password !== this.props.confirmPassword  && "Password not matching!" }
                         required
                         onChange={(event)=>{
-                            this.setState({confirmPassword : event.target.value})
+                            this.setState({confirmPassword : event.target.value});
                             this.props.updateField('confirmPassword',event.target.value) }
                         }
 
@@ -258,7 +258,7 @@ class RegistrationForm extends React.Component {
                         onChange={(event=>{
                             this.setState({username : event.target.value},
                                 this.getUserNameAvailFromServer
-                            )
+                            );
                             this.props.updateField('username',event.target.value)
                         })}
 
@@ -281,7 +281,7 @@ class RegistrationForm extends React.Component {
 
                         onChange={(event)=>{
                             this.setState({emailId: event.target.value },
-                                this.getEmailAvailFromServer)
+                                this.getEmailAvailFromServer);
                             this.props.updateField('emailId',event.target.value)
 
                         }}
@@ -297,7 +297,7 @@ class RegistrationForm extends React.Component {
                         defaultValue={this.props.phone}
 
                         onChange={(event)=>{
-                            this.setState({phone : event.target.value})
+                            this.setState({phone : event.target.value});
                             this.props.updateField('phone',event.target.value) }
                         }
                         helperText={!this.props.phone  && "Phone cannot be empty" }
@@ -311,7 +311,7 @@ class RegistrationForm extends React.Component {
                         className={classes.textField}
                         margin="normal"
                         onChange={(event)=>{
-                            this.setState({dob : event.target.value})
+                            this.setState({dob : event.target.value});
                             this.props.updateField('dob',event.target.value) }
                         }
                     />
@@ -324,7 +324,7 @@ class RegistrationForm extends React.Component {
                         className={classes.textField}
                         margin="normal"
                         onChange={(event)=>{
-                            this.setState({zip : event.target.value})
+                            this.setState({zip : event.target.value});
                             this.props.updateField('zip',event.target.value) }
                         }
 
@@ -340,7 +340,7 @@ class RegistrationForm extends React.Component {
                         className={classes.textField}
                         margin="normal"
                         onChange={(event)=>{
-                            this.setState({img : event.target.value})
+                            this.setState({img : event.target.value});
                             this.props.updateField('img',event.target.value) }
                         }
                         helperText={ !this.props.img && "paste your image url here" }
@@ -358,7 +358,7 @@ class RegistrationForm extends React.Component {
                         className={classes.fullWidthTextField}
                         margin="normal"
                         onChange={(event)=>{
-                            this.setState({bio : event.target.value})
+                            this.setState({bio : event.target.value});
                             this.props.updateField('bio',event.target.value) }
                         }
                         />
@@ -371,8 +371,8 @@ class RegistrationForm extends React.Component {
 
                             // this.createNewUserInServer(this.props);
 
-                            this.props.resetSelectedRole()
-                            this.props.setUpdateMode(false)
+                            this.props.resetSelectedRole();
+                            this.props.setUpdateMode(false);
 
                             return  <Redirect to ='/home'></Redirect>
                         }}
@@ -405,7 +405,7 @@ class RegistrationForm extends React.Component {
                                     zip         : this.props.zip,
                                     img         : this.props.img,
                                     bio         : this.props.bio
-                                }
+                                };
 
                                 // alert("userTOUpdate : "+ JSON.stringify(userToUpdate))
                                 this.props.updateUser(
@@ -425,7 +425,7 @@ class RegistrationForm extends React.Component {
             </div>;
     }
     isNonBandFormValid=()=>{
-        console.log("isNonBandForm")
+        console.log("isNonBandForm");
         return this.props.firstName && this.props.lastName &&
             ( this.props.password === this.props.confirmPassword) &&
             this.props.phone && EmailValidator.validate(this.props.emailId)
@@ -434,9 +434,9 @@ class RegistrationForm extends React.Component {
              &&(  !this.props.updateMode ?
                 (  this.state.isUsernameAvailable &&this.state.isEmailAvailable): true )
         // && this.props.zip
-    }
+    };
     isBandFormValid=()=>{
-        console.log("isBandForm")
+        console.log("isBandForm");
         return ( this.props.password === this.props.confirmPassword) &&
             this.props.phone &&
 
@@ -445,7 +445,7 @@ class RegistrationForm extends React.Component {
 
             &&(  !this.props.updateMode ?
                 (  this.state.isUsernameAvailable &&this.state.isEmailAvailable): true )
-    }
+    };
     isFormInvalid(){
         if     (this.props.role!== BAND)
         {
@@ -469,7 +469,7 @@ RegistrationForm.propTypes = {
 
 const mapStateToProps = state => {
      return  { ...state.userRegistrationReducer}
-    }
+    };
 
 const mapDispatchToProps = (dispatch) =>({
 
@@ -499,7 +499,7 @@ const mapDispatchToProps = (dispatch) =>({
 
 
     updateUser:(payload)=>{
-        console.log("update user called")
+        console.log("update user called");
 
         dispatch({
             type :  UPDATE_USER,
@@ -527,6 +527,6 @@ const mapDispatchToProps = (dispatch) =>({
 
     resetSelectedRole: () =>{dispatch({type: RESET_SELECTED_ROLE})}
 
-})
+});
 
 export default  connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(RegistrationForm));

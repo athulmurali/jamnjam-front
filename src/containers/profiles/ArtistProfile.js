@@ -19,7 +19,7 @@ import {NO_IMG_PICTURE} from "../../const/url";
 import MembersChip from "../MembersChip";
 
 
-const artist = Artist.instance
+const artist = Artist.instance;
 
 const styles = {
     masterContainer:{
@@ -86,7 +86,7 @@ const styles = {
 
  class ArtistProfile extends React.Component{
     constructor(props){
-        super(props)
+        super(props);
         this.state={
             artistInfo: {}
         }
@@ -95,16 +95,16 @@ const styles = {
     componentDidMount(){
 
        const getUserServiceObj = new UserServiceWithToken();
-        this.props.getMyProfile(getUserServiceObj.getProfile)
+        this.props.getMyProfile(getUserServiceObj.getProfile);
 
 
-        const currentArtistId = this.props.match.params.artistId
-         const currentRole = roles.ARTIST
+        const currentArtistId = this.props.match.params.artistId;
+         const currentRole = roles.ARTIST;
 
-        const userService = new UserService()
+        const userService = new UserService();
         userService.getUser(currentRole,currentArtistId ).then(
             res=>{
-                console.log(res.data)
+                console.log(res.data);
                 this.setState({
                     artistProfile : res.data
                 })
@@ -125,7 +125,7 @@ const styles = {
     render(){
 
 
-        if (!this.state.artistProfile) return null
+        if (!this.state.artistProfile) return null;
 
 
         else return(
@@ -234,7 +234,7 @@ const styles = {
 
 const mapStateToProps = state => {
     return {...state}
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -251,7 +251,7 @@ const mapDispatchToProps = (dispatch) =>({
     //
     // }
 
-})
+});
 
 
 

@@ -7,14 +7,14 @@ class AddLookOut extends  React.Component{
 
     constructor(props)
     {
-        super(props)
+        super(props);
         this.state={
             completed :false,
 
             postedBy : '',
             title : '',
             description : '',
-        }
+        };
 
         this.userService = new UserService();
     }
@@ -24,21 +24,21 @@ class AddLookOut extends  React.Component{
             postedBy: this.state.postedBy,
             title : this.state.title,
             description : this.state.description
-        }
+        };
         this.userService.createArtistLookOuts(payload).then(
             res=>{
-               console.log(res.data)
-               console.log("success")
-                alert("success!")
+               console.log(res.data);
+               console.log("success");
+                alert("success!");
                this.setState({
                    completed : true
                } )
             }
         ).catch(err=>{
-            console.log(err)
+            console.log(err);
             alert("error!")
         })
-    }
+    };
 
     componentDidMount(){
         this.setState(
@@ -48,7 +48,7 @@ class AddLookOut extends  React.Component{
 
     render()
     {
-            this.state.completed && this.props.history.push('/home')
+            this.state.completed && this.props.history.push('/home');
 
 
 

@@ -14,7 +14,7 @@ class  AdminScreen extends React.Component {
     }
 
     render() {
-        const props = this.props
+        const props = this.props;
 
         if (props.selectedRole && props.nextStep != VERIFY_EMAIL) {
             return <div>
@@ -63,7 +63,7 @@ const mapStateToProps = state => {
         selectedRole : state.userRegistrationReducer.role,
         nextStep    : state.userRegistrationReducer.nextStep
     }
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch) =>({
 
     resetAdminScreen:()=>{dispatch({type : RESET_ADMIN_SCREEN})}
 
-})
+});
 
 
 

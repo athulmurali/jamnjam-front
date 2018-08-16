@@ -4,7 +4,7 @@ import {CLIENT_ID}from '../const/googleCredentials'
 
 const responseGoogle = (response) => {
 console.log(response)
-}
+};
 
 const GoogleSignIn =(props)=> {
     return (<GoogleLogin
@@ -13,7 +13,7 @@ const GoogleSignIn =(props)=> {
         onSuccess={props.onSuccess}
         onFailure={responseGoogle}
     />)
-}
+};
 
 
 

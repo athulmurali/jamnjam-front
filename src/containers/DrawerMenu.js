@@ -119,7 +119,7 @@ const mapStateToProps = state => {
 
     }
 
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -127,6 +127,6 @@ const mapDispatchToProps = (dispatch) =>({
     openSideBar: () => {dispatch( {type: OPEN_SIDE_BAR})},
     closeSideBar: () => {dispatch( {type: CLOSE_SIDE_BAR})},
 
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)( withStyles(styles)(DrawerMenu));

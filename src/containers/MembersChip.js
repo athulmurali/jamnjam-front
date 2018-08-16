@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
 import {NO_IMG_PICTURE} from "../const/url";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const styles = theme => ({
     root: {
@@ -28,23 +26,21 @@ function handleDelete() {
 
 function handleClick() {
     alert('You clicked the Chip.'); // eslint-disable-line no-alert
-    return
+    
 
 }
 
 function MembersChip(props) {
     const { classes } = props;
 
-            const people =props.members
+            const people =props.members;
 
             if(people)
                 return (
 
                     people.map( (member,index)=>{
-
-
-                        const name = member.title || member.firstName + " " +member.lastName
-                        const  firstChar= name.charAt(0)
+                        const name = member.title || member.firstName + " " +member.lastName;
+                        const  firstChar= name.charAt(0);
 
                         return !!props.editMode ?
                             <Chip
@@ -59,19 +55,12 @@ function MembersChip(props) {
                             <Link to={"/"+member.role + "/"+ member._id} style={{cursor:'pointer'}} key={index}>
                             <Chip
                                 key = {index}
-                                // avatar={<Avatar>{firstChar}</Avatar>}
                                 avatar={<Avatar src={member.img || NO_IMG_PICTURE} />}
-
                                 label={name}
-
                                 className={classes.chip}
                             />
                             </Link>
-
-
-
-
-                    }))
+                    }));
 
             else return <div>Loading</div>
 

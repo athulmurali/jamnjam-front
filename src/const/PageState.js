@@ -1,3 +1,3 @@
-export const SELECT_ROLE = 'SELECT_ROLE'
-export const FILL_USER_DETAILS = 'FILL_USER_DETAILS'
-export const VERIFY_EMAIL = 'VERIFY_EMAIL'
+export const SELECT_ROLE = 'SELECT_ROLE';
+export const FILL_USER_DETAILS = 'FILL_USER_DETAILS';
+export const VERIFY_EMAIL = 'VERIFY_EMAIL';

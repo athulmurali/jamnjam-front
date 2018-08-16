@@ -107,7 +107,7 @@ const theme = createMuiTheme({
 
          this.props.updateSearchAccountType(event.target.value)
 
-     }
+     };
 
      render() {
          return (
@@ -155,7 +155,7 @@ const theme = createMuiTheme({
                              className: styles.bootstrapFormLabel,
                          }}
                          onChange={(event)=>{
-                             this.props.onChangeText(event.target.value)
+                             this.props.onChangeText(event.target.value);
 
                              this.props.updateSearchZip(event.target.value)
 
@@ -171,7 +171,7 @@ const theme = createMuiTheme({
                          <Button variant="contained" color="default"
                                  onClick={
                                      ()=>{
-                                         console.log("asdasd")
+                                         console.log("asdasd");
                                          this.props.onPressSearch();
                                      }}>
                              Search
@@ -187,7 +187,7 @@ const theme = createMuiTheme({
                              <Button variant="contained" color="default"
                                      onClick={
                                          ()=>{
-                                             console.log("asdasd")
+                                             console.log("asdasd");
                                              this.props.onPressSearch();
                                          }}>
                                  Search
@@ -236,7 +236,7 @@ const mapStateToProps = state => {
         profile : state.loginReducer.profile
     }
 
-}
+};
 
 
 const mapDispatchToProps = (dispatch) =>({
@@ -273,7 +273,7 @@ const mapDispatchToProps = (dispatch) =>({
 
       })
   }
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)( withStyles(styles)(SearchBar));
