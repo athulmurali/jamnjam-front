@@ -57,9 +57,9 @@ class Login extends Component {
                 <TextField
                     autoFocus
                     margin="dense"
-                    id="name"
+                    id="username"
                     label="username"
-                    type="email"
+                    type="text"
 
                     onChange={(e)=>{
                         this.props.updateField('username', e.target.value)
@@ -72,7 +72,7 @@ class Login extends Component {
                 <TextField
                     key = {2}
                     margin="dense"
-                    id="name"
+                    id="password"
                     label="password"
                     type="password"
 
@@ -96,9 +96,9 @@ class Login extends Component {
 
                 <div className="px-1 px-2 py-2">
 
-                    {/*<GoogleSignIn>*/}
-                        {/*Google login*/}
-                    {/*</GoogleSignIn>*/}
+                    <GoogleSignIn>
+                        Google login
+                    </GoogleSignIn>
 
                 </div>
 

@@ -42,3 +42,6 @@ export const ADD_DEL_MEMBER_URL = BASE_URL + '/artist/band';
 export const ARTIST_LOOKOUT_URL = BASE_URL +'/artistLookOut';
 export const NO_IMG_PICTURE = "https://image.ibb.co/go2kO9/assassins_avatar_by_multispeedking_d6380y4.png";
 export const MAGIC_DP = "https://image.ibb.co/jHnGwU/magic.jpg";
+
+
+export const GOOGLE_LOGIN_URL =  BASE_URL + "/auth/googleLogin"

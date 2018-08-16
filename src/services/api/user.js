@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
     ADD_DEL_MEMBER_URL, ARTIST_LOOKOUT_URL,
     BASE_URL,
-    CREATE_USER_URL, DEL_USER_BY_ROLE_ID_URL, GET_USER_BY_ROLE_ID_URL, LOGIN_URL,
+    CREATE_USER_URL, DEL_USER_BY_ROLE_ID_URL, GET_USER_BY_ROLE_ID_URL, GOOGLE_LOGIN_URL, LOGIN_URL,
     UPDATE_USER_URL
 } from "../../const/url";
 
@@ -20,6 +20,10 @@ export class UserService{
         return axios.post(LOGIN_URL, userData)
     };
 
+
+    googleLoginService  =(userData)=>{
+        return axios.post(GOOGLE_LOGIN_URL, userData)
+    };
     getUser  =(role,userId)=>{
         console.log("getUser");
 

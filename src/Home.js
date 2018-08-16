@@ -16,7 +16,7 @@ import {SET_UPDATE_MODE} from "./redux/Constants/userRegister";
 import {searchReducer} from "./redux/reducers/searchReducer";
 import {NO_IMG_PICTURE} from "./const/url";
 const artist = Artist.instance;
-class App extends Component {
+class Home extends Component {
     constructor(props)
     {
         super(props);
@@ -135,18 +135,12 @@ class App extends Component {
       console.log(filteredUsers);
 
 
-        //     return( user.role.includes(this.props.filters.searchRole)
-        //     && user.zip.includes(this.props.filters.searchZip))
-        // })
-
-
     return (
       <div className="App">
               <header className="App-header">
                   <img src={logo} className="App-logo" alt="logo" />
                   <h1 className="App-title"> Jam n' Jam</h1>
               </header>
-          {!this.state.currentUserName && <GoogleSignIn onSuccess={this.handleLogin}/>}
 
           {
               !!this.state.currentUserName &&
@@ -161,8 +155,6 @@ class App extends Component {
               </div>
           }
 
-
-
           <SearchBar
                   onChangeText={this.handleOnChangeText}
                     onPressSearch={this.handleOnPressSearch}
@@ -170,9 +162,6 @@ class App extends Component {
                       this.handleAccountTypeChange
                   }
           />
-
-
-
 
                   {this.props.filters.searchAccountType == "PRO"
                   &&
@@ -250,5 +239,5 @@ const mapDispatchToProps = (dispatch) =>({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
