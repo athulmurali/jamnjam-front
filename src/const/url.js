@@ -45,3 +45,8 @@ export const MAGIC_DP = "https://image.ibb.co/jHnGwU/magic.jpg";
 
 
 export const GOOGLE_LOGIN_URL =  BASE_URL + "/auth/googleLogin"
+
+
+export const REG_BAND_COVER     = "https://preview.ibb.co/mxyWFz/band.jpg"
+export const REG_ADMIN_COVER        = "https://image.ibb.co/im1h5z/admin_cover.png"
+export const REG_ARTIST_COVER       = "https://image.ibb.co/dzvEJK/artist_cover.png"

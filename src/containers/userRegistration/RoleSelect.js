@@ -6,11 +6,13 @@ import Paper from '@material-ui/core/Paper';
 import {connect} from "react-redux";
 import {ADMIN, ARTIST, BAND} from "../../const/userRoles";
 import {UPDATE_ROLE} from "../../redux/Constants/userRegister";
+import {ARTIST_COVER, REG_ADMIN_COVER, REG_ARTIST_COVER, REG_BAND_COVER} from "../../const/url";
 
 const styles = theme => ({
     root: {
         margin : 'auto',
         flexGrow: 10,
+
     },
     paper: {
         height: 340,
@@ -22,8 +24,17 @@ const styles = theme => ({
 
 
     },
+
+    roleCover:{
+        height: 250,
+        width: 250,
+        alignItems: 'center',
+        textAlign: 'center',
+        cursor: 'pointer'
+    },
+
     control: {
-        padding: theme.spacing.unit * 2,
+        padding: theme.spacing.unit * 1,
     },
 });
 
@@ -61,6 +72,10 @@ class RoleSelect extends React.Component {
                                 onClick={()=> this.props.selectRole(ADMIN)    }>
                                     <div>
                                         <h2>Admin</h2>
+
+                                        <img src={REG_ADMIN_COVER}
+                                             style={{width: '250px', height: '250px'}} />
+
                                     </div>
                                 </Paper>
                             </Grid>
@@ -70,6 +85,10 @@ class RoleSelect extends React.Component {
 
                                        onClick={()=> this.props.selectRole(ARTIST)    }>
                                 <h2>Artist</h2>
+
+                                <img src={REG_ARTIST_COVER}
+                                     style={{width: '250px', height: '250px'}} />
+
                                 </Paper>
                             </Grid>
 
@@ -78,6 +97,9 @@ class RoleSelect extends React.Component {
                                 <Paper className={classes.paper}
                                        onClick={()=> this.props.selectRole(BAND)}>
                                 <h2>Band</h2>
+
+                                    <img src={REG_BAND_COVER} style={{width: '250px', height: '250px'}} />
+
                                 </Paper>
                             </Grid>
 

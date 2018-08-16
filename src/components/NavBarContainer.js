@@ -81,7 +81,8 @@ class MenuAppBar extends React.Component {
 
 
                         <Typography variant="title" color="inherit" className={classes.flex}>
-                            Jam n' jam
+                            <Link to={'/home'} style={{color: 'inherit', textDecoration : 'none'}}
+                            >Jam n' jam</Link>
                         </Typography>
                         {!!this.props.myProfile && (
                             <div>

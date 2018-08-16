@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from "./components/SearchBar";
-import CelebrityCard from "./components/CelebrityCard";
+import CelebrityCard from "./components/cards/CelebrityCard";
 import GoogleSignIn from "./components/GoogleSignIn";
 import Artist from "./services/lostFmServices/Artist";
 import Typography from "@material-ui/core/es/Typography/Typography";
 import Logout from './components/Logout'
 import {BAND} from "./const/userRoles";
 import {Users} from "./services/api/Users";
-import UserCard from "./components/UserCard";
+import UserCard from "./components/cards/UserCard";
 import {connect} from "react-redux";
 import {CLOSE_SIDE_BAR} from "./redux/Constants/userAccount";
 import {SET_UPDATE_MODE} from "./redux/Constants/userRegister";
