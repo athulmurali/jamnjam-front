@@ -29,6 +29,9 @@ const GoogleSignIn =(props)=> {
 
         style={styles.button}
 
+
+            scope ={"https://www.googleapis.com/auth/calendar"}
+
     />)
 };
 
@@ -43,7 +46,7 @@ const mapStateToProps =(state)=>{
 const mapDispatchToProps = (dispatch) =>({
 
     googleLogin:(data)=>{
-
+        console.log(data)
         const userService = new UserService()
         const promise = userService.googleLoginService(data)
         dispatch({
