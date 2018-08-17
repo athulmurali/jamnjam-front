@@ -66,7 +66,7 @@ function CelebrityCard(props) {
                         </Typography>
                     </CardContent>
                     <div className={classes.controls}>
-                        <Button variant="contained" color="primary"
+                        <Button variant="contained" color="primary" disabled
                                     className={classes.button}>
 
                                 {

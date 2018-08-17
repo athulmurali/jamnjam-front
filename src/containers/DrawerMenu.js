@@ -4,12 +4,12 @@ import {withStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import {mailFolderListItems, otherMailFolderListItems} from './titleData';
+import {mailFolderListItems, otherMailFolderListItems} from './sideBarOptions/bandOptions';
 import {connect} from "react-redux";
 import {CLOSE_SIDE_BAR, OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
 import * as roles from "../const/userRoles";
 import {AdminListBottom, AdminListTop} from "./adminTitleData";
-import {ArtistListBottom, ArtistListTop} from "./artistTitleData";
+import {ArtistListBottom, ArtistListTop} from "./sideBarOptions/artistOptions";
 
 
 const styles = {
@@ -86,11 +86,12 @@ class DrawerMenu extends React.Component {
         return (
             <div>
                 <Drawer open={this.props.isSideBarOpen}
-                        onClose={this.props.closeSideBar}>
+                        onClose={this.props.closeSideBar}
+                >
                     <div
                         tabIndex={0}
                         role="button"
-                        onClick={this.toggleDrawer('left', false)}
+                        onClick={this.props.closeSideBar}
                         onKeyDown={this.toggleDrawer('left', false)}
                     >
                         {this.props.role== roles.ADMIN && sideListAdmin}

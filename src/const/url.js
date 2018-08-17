@@ -42,11 +42,21 @@ export const ADD_DEL_MEMBER_URL = BASE_URL + '/artist/band';
 export const ARTIST_LOOKOUT_URL = BASE_URL +'/artistLookOut';
 export const NO_IMG_PICTURE = "https://image.ibb.co/go2kO9/assassins_avatar_by_multispeedking_d6380y4.png";
 export const MAGIC_DP = "https://image.ibb.co/jHnGwU/magic.jpg";
-
-
+export const SUCCESS_IMG ="https://image.ibb.co/fZ2LSe/success.png"
 export const GOOGLE_LOGIN_URL =  BASE_URL + "/auth/googleLogin"
+export const CALENDAR_BOOKING =  "https://image.ibb.co/jwoPLz/calendar_booking.png"
 
 
 export const REG_BAND_COVER     = "https://preview.ibb.co/mxyWFz/band.jpg"
 export const REG_ADMIN_COVER        = "https://image.ibb.co/im1h5z/admin_cover.png"
 export const REG_ARTIST_COVER       = "https://image.ibb.co/dzvEJK/artist_cover.png"
+
+
+// appointments  urls
+export const  GET_MY_APPOINTMENTS =  BASE_URL + "/appointmentsApp/appointments"
+export const  CREATE_APPOINTMENT  = BASE_URL + "/appointmentsApp/appointments"
+
+export const DELETE_APPOINTMENT = BASE_URL + "/appointmentsApp/appointments/"
+export const ERROR_IMG = "https://preview.ibb.co/d48GHe/error.jpg"
+// export const LOADING_GIF="https://preview.ibb.co/jUYfAz/loading_GIf.gif"
+export const LOADING_GIF ="https://i.stack.imgur.com/ATB3o.gif"

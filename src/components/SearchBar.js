@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {createMuiTheme, withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -10,8 +9,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from "@material-ui/core/es/Button/Button";
 import {connect} from "react-redux";
-import {LOG_IN_ACT, LOG_OUT_ACT} from "../redux/actions/userAccountActions";
-import {OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
 import {UPDATE_SEARCH_ACCOUNT_TYPE, UPDATE_SEARCH_ROLE, UPDATE_ZIP} from "../redux/Constants/searchConstants";
 
 
@@ -84,7 +81,7 @@ const theme = createMuiTheme({
          super(props);
 
          this.state = {
-             value: 'artist',
+             value: '',
              accountType : "FREE"
          };
 
@@ -93,15 +90,11 @@ const theme = createMuiTheme({
      componentDidMount() {
          console.log('SearchBar : Component mounted ')
      }
-
-
      handleChange = event => {
          this.setState({ value: event.target.value });
 
          this.props.updateSearchRole(event.target.value)
      };
-
-
      handleAccountTypeChange =event=>{
          this.setState({ accountType: event.target.value });
 

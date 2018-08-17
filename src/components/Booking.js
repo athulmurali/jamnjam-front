@@ -2,6 +2,12 @@ import React from "react";
 import TextField from "@material-ui/core/es/TextField/TextField";
 import Button from "@material-ui/core/es/Button/Button";
 
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+
+
+import {DateRangePicker} from 'react-dates';
+
 const styles = theme => ({
     container: {
         textAlign:"center",
@@ -20,15 +26,34 @@ const styles = theme => ({
 
 
 export default  class  Booking extends  React.Component{
-    constructor(props)
-    {
-        super(props)
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            startDate: null,
+            endDate: null,
+            focusedInput: null,
+        };
     }
     render(){
 
         return (
-            <div className="container-fluid">
+            <div className="container-fluid flex-column row">
                 <div> Not for grading </div>
+
+
+                <div className="col-6">
+                    <DateRangePicker
+                        startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                        startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                        endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                        endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                        onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+                        focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                        onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                    />
+                </div>
+
 
                 <div style={styles.container}>
                     <h1 style={styles.container}>

@@ -8,8 +8,11 @@ import StarsIcon from '@material-ui/icons/Star';
 import MailIcon from '@material-ui/icons/Mail';
 import PersonIcon from '@material-ui/icons/PersonOutline'
 import HomeIcon from '@material-ui/icons/Home'
+import CalendarIcon from '@material-ui/icons/DateRange'
+
 
 import {Link} from "react-router-dom";
+import {PATH_MY_GIGS} from "../../const/routeConstants";
 
 export const ArtistListTop = (
     <div>
@@ -35,7 +38,8 @@ export const ArtistListTop = (
         </Link>
 
 
-        <Link to={'/artist/'+localStorage.getItem('currentId')+'/artistLookOuts'} style={{ textDecoration: 'none' ,color: 'inherit'}}>
+        <Link to={'/artist/'+localStorage.getItem('currentId')+'/artistLookOuts'}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
 
         <ListItem button>
             <ListItemIcon>
@@ -51,6 +55,15 @@ export const ArtistListTop = (
 
 export const ArtistListBottom = (
     <div>
+        <Link to={PATH_MY_GIGS}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+            <ListItem button>
+                <ListItemIcon>
+                    <CalendarIcon />
+                </ListItemIcon>
+                <ListItemText primary="My Gigs" />
+            </ListItem>
+        </Link>
         <ListItem button>
             <ListItemIcon>
                 <MailIcon />

@@ -18,9 +18,10 @@ import userAccountReducer from './redux/reducers/userAccountReducer';
 import userRegistrationReducer from "./redux/reducers/userRegistrationReducer";
 import loginReducer from "./redux/reducers/loginReducer";
 import {searchReducer} from "./redux/reducers/searchReducer";
-
+import 'react-dates/initialize';
+import appointmentsReducer from "./redux/reducers/appointmentsReducer";
 const combinedReducers = combineReducers({userAccountReducer, userRegistrationReducer,
-    loginReducer, searchReducer});
+    loginReducer, searchReducer, appointmentsReducer});
 const middlewares = applyMiddleware(  promise(), thunk ,logger);
 const store = createStore(combinedReducers,middlewares);
 

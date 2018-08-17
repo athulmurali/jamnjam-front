@@ -17,6 +17,9 @@ import ArtistLookOuts from "./containers/ArtistLookOuts";
 import AddLookOut from "./containers/AddLookOut";
 import MyLookOuts from "./containers/MyLookOuts";
 import CelebrityProfile from "./containers/profiles/CelebrityProfile";
+import MyBookings from "./containers/bookings/MyBookings";
+import {PATH_BOOK_ARTIST, PATH_MY_GIGS} from "./const/routeConstants";
+import CreateBooking from "./containers/bookings/CreateBooking";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -26,41 +29,29 @@ const  RoutedApp =()=> {
                     <NavBarContainer history={history}/>
 
                     <Switch>
+                        <Route  exact path={PATH_BOOK_ARTIST}         component={CreateBooking} />
+                        <Route  exact path={PATH_MY_GIGS}         component={MyBookings} />
                         <Route exact path="/"                   component={App}/>
                         <Route  exact  path="/home"             component={App}/>
                         <Route  exact path="/artist/:artistId"      component={ArtistProfile} />
                         <Route exact path={"/artist/:artistId/artistLookOuts/"}
                                component ={ArtistLookOuts}/>
-
                         <Route  exact path="/band/:userId"      component={BandProfile} />
                         <Route  exact path="/celebrity/:userId"      component={CelebrityProfile} />
-
-
                         <Route  exact path="/band/:bandId/manageNetwork/"
                                 component={ManageNetwork } />
                         <Route  exact path="/band/:bandId/addLookOut/"
                                 component={AddLookOut } />
-
                         <Route  exact path="/band/:bandId/myLookOuts/"
                                 component={MyLookOuts } />
-
-
-
                         <Route  exact path="/booking"           component={Booking} />
                         <Route  path="/admin"             component={Admin } />
                         <Route  exact path="/register"          component={UserRegister } />
                         <Route  exact path="/login"          component={UserLoginContainer } />
-
                         <Route  exact path="/roleSelect"         component={roleSelect } />
-                    <Route  exact path="/profileByRole"          component={profileByRole } />
-
+                        <Route  exact path="/profileByRole"          component={profileByRole } />
                         <Route  exact path="/:userRole/editProfile/:_id" component={EditProfile } />
-
-
-
-
                     </Switch>
-
                 </div>
             </Router>
         </div>

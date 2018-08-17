@@ -8,7 +8,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {connect} from "react-redux";
 import {DELETE_USER, SELECT_USER} from "../redux/Constants/userAccount";
 import {UserService} from "../services/api/user";
-import {IconButton} from "material-ui";
 
 class AlertDialog extends React.Component {
     state = {
