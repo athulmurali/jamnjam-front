@@ -25,7 +25,8 @@ const initialState = {
         endDateAndTime : null,
         title : '',
         remarks :'',
-        id : 12324124124,
+        id : '',
+        with: '',
     }
 };
 const appointmentsReducer = (state = initialState, action) => {
