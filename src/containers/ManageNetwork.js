@@ -1,5 +1,6 @@
 import React from "react";
 import {UserService} from "../services/api/user";
+import {NO_IMG_PICTURE} from "../const/url";
 
 export default class ManageNetwork extends React.Component{
 
@@ -24,7 +25,7 @@ export default class ManageNetwork extends React.Component{
                 console.log(artist.memberOf.indexOf(this.props.match.params.bandId) > -1);
                 return artist.memberOf.indexOf(this.props.match.params.bandId) > -1 }
         );
-        this.setState({bandMembers: bandMembers },
+        this.setState({bandMembers: bandMembers , typedUsername : null},
             this.setNonBandMembers)
     };
 
@@ -57,7 +58,8 @@ export default class ManageNetwork extends React.Component{
                                style={{cursor: 'pointer'}}
                                onClick={()=>{ addMemberToBand(artist._id)  }  }
                     >
-                        {artist.username}
+                        {artist.username + ("   (" + artist.firstName + "  " + artist.lastName + " )")}
+
                     </li>
                 })
             }
@@ -86,14 +88,13 @@ export default class ManageNetwork extends React.Component{
         };
 
 
-        alert(bandId + " ----" + artistId);
         console.log(payload);
         this.userService.deleteMember(payload).then(
             data=>{
                 console.log("deleted Successfully");
-                alert("Deleted successfully ! Please refresh to see the changes");
                 console.log(data);
-                this.getArtists();
+
+                this.getArtists(this.setBandMembers);
             }
         ).catch(
             err =>{
@@ -116,9 +117,8 @@ export default class ManageNetwork extends React.Component{
         this.userService.addMember(payload).then(
             data=>{
                 console.log("added successfully");
-                alert("Added successfully ! Please refresh to see the changes");
                 console.log(data);
-                this.getArtists();
+                this.getArtists(this.setBandMembers);
             }
         ).catch(err=>{
             console.log(err.response.data);
@@ -143,7 +143,7 @@ export default class ManageNetwork extends React.Component{
 
             <div className="container-fluid ">
                 <div className="row">
-                    <h1>Manage Network</h1>
+                    <h1>Manage Band</h1>
 
                 </div>
             {
@@ -196,11 +196,10 @@ export default class ManageNetwork extends React.Component{
 
                         <div className="container-fluid card-deck">
                             {this.state.bandMembers.map((artist, index)=>{
-                                return  <div key={index} className="card" style=
-                                    {{maxWidth: 300, maxHeight: 300}}>
+                                return  <div key={index} className="card" style={{maxWidth: '300px'}}>
                                     <img className="card-img-top container-fluid"
-                                         src="https://picsum.photos/100/100"
-                                         alt="Card image cap" style={{}}/>
+                                         src={artist.img || NO_IMG_PICTURE}
+                                         alt="Card image cap" style={{maxWidth:'250px', maxHeight: '200px'}}/>
                                     <div className="card-body">
                                         <h5 className="card-title">
                                             {artist.firstName + "  " + artist.lastName}</h5>

@@ -50,7 +50,7 @@ export const mailFolderListItems = (
             <ListItemIcon>
                 <StarsIcon/>
             </ListItemIcon>
-            <ListItemText primary="My Network" />
+            <ListItemText primary="My Band" />
         </ListItem>
         </Link>
         <Link to={'/band/'+localStorage.getItem('currentId')+'/myLookOuts'}
