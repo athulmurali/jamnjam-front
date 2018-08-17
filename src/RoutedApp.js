@@ -20,6 +20,8 @@ import CelebrityProfile from "./containers/profiles/CelebrityProfile";
 import MyBookings from "./containers/bookings/MyBookings";
 import {PATH_BOOK_ARTIST, PATH_MY_GIGS} from "./const/routeConstants";
 import CreateBooking from "./containers/bookings/CreateBooking";
+import LookOutsFromMyBands from "./containers/LookOutsFromMyBands";
+import {LOOK_OUTS_FROM_MY_BANDS} from "./const/url";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -36,6 +38,9 @@ const  RoutedApp =()=> {
                         <Route  exact path="/artist/:artistId"      component={ArtistProfile} />
                         <Route exact path={"/artist/:artistId/artistLookOuts/"}
                                component ={ArtistLookOuts}/>
+
+                        <Route exact path={LOOK_OUTS_FROM_MY_BANDS}
+                               component ={LookOutsFromMyBands}/>
                         <Route  exact path="/band/:userId"      component={BandProfile} />
                         <Route  exact path="/celebrity/:userId"      component={CelebrityProfile} />
                         <Route  exact path="/band/:bandId/manageNetwork/"

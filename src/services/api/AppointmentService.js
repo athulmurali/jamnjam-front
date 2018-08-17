@@ -21,4 +21,10 @@ export default  class  AppointmentService{
     }
 
 
+    getAppointmentsByUserId(userId){
+
+        return axiosInstance.get(GET_MY_APPOINTMENTS+"/"+ userId)
+        }
+
+
 }

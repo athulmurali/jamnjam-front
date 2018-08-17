@@ -13,6 +13,7 @@ import CalendarIcon from '@material-ui/icons/DateRange'
 
 import {Link} from "react-router-dom";
 import {PATH_MY_GIGS} from "../../const/routeConstants";
+import {LOOK_OUTS_FROM_MY_BANDS} from "../../const/url";
 
 export const ArtistListTop = (
     <div>
@@ -41,14 +42,27 @@ export const ArtistListTop = (
         <Link to={'/artist/'+localStorage.getItem('currentId')+'/artistLookOuts'}
               style={{ textDecoration: 'none' ,color: 'inherit'}}>
 
-        <ListItem button>
+            <ListItem button>
+                <ListItemIcon>
+                    <StarsIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Artist lookOut" />
+            </ListItem>
+
+
+        </Link>
+
+        <Link to={LOOK_OUTS_FROM_MY_BANDS}
+              style={{ textDecoration: 'none' ,color: 'inherit'}}>
+            <ListItem button>
             <ListItemIcon>
                 <StarsIcon/>
             </ListItemIcon>
-            <ListItemText primary="Artist lookOut" />
+            <ListItemText primary="Lookouts from my bands" />
         </ListItem>
 
         </Link>
+
 
     </div>
 );
