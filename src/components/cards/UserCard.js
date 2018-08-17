@@ -110,7 +110,7 @@ function UserCard(props) {
                     title="Live from space album cover"
                     onClick={()=>{
 
-                        window.location= props.site
+                        // window.location= props.site
 
 
                     }}
