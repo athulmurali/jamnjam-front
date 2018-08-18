@@ -1,4 +1,3 @@
-import {SELECT_ROLE} from "../../const/PageState";
 import {UPDATE_SEARCH_ACCOUNT_TYPE, UPDATE_SEARCH_ROLE, UPDATE_ZIP} from "../Constants/searchConstants";
 
 const initialState = {

@@ -56,7 +56,7 @@ export const REG_ARTIST_COVER       = "https://image.ibb.co/dzvEJK/artist_cover.
 export const  GET_MY_APPOINTMENTS =  BASE_URL + "/appointmentsApp/appointments"
 export const  CREATE_APPOINTMENT  = BASE_URL + "/appointmentsApp/appointments"
 
-export const DELETE_APPOINTMENT = BASE_URL + "/appointmentsApp/appointments/"
+export const DELETE_APPOINTMENT = BASE_URL + "/appointmentsApp/appointments"
 export const ERROR_IMG = "https://preview.ibb.co/d48GHe/error.jpg"
 // export const LOADING_GIF="https://preview.ibb.co/jUYfAz/loading_GIf.gif"
 export const LOADING_GIF ="https://i.stack.imgur.com/ATB3o.gif"

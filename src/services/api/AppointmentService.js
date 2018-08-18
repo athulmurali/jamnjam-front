@@ -10,7 +10,7 @@ export default  class  AppointmentService{
 
 
     deleteAppointment(appointmentId){
-        return axiosInstance.delete(DELETE_APPOINTMENT)
+        return axiosInstance.delete(DELETE_APPOINTMENT+"/"+appointmentId.toString())
     }
 
 

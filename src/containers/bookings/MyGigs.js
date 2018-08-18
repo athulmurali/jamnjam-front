@@ -1,26 +1,70 @@
 import ResponsiveTable from 'material-ui-next-responsive-table'
 import React from "react";
-import {GET_MY_APPOINTMENTS} from "../../redux/Constants/appointments";
+import {DELETE_APPOINTMENT, GET_MY_APPOINTMENTS} from "../../redux/Constants/appointments";
 import {GET_PROFILE_FROM_LOCAL_ST} from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
-
-
-
 import appointmentService from '../../services/api/AppointmentService'
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 
 
 const service = new appointmentService();
+
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+    },
+    input: {
+        display: 'none',
+    },
+});
+
+function TextButtons(props) {
+    const { classes } = props;
+    return (
+        <div>
+            <Button className={classes.button}>Default</Button>
+            <Button color="primary" className={classes.button}>
+                Primary
+            </Button>
+
+            <Button disabled className={classes.button}>
+                Disabled
+            </Button>
+            <Button href="#text-buttons" className={classes.button}>
+                Link
+            </Button>
+            <input
+                accept="image/*"
+                className={classes.input}
+                id="flat-button-file"
+                multiple
+                type="file"
+            />
+            <label htmlFor="flat-button-file">
+                <Button component="span" className={classes.button}>
+                    Upload
+                </Button>
+            </label>
+        </div>
+    );
+}
+
+TextButtons.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
 
 const columns = [
     {
         key: 'id',
         label: 'Booking ID',
-        primary: true,
+
     },
     {
         key: 'title',
         label: 'Title',
+        primary: true,
     },
     {
         key: 'remarks',
@@ -36,28 +80,40 @@ const columns = [
         key: 'endDateAndTime',
         label: 'end DateTime',
     },
+    {
+        key: 'delete',
+        label: 'Delete',
+        render: (value, column, row, data) =>  {
+            console.log(column)
+            return <Button color="secondary" className={styles.button}
+            onClick={(e)=>{
+                column.fun(column.id)
+            }}>
+                Cancel
+            </Button>
+        }
+    },
 
 ]
+const embedProp=(appointments, fun)=>{
 
-// const data = [
-//         {
-//             bookingId: '1234',
-//             title: 'Foo',
-//             remarks: 'new remark',
-//             startDateTime : '1233',
-//             endDateTime  :'1234'
-//             // authors: ['Andy'],
-//         },
-//         {
-//             bookingId: '4567',
-//             title: 'Bar',
-//             remarks : 'remark1',
-//             startDateTime : '1234',
-//             endDateTime  :'2345'
-//             // authors: ['Joe', 'Mike'],
-//         }
-//     ]
-//
+    // for(let i=0; i< appointments.length; i++)
+    // {
+    //     console.log(appointments[i])
+    //
+    // }
+    return appointments.map((appointment)=>{
+
+
+        appointment.fun= fun
+
+        console.log(appointment)
+
+        return appointment
+
+    })
+// return appointments
+}
 
 const   MyGigs =(props)=>{
     console.log("update required : ? " + props.updateRequired)
@@ -70,15 +126,16 @@ const   MyGigs =(props)=>{
     return(
 
         <div>
-            { !props.fetching && !!props.myAppointments
-            && props.myAppointments.length ==0 &&
-            <h2>No bookings at this time!</h2>
-            }
 
-            <ResponsiveTable
-                columns={columns}
-                data={props.myAppointments}
-            />
+            { !props.fetching && !!props.myAppointments && props.myAppointments.length ==0 &&
+            <h2>No bookings at this time!</h2>}
+
+            {( !!props.myAppointments &&  props.myAppointments.length!==0 &&
+                <ResponsiveTable
+                        columns={columns}
+                        // data={embedProp(props.myAppointments, (value)=>{console.log(value)})}
+                        data={embedProp(props.myAppointments, props.deleteMyBooking)}
+                    />) }
 
 
         </div>
@@ -87,8 +144,6 @@ const   MyGigs =(props)=>{
     )
 
 }
-
-
 
 const mapStateToProps = state => {
     return {...state.appointmentsReducer}
@@ -99,7 +154,14 @@ const mapDispatchToProps = (dispatch) =>({
         type: GET_MY_APPOINTMENTS,
         payload: service.getMyAppointments
     }) },
-    getProfileFromLocalStorage:()=>{dispatch({type : GET_PROFILE_FROM_LOCAL_ST})}
+    getProfileFromLocalStorage:()=>{dispatch({type : GET_PROFILE_FROM_LOCAL_ST})},
+
+    deleteMyBooking:(bookingId)=>{
+        console.log(bookingId)
+        dispatch({
+        type : DELETE_APPOINTMENT,
+        payload:service.deleteAppointment(bookingId)
+    })}
 
 });
 
