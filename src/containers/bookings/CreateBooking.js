@@ -24,6 +24,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import queryString from 'query-string'
 import {CALENDAR_BOOKING, ERROR_IMG, LOADING_GIF, NO_IMG_PICTURE, SUCCESS_IMG} from "../../const/url";
 import {Link} from "react-router-dom";
+import {PATH_MY_GIGS} from "../../const/routeConstants";
 
 
 
@@ -143,7 +144,7 @@ function CreateBooking(props) {
 
                 </CardContent>
                 <CardActions className={classes.cardActions}>
-                    <Link to={"/home"} style ={{textDecoration: 'none', color :'inherit'}}>
+                    <Link to={PATH_MY_GIGS} style ={{textDecoration: 'none', color :'inherit'}}>
                         <Button size="medium" color="primary"
                                 onClick={()=>{props.updateField('updateSuccess',false)}}
                         >

@@ -22,6 +22,7 @@ import {PATH_BOOK_ARTIST, PATH_MY_GIGS} from "./const/routeConstants";
 import CreateBooking from "./containers/bookings/CreateBooking";
 import LookOutsFromMyBands from "./containers/LookOutsFromMyBands";
 import {LOOK_OUTS_FROM_MY_BANDS} from "./const/url";
+import MyGigs from "./containers/bookings/MyGigs";
 const  RoutedApp =()=> {
     return(
         <div>
@@ -32,7 +33,8 @@ const  RoutedApp =()=> {
 
                     <Switch>
                         <Route  exact path={PATH_BOOK_ARTIST}         component={CreateBooking} />
-                        <Route  exact path={PATH_MY_GIGS}         component={MyBookings} />
+                        <Route  exact path={PATH_MY_GIGS}         component={MyGigs} />
+
                         <Route exact path="/"                   component={App}/>
                         <Route  exact  path="/home"             component={App}/>
                         <Route  exact path="/artist/:artistId"      component={ArtistProfile} />
