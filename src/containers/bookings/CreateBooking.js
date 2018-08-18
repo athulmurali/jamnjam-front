@@ -236,7 +236,7 @@ function CreateBooking(props) {
                         Profile
                     </Button>
                     <Button size="small" color="primary"
-                            disabled={ !(props.newBooking.id && props.newBooking.title
+                            disabled={ !(props.newBooking.with && props.newBooking.title
                             && props.newBooking.dateAndTime && props.newBooking.endDateAndTime
                             && props.newBooking.remarks)}
                             onClick={()=>{
@@ -270,12 +270,12 @@ const mapDispatchToProps = (dispatch) =>({
       }})
     },
 
-    setStartEndDate:(id,title,dateAndTime,endDateAndTime,remarks)=>{
+    setStartEndDate:(artistId,title,dateAndTime,endDateAndTime,remarks)=>{
         console.log(title)
         dispatch({
             type :SET_APPOINTMENT_START_END_DATE,
             payload:{
-                id :id,
+                with :artistId,
                 title :title,
                 dateAndTime:dateAndTime,
                 endDateAndTime: endDateAndTime,

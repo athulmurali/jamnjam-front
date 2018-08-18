@@ -25,7 +25,6 @@ const initialState = {
         endDateAndTime : null,
         title : '',
         remarks :'',
-        id : '',
         with: '',
     }
 };
