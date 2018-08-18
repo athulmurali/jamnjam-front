@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import appointmentService from '../../services/api/AppointmentService'
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import {LOADING_GIF} from "../../const/url";
 
 
 const service = new appointmentService();
@@ -17,6 +18,12 @@ const styles = theme => ({
     input: {
         display: 'none',
     },
+
+    flexContainer:{
+        display: 'flex',
+        height : '100%',
+        justifyContent: 'center'
+    }
 });
 
 function TextButtons(props) {
@@ -125,7 +132,15 @@ const   MyGigs =(props)=>{
 
     return(
 
-        <div>
+        <div className={styles.flexContainer}>
+
+            { !!props.fetching &&
+            <div className="text-center">
+                <img src={LOADING_GIF}
+                     alt="loading" style={{minWidth : '30%', margin : 'auto'}}
+                />
+            </div>}
+
 
             { !props.fetching && !!props.myAppointments && props.myAppointments.length ==0 &&
             <h2>No bookings at this time!</h2>}
@@ -136,8 +151,6 @@ const   MyGigs =(props)=>{
                         // data={embedProp(props.myAppointments, (value)=>{console.log(value)})}
                         data={embedProp(props.myAppointments, props.deleteMyBooking)}
                     />) }
-
-
         </div>
 
 
