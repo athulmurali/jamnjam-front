@@ -145,7 +145,7 @@ const   MyGigs =(props)=>{
             { !props.fetching && !!props.myAppointments && props.myAppointments.length ==0 &&
             <h2>No bookings at this time!</h2>}
 
-            {( !!props.myAppointments &&  props.myAppointments.length!==0 &&
+            {( !props.fetching && !!props.myAppointments &&  props.myAppointments.length!==0 &&
                 <ResponsiveTable
                         columns={columns}
                         // data={embedProp(props.myAppointments, (value)=>{console.log(value)})}
