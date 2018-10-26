@@ -149,7 +149,7 @@ const styles = theme => ({
 
 
 
-                     {this.state.accountType == "PRO"
+                     {this.state.accountType=== "PRO"
                      &&
                      <div>
                          <Button variant="contained" color="default"
@@ -165,7 +165,7 @@ const styles = theme => ({
 
                      }
 
-                     {this.state.accountType == "FREE"
+                     {this.state.accountType=== "FREE"
                      &&
                          <div>
                              <Button variant="contained" color="default"

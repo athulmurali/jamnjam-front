@@ -50,7 +50,7 @@ const styles = theme => ({
 });
 
 function CelebrityCard(props) {
-    const { classes, theme } = props;
+    const { classes } = props;
 
     let mbid =props.mbid;
     const MY_ROUTE = `/celebrity/${mbid}/`;

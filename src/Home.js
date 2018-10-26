@@ -112,7 +112,7 @@ class Home extends Component {
         const filteredUsers = this.state.freeUsers.filter(user=> {
                 console.log(user.zip);
 
-                    if (this.props.filters.searchAccountType == "PRO")
+                    if (this.props.filters.searchAccountType=== "PRO")
 
                         return false;
 
@@ -160,7 +160,7 @@ class Home extends Component {
                   }
           />
 
-                  {this.props.filters.searchAccountType == "PRO"
+                  {this.props.filters.searchAccountType=== "PRO"
                   &&
                       this.state.artistNames.length !== 0 &&
                       <ul style={{

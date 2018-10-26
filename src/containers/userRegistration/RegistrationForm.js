@@ -156,7 +156,7 @@ class RegistrationForm extends React.Component {
                       noValidate
                       autoComplete="off" centred={true}>
                     {
-                        this.props.role == BAND ||
+                        this.props.role=== BAND ||
                         this.props.updateRole === BAND ?
                             <TextField
                                 id="title"

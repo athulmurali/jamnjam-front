@@ -28,7 +28,7 @@ export default class MyLookOuts extends React.Component{
                 console.log("filtered");
 
                 const myResults = result.filter((lookOut)=>{
-                    return lookOut.postedBy == this.props.match.params.bandId
+                    return lookOut.postedBy=== this.props.match.params.bandId
 
                 });
 
