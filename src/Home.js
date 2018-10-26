@@ -51,21 +51,6 @@ class Home extends Component {
 
 
 
-
-
-
-    handleLogin=(response)=>{
-        console.log("return from google login ");
-        console.log(response);
-
-        this.setState({
-            userProfileObj:response.profileObj,
-            currentUserName:response.profileObj.givenName
-
-        })
-    };
-
-
     handleAccountTypeChange=(accountType)=>{
         this.setState({
         accountType : accountType

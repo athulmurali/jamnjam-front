@@ -8,7 +8,6 @@ import CardMedia from "@material-ui/core/es/CardMedia/CardMedia";
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
-import Artist from "../../services/lostFmServices/Artist";
 import {connect} from "react-redux";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import UserServiceWithToken from "../../services/UserServiceWithToken";
@@ -17,9 +16,6 @@ import {UserService} from "../../services/api/user";
 import {Link} from "react-router-dom";
 import {NO_IMG_PICTURE} from "../../const/url";
 import MembersChip from "../MembersChip";
-
-
-const artist = Artist.instance;
 
 const styles = {
     masterContainer:{
@@ -205,7 +201,7 @@ const styles = {
                                 <div className="col-6">
                                     <Button  color="primary" size="small" disabled>Contact</Button>
                                 </div>
-                                { (this.props.match.params.artistId ==
+                                { (this.props.match.params.artistId===
                                     localStorage.getItem('currentId') )  &&
                                 <div className="col-6">
                                     <Link to={'/artist/editProfile/'+ localStorage.getItem('currentId')  }

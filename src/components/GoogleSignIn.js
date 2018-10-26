@@ -56,8 +56,9 @@ const mapDispatchToProps = (dispatch) =>({
 
     googleLogin:(data)=>{
         console.log(data);
-        const userService = new UserService();
-        const promise = userService.googleLoginService(data);
+        // uncomment for google login feature
+        // const userService = new UserService();
+        // const promise = userService.googleLoginService(data);
         dispatch({
             type :SET_GOOGLE_USER_DATA,
             payload :{

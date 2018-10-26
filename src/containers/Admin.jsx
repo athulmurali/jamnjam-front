@@ -16,7 +16,7 @@ class  AdminScreen extends React.Component {
     render() {
         const props = this.props;
 
-        if (props.selectedRole && props.nextStep != VERIFY_EMAIL) {
+        if (props.selectedRole && props.nextStep !== VERIFY_EMAIL) {
             return <div>
                 <UserRegister></UserRegister>
             </div>

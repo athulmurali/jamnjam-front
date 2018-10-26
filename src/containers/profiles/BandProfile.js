@@ -8,16 +8,12 @@ import CardMedia from "@material-ui/core/es/CardMedia/CardMedia";
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
-import Artist from "../../services/lostFmServices/Artist";
 import MembersChip from "../MembersChip";
 import {connect} from "react-redux";
 import {GET_PROFILE} from "../../redux/Constants/userRegister";
 import {UserService} from "../../services/api/user";
 import {Link} from "react-router-dom";
 import {NO_IMG_PICTURE} from "../../const/url";
-
-
-const artist = Artist.instance;
 
 const styles = {
     masterContainer:{
@@ -81,11 +77,7 @@ const styles = {
 
 
 class BandProfile extends React.Component{
-    constructor(props){
-        super(props)
 
-
-    }
     componentDidMount(){
 
         this.getBandInfo()
@@ -166,7 +158,7 @@ class BandProfile extends React.Component{
                             <div className="col-6">
                                 <Button  color="primary" size="small" disabled>Contact</Button>
                             </div>
-                            { (this.props.match.params.userId ==
+                            { (this.props.match.params.userId ===
                                 localStorage.getItem('currentId') )  &&         <div className="col-6">
                                 <Link to={'/band/editProfile/'+ localStorage.getItem('currentId')  }
                                       style={{ textDecoration: 'none' ,color: 'inherit'}}>
