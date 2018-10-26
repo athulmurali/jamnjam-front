@@ -1,5 +1,4 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
 import {UserService} from "../services/api/user";
 
 class AddLookOut extends  React.Component{

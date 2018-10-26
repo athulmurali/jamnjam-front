@@ -17,7 +17,6 @@ import ArtistLookOuts from "./containers/ArtistLookOuts";
 import AddLookOut from "./containers/AddLookOut";
 import MyLookOuts from "./containers/MyLookOuts";
 import CelebrityProfile from "./containers/profiles/CelebrityProfile";
-import MyBookings from "./containers/bookings/MyBookings";
 import {PATH_BOOK_ARTIST, PATH_MY_GIGS} from "./const/routeConstants";
 import CreateBooking from "./containers/bookings/CreateBooking";
 import LookOutsFromMyBands from "./containers/LookOutsFromMyBands";

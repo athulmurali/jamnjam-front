@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/es/Button/Button";
 import Link from "react-router-dom/es/Link";
 import {PATH_BOOK_ARTIST} from "../../const/routeConstants";
-import queryString from 'query-string'
 import * as roles from "../../const/userRoles";
 
 const styles = theme => ({
@@ -55,7 +54,7 @@ const styles = theme => ({
 function UserCard(props) {
     const { classes, theme } = props;
 
-    const myProfile = JSON.parse(localStorage.getItem('myProfile'))
+    const myProfile = JSON.parse(localStorage.getItem('myProfile'));
 
 
     return (

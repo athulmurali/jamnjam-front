@@ -15,7 +15,6 @@ import BookIcon from '@material-ui/icons/AddBox'
 
 
 import {Link} from "react-router-dom";
-import {PATH_BOOK_ARTIST} from "../../const/routeConstants";
 
 export const mailFolderListItems = (
     <div>

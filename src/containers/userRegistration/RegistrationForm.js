@@ -16,7 +16,7 @@ import {
 } from "../../redux/Constants/userRegister";
 import {connect} from "react-redux";
 import {UserService} from "../../services/api/user";
-import {ARTIST, BAND} from "../../const/userRoles";
+import {BAND} from "../../const/userRoles";
 import {Redirect} from "react-router-dom";
 
 const styles = theme => ({

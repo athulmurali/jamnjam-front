@@ -1,9 +1,7 @@
 import {connect} from "react-redux";
 import {
     CREATE_APPOINTMENT,
-    GET_MY_APPOINTMENTS,
-    SET_APPOINTMENT_START_END_DATE, TEMP_NAME,
-    UPDATE_FIELD_BY_VALUE
+    SET_APPOINTMENT_START_END_DATE, UPDATE_FIELD_BY_VALUE
 } from "../../redux/Constants/appointments";
 import {GET_PROFILE_FROM_LOCAL_ST} from "../../redux/Constants/userRegister";
 import React from "react";
@@ -22,7 +20,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
 import queryString from 'query-string'
-import {CALENDAR_BOOKING, ERROR_IMG, LOADING_GIF, NO_IMG_PICTURE, SUCCESS_IMG} from "../../const/url";
+import {CALENDAR_BOOKING, ERROR_IMG, LOADING_GIF, SUCCESS_IMG} from "../../const/url";
 import {Link} from "react-router-dom";
 import {PATH_MY_GIGS} from "../../const/routeConstants";
 
@@ -80,8 +78,8 @@ const styles =theme=>({
 
 function CreateBooking(props) {
     const {classes} = props;
-    const values = queryString.parse(props.location.search)
-    const artistId = values.artistId
+    const values = queryString.parse(props.location.search);
+    const artistId = values.artistId;
     return (
         <div className={classes.container}>
             {!!props.fetching &&
@@ -242,7 +240,7 @@ function CreateBooking(props) {
                             && props.newBooking.remarks)}
                             onClick={()=>{
                                 const appointmentService = new AppointmentService();
-                                const tempPromise =appointmentService.createAppointment(props.newBooking)
+                                const tempPromise =appointmentService.createAppointment(props.newBooking);
                                 props.createNewBooking(tempPromise)
                             }
                             }>
@@ -272,7 +270,7 @@ const mapDispatchToProps = (dispatch) =>({
     },
 
     setStartEndDate:(artistId,title,dateAndTime,endDateAndTime,remarks)=>{
-        console.log(title)
+        console.log(title);
         dispatch({
             type :SET_APPOINTMENT_START_END_DATE,
             payload:{

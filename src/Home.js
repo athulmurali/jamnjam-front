@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from "./components/SearchBar";
 import CelebrityCard from "./components/cards/CelebrityCard";
-import GoogleSignIn from "./components/GoogleSignIn";
 import Artist from "./services/lostFmServices/Artist";
 import Typography from "@material-ui/core/es/Typography/Typography";
 import Logout from './components/Logout'
@@ -12,9 +11,8 @@ import {Users} from "./services/api/Users";
 import UserCard from "./components/cards/UserCard";
 import {connect} from "react-redux";
 import {CLOSE_SIDE_BAR} from "./redux/Constants/userAccount";
-import {SET_UPDATE_MODE} from "./redux/Constants/userRegister";
-import {searchReducer} from "./redux/reducers/searchReducer";
 import {NO_IMG_PICTURE} from "./const/url";
+
 const artist = Artist.instance;
 class Home extends Component {
     constructor(props)
@@ -93,7 +91,6 @@ class Home extends Component {
     };
 
     getArtistNames=(country)=>{
-        let artistNames =[];
 
         artist.getTopArtistsInLocation(country).then(response=>{
             if (!!response.topartists) this.setState({

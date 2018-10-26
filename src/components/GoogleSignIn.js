@@ -2,12 +2,15 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 import {CLIENT_ID} from '../const/googleCredentials'
 import {connect} from "react-redux";
-import {GOOGLE_LOGIN} from "../redux/Constants/userLogin";
 import {UserService} from "../services/api/user";
+import {SET_GOOGLE_USER_DATA} from "../redux/Constants/socialLogin";
+import RoleSelectDialog from "./RoleSelectDialog";
 
 const responseGoogle = (response) => {
 console.log(response)
 };
+
+
 
 const styles=
     {
@@ -16,23 +19,29 @@ const styles=
             cursor : 'pointer',
         }
 
-    }
+    };
 
 const GoogleSignIn =(props)=> {
     return (
-        <GoogleLogin
-        className ="btn btn-block btn-outline-danger"
-        clientId={CLIENT_ID}
-        buttonText="Google Login"
-        onSuccess={props.googleLogin}
-        onFailure={responseGoogle}
+        <div>
+            <RoleSelectDialog/>
+            <GoogleLogin
+                    className ="btn btn-block btn-outline-danger"
+                    clientId={CLIENT_ID}
+                    buttonText="Google Login"
+                    onSuccess={props.googleLogin}
+                    onFailure={responseGoogle}
 
-        style={styles.button}
+                    style={styles.button}
 
 
-            scope ={"https://www.googleapis.com/auth/calendar"}
+                    scope ={"https://www.googleapis.com/auth/calendar"}
 
-    />)
+                />
+        </div>
+)
+
+
 };
 
 const mapStateToProps =(state)=>{
@@ -41,21 +50,22 @@ const mapStateToProps =(state)=>{
         ...state.loginReducer
     }
 
-}
+};
 
 const mapDispatchToProps = (dispatch) =>({
 
     googleLogin:(data)=>{
-        console.log(data)
-        const userService = new UserService()
-        const promise = userService.googleLoginService(data)
+        console.log(data);
+        const userService = new UserService();
+        const promise = userService.googleLoginService(data);
         dispatch({
-            type :GOOGLE_LOGIN,
-            payload : promise
-            })
+            type :SET_GOOGLE_USER_DATA,
+            payload :{
+            googleUserData:data}
+        })
     }
 
-})
+});
 
 
 

@@ -7,7 +7,7 @@ import appointmentService from '../../services/api/AppointmentService'
 
 const service = new appointmentService();
 const MyBookings=(props)=>{
-    console.log("update required : ? " + props.updateRequired)
+    console.log("update required : ? " + props.updateRequired);
 
     if(!!props.updateRequired)
     {
@@ -56,7 +56,7 @@ const MyBookings=(props)=>{
                 <h2>No bookings at this time!</h2>
             }
         </div>
-}
+};
 const mapStateToProps = state => {
     return {...state.appointmentsReducer}
 };

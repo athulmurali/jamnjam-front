@@ -20,8 +20,9 @@ import loginReducer from "./redux/reducers/loginReducer";
 import {searchReducer} from "./redux/reducers/searchReducer";
 import 'react-dates/initialize';
 import appointmentsReducer from "./redux/reducers/appointmentsReducer";
+import socialLoginReducer from "./redux/reducers/socialLoginReducer";
 const combinedReducers = combineReducers({userAccountReducer, userRegistrationReducer,
-    loginReducer, searchReducer, appointmentsReducer});
+    loginReducer, searchReducer, appointmentsReducer, socailLoginReducer: socialLoginReducer});
 const middlewares = applyMiddleware(  promise(), thunk ,logger);
 const store = createStore(combinedReducers,middlewares);
 

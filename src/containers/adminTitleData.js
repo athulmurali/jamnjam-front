@@ -4,7 +4,6 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import StarsIcon from '@material-ui/icons/Star';
 import MailIcon from '@material-ui/icons/Mail';
 import PersonIcon from '@material-ui/icons/PersonOutline'
 import HomeIcon from '@material-ui/icons/Home'

@@ -14,8 +14,8 @@ export default class LookOutsFromMyBands extends React.Component{
     getLookOuts = ()=>{
 
         const userService = new UserService();
-        const myProfile = JSON.parse(localStorage.getItem('myProfile'))
-        const myBands = myProfile.memberOf
+        const myProfile = JSON.parse(localStorage.getItem('myProfile'));
+        const myBands = myProfile.memberOf;
 
         userService.getArtistLookOuts().then(
             res=>{
@@ -24,7 +24,7 @@ export default class LookOutsFromMyBands extends React.Component{
                 const filteredPosts = allPosts.filter((post,index)=>{
 
                     return myBands.indexOf(post.postedBy) > -1
-                })
+                });
 
                 this.setState({
                     lookOuts : filteredPosts

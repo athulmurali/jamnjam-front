@@ -5,7 +5,6 @@ import Chip from '@material-ui/core/Chip';
 import {NO_IMG_PICTURE} from '../../const/url'
 import {Link} from "react-router-dom";
 import {Avatar} from "material-ui";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const styles = theme => ({
     root: {

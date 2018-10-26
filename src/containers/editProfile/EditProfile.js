@@ -2,7 +2,7 @@ import React from "react";
 import RegistrationForm from "../userRegistration/RegistrationForm";
 import {connect} from "react-redux";
 import {FILL_USER_DETAILS} from "../../const/PageState";
-import {GET_PROFILE_FROM_LOCAL_ST, RESET_ADMIN_SCREEN, UPDATE_ROLE} from "../../redux/Constants/userRegister";
+import {GET_PROFILE_FROM_LOCAL_ST, UPDATE_ROLE} from "../../redux/Constants/userRegister";
 
 class  EditProfile extends React.Component {
 

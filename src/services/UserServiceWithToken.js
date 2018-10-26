@@ -1,5 +1,5 @@
 import axiosInstance from "./tokenedRequest";
-import {BASE_URL, USER_PROFILE_URL} from "../const/url";
+import {USER_PROFILE_URL} from "../const/url";
 
 
 export  default class  UserServiceWithToken{

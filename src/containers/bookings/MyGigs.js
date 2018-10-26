@@ -91,7 +91,7 @@ const columns = [
         key: 'delete',
         label: 'Delete',
         render: (value, column, row, data) =>  {
-            console.log(column)
+            console.log(column);
             return <Button color="secondary" className={styles.button}
             onClick={(e)=>{
                 column.fun(column.id)
@@ -101,7 +101,7 @@ const columns = [
         }
     },
 
-]
+];
 const embedProp=(appointments, fun)=>{
 
     // for(let i=0; i< appointments.length; i++)
@@ -112,18 +112,18 @@ const embedProp=(appointments, fun)=>{
     return appointments.map((appointment)=>{
 
 
-        appointment.fun= fun
+        appointment.fun= fun;
 
-        console.log(appointment)
+        console.log(appointment);
 
         return appointment
 
     })
 // return appointments
-}
+};
 
 const   MyGigs =(props)=>{
-    console.log("update required : ? " + props.updateRequired)
+    console.log("update required : ? " + props.updateRequired);
 
     if(!!props.updateRequired)
     {
@@ -156,7 +156,7 @@ const   MyGigs =(props)=>{
 
     )
 
-}
+};
 
 const mapStateToProps = state => {
     return {...state.appointmentsReducer}
@@ -170,7 +170,7 @@ const mapDispatchToProps = (dispatch) =>({
     getProfileFromLocalStorage:()=>{dispatch({type : GET_PROFILE_FROM_LOCAL_ST})},
 
     deleteMyBooking:(bookingId)=>{
-        console.log(bookingId)
+        console.log(bookingId);
         dispatch({
         type : DELETE_APPOINTMENT,
         payload:service.deleteAppointment(bookingId)

@@ -1,9 +1,8 @@
 import React from 'react';
-import {createMuiTheme, withStyles} from '@material-ui/core/styles';
+import { withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -66,14 +65,6 @@ const styles = theme => ({
         fontSize: 18,
     },
 });
-
-const theme = createMuiTheme({
-    palette: {
-        primary: green,
-    },
-});
-
-
 
 
  class  SearchBar extends React.Component {

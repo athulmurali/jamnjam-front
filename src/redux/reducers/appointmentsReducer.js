@@ -8,7 +8,7 @@ import {
     GET_MY_APPOINTMENTS_FULFILLED,
     GET_MY_APPOINTMENTS_PENDING,
     GET_MY_APPOINTMENTS_REJECTED,
-    SET_APPOINTMENT_START_END_DATE, TEMP_NAME_FULFILLED, TEMP_NAME_PENDING, TEMP_NAME_REJECTED,
+    SET_APPOINTMENT_START_END_DATE,
     UPDATE_APPOINTMENT_FULFILLED,
     UPDATE_APPOINTMENT_PENDING,
     UPDATE_APPOINTMENT_REJECTED, UPDATE_FIELD_BY_VALUE
@@ -39,7 +39,7 @@ const appointmentsReducer = (state = initialState, action) => {
         case GET_MY_APPOINTMENTS_PENDING:
                 return {
                     ...state, fetching:true,error: false
-                }
+                };
 
 
 
@@ -52,7 +52,7 @@ const appointmentsReducer = (state = initialState, action) => {
                 error: false,
                 updateRequired : true,
                 updateSuccess: true,
-            }
+            };
 
 
         case UPDATE_APPOINTMENT_REJECTED:
@@ -63,7 +63,7 @@ const appointmentsReducer = (state = initialState, action) => {
                     ...state, fetching:false,
                     error: action.payload.response.data,
                     updateRequired: false
-                }
+                };
 
 
 
@@ -73,16 +73,16 @@ const appointmentsReducer = (state = initialState, action) => {
                 error: false,
                 myAppointments : action.payload.data._embedded.appointment,
                 updateRequired : false,
-            }
+            };
         case SET_APPOINTMENT_START_END_DATE : return {
             ...state,
             fetching : false,
             newBooking : {...action.payload}
-        }
+        };
         case UPDATE_FIELD_BY_VALUE: return{
             ...state,
             ...action.payload
-        }
+        };
 
         default :{
             // alert("case not matching! ")

@@ -8,6 +8,7 @@ import {
 } from "../Constants/userRegister";
 import {FILL_USER_DETAILS, SELECT_ROLE, VERIFY_EMAIL} from "../../const/PageState";
 import {SELECT_USER} from "../Constants/userAccount";
+import {TOKEN_NAME} from "../../const/url";
 
 const initialState = {
     firstName : '',
@@ -61,6 +62,7 @@ const userRegistrationReducer = (state = initialState, action) => {
         }
 
         case CREATE_USER_FULFILLED:{
+            localStorage.setItem(TOKEN_NAME, action.payload.data.token);
 
             return {...state, fetching : false,
                 error: false,

@@ -94,12 +94,12 @@ class DrawerMenu extends React.Component {
                         onClick={this.props.closeSideBar}
                         onKeyDown={this.toggleDrawer('left', false)}
                     >
-                        {this.props.role== roles.ADMIN && sideListAdmin}
+                        {this.props.role === roles.ADMIN && sideListAdmin}
 
-                        {this.props.role== roles.BAND && sideListBand}
+                        {this.props.role=== roles.BAND && sideListBand}
 
 
-                        {this.props.role== roles.ARTIST && sideListArtist}
+                        {this.props.role=== roles.ARTIST && sideListArtist}
 
                     </div>
                 </Drawer>

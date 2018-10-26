@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BASE_URL, EMAIL_AVAILABILITY_URL, USERNAME_AVAILABILITY_URL} from "../../const/url";
+import {EMAIL_AVAILABILITY_URL, USERNAME_AVAILABILITY_URL} from "../../const/url";
 
 export class UserByRole{
 

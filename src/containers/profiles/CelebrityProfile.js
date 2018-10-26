@@ -10,9 +10,7 @@ import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
 import Artist from "../../services/lostFmServices/Artist";
 import {connect} from "react-redux";
-import CelebrityChip from "../userRegistration/CelebrityChip";
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {withStyles} from "@material-ui/core/styles/index";
 
 const artist = Artist.instance;

@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import {connect} from "react-redux";
 import {ADMIN, ARTIST, BAND} from "../../const/userRoles";
 import {UPDATE_ROLE} from "../../redux/Constants/userRegister";
-import {ARTIST_COVER, REG_ADMIN_COVER, REG_ARTIST_COVER, REG_BAND_COVER} from "../../const/url";
+import { REG_ADMIN_COVER, REG_ARTIST_COVER, REG_BAND_COVER} from "../../const/url";
 
 const styles = theme => ({
     root: {

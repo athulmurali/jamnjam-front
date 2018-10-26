@@ -1,14 +1,12 @@
 import {
-    GOOGLE_LOGIN_PENDING,
-    GOOGLE_LOGIN_REJECTED,
-    GOOGLE_LOGIN_FULFILLED,
     LOGIN_FULFILLED,
     LOGIN_PENDING,
     LOGIN_REJECTED,
-    UPDATE_LOGIN_FIELD
+    UPDATE_LOGIN_FIELD, GOOGLE_LOGIN
 } from "../Constants/userLogin";
 import {TOKEN_NAME} from "../../const/url";
 import {GET_PROFILE_FULFILLED, GET_PROFILE_PENDING, GET_PROFILE_REJECTED} from "../Constants/userRegister";
+import {ReduxActionNames} from "../Constants/commonUtils";
 
 const initialState = {
     loginData: {
@@ -19,6 +17,9 @@ const initialState = {
     fetching : false,
     error : false
 };
+
+
+const GOOGLE_LOGIN_NAMES= ReduxActionNames(GOOGLE_LOGIN);
 const loginReducer = (state = initialState, action) => {
     switch (action.type) {
 
@@ -73,14 +74,14 @@ const loginReducer = (state = initialState, action) => {
 
 
 
-        case GOOGLE_LOGIN_PENDING :
+        case GOOGLE_LOGIN_NAMES.pending :
             return {...state, fetching: true, error : false};
 
-        case GOOGLE_LOGIN_REJECTED :
+        case GOOGLE_LOGIN_NAMES.rejected :
             return {...state, fetching:false, error: action.payload};
 
 
-        case GOOGLE_LOGIN_FULFILLED :
+        case GOOGLE_LOGIN_NAMES.fulfilled :
         {
 
             localStorage.clear();
@@ -98,7 +99,6 @@ const loginReducer = (state = initialState, action) => {
 
             }
         }
-
 
 
 
