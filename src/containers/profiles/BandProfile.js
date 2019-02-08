@@ -16,44 +16,41 @@ import {Link} from "react-router-dom";
 import {NO_IMG_PICTURE} from "../../const/url";
 
 const styles = {
-    masterContainer:{
-        display:"flex",
-        flexFlow:"column wrap",
-        alignSelf:"center",
-        justifyContent:"space-around",
+    masterContainer: {
+        display: "flex",
+        flexFlow: "column wrap",
+        alignSelf: "center",
+        justifyContent: "space-around",
 
 
     },
-    container:{
+    container: {
         display: 'flex',
-        flexFlow:"row wrap",
-        flex:1,
-        alignSelf:"space-around",
-        justifyContent:"center",
-
-
-
+        flexFlow: "row wrap",
+        flex: 1,
+        alignSelf: "space-around",
+        justifyContent: "center",
 
 
     },
     card: {
 
         display: "flex",
-        flexDirection:"column",
-        flex:1,
-        minWidth:250,
-        justifyContent:"space-around",
+        flexDirection: "column",
+        flex: 1,
+        minWidth: 250,
+        justifyContent: "space-around",
         // backgroundColor:"grey",
-        borderColor:"grey",
-        borderWidth:"2"
+        borderColor: "grey",
+        borderWidth: "2"
 
     },
-    cardMedia:{
-        alignSelf:"center",
-        justifyContent:"space-around",
+    cardMedia: {
+        alignSelf: "center",
+        justifyContent: "space-around",
         borderRadius: 10,
-        maxWidth : 300,
-        maxHeight : 300
+        maxWidth: 300,
+        maxHeight: 300
     },
     cover: {
         height: 0,
@@ -76,16 +73,16 @@ const styles = {
 };
 
 
-class BandProfile extends React.Component{
+class BandProfile extends React.Component {
 
-    componentDidMount(){
+    componentDidMount() {
 
         this.getBandInfo()
 
     }
 
 
-    getBandInfo=()=>{
+    getBandInfo = () => {
 
         const getUserServiceObj = new UserService();
 
@@ -93,99 +90,91 @@ class BandProfile extends React.Component{
     };
 
 
+    render() {
+        return <div>
 
+            {this.props.currentProfile && <div style={styles.masterContainer}>
+                <div style={styles.container}>
+                    <h1>Band page</h1>
+                </div>
 
+                <div style={styles.container}>
 
-
-    render(){ return <div>
-
-        {this.props.currentProfile && <div style={styles.masterContainer}>
-            <div style={styles.container}>
-                <h1>Band page</h1>
-            </div>
-
-            <div style={styles.container}>
-
-                <CardMedia style={styles.card}>
-                    <img style={styles.cardMedia}
-                         src={    this.props.currentProfile.img || NO_IMG_PICTURE}
-                    />
-                </CardMedia>
-                <Card style={styles.card}>
-                    <CardContent>
-                        <Typography style={styles.title} color="textSecondary">
-                            Band Name
-                        </Typography>
-                        <Typography variant="headline" component="h2">
-                            {/*{this.state.artistInfo.name}*/}
-                            {this.props.currentProfile.title}
-                        </Typography>
-                        <List>
-                            <ListItem button divider disabled>
-                                <ListItemText primary="Location -zip"
-                                              secondary={this.props.currentProfile.zip}/>
-                            </ListItem>
-                            <ListItem button divider >
-                                <ListItemText primary="Fans"
-                                              secondary={123456} />
-                            </ListItem>
-                        </List>
-
-
-                        <Typography style={styles.pos} color="textSecondary">
-                            Members
-                        </Typography>
-
-                        <MembersChip
-
-                            img={""}
-
-                            members = {this.props.currentProfile.members}
-                            editMode={false}
+                    <CardMedia style={styles.card}>
+                        <img style={styles.cardMedia}
+                             src={this.props.currentProfile.img || NO_IMG_PICTURE}
+                             alt={"Profile picture"}
                         />
+                    </CardMedia>
+                    <Card style={styles.card}>
+                        <CardContent>
+                            <Typography style={styles.title} color="textSecondary">
+                                Band Name
+                            </Typography>
+                            <Typography variant="headline" component="h2">
+                                {/*{this.state.artistInfo.name}*/}
+                                {this.props.currentProfile.title}
+                            </Typography>
+                            <List>
+                                <ListItem button divider disabled>
+                                    <ListItemText primary="Location -zip"
+                                                  secondary={this.props.currentProfile.zip}/>
+                                </ListItem>
+                                <ListItem button divider>
+                                    <ListItemText primary="Fans"
+                                                  secondary={123456}/>
+                                </ListItem>
+                            </List>
 
 
-                        <Typography style={styles.pos} color="textSecondary">
-                            ABOUT
-                        </Typography>
-                        <Typography component="p">
-                            {/*{this.state.artistInfo.bio.summary}*/}
-                            {this.props.currentProfile.bio}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <div className="row">
-                            <div className="col-6">
-                                <Button  color="primary" size="small" disabled>Contact</Button>
+                            <Typography style={styles.pos} color="textSecondary">
+                                Members
+                            </Typography>
+
+                            <MembersChip
+                                img={null}
+                                members={this.props.currentProfile.members}
+                                editMode={false}
+                            />
+
+
+                            <Typography style={styles.pos} color="textSecondary">
+                                ABOUT
+                            </Typography>
+                            <Typography component="p">
+                                {/*{this.state.artistInfo.bio.summary}*/}
+                                {this.props.currentProfile.bio}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <div className="row">
+                                <div className="col-6">
+                                    <Button color="primary" size="small" disabled>Contact</Button>
+                                </div>
+                                {(this.props.match.params.userId ===
+                                    localStorage.getItem('currentId')) && <div className="col-6">
+                                    <Link to={'/band/editProfile/' + localStorage.getItem('currentId')}
+                                          style={{textDecoration: 'none', color: 'inherit'}}>
+                                        <Button color="primary" size="small">Edit</Button>
+                                    </Link>
+
+                                </div>}
+
                             </div>
-                            { (this.props.match.params.userId ===
-                                localStorage.getItem('currentId') )  &&         <div className="col-6">
-                                <Link to={'/band/editProfile/'+ localStorage.getItem('currentId')  }
-                                      style={{ textDecoration: 'none' ,color: 'inherit'}}>
-                                    <Button   color="primary" size="small">Edit</Button>
-                                </Link>
-
-                            </div>}
-
-                        </div>
 
 
+                        </CardActions>
 
-                    </CardActions>
+                    </Card>
 
-                </Card>
+                </div>
+            </div>}
 
-            </div>
-        </div>}
-
-    </div>
-
-
+        </div>
 
 
     }
 }
-
 
 
 const mapStateToProps = state => {
@@ -193,11 +182,11 @@ const mapStateToProps = state => {
 };
 
 
-const mapDispatchToProps = (dispatch) =>({
+const mapDispatchToProps = (dispatch) => ({
 
-    getProfile: (promise)=>{
+    getProfile: (promise) => {
         dispatch({
-            type : GET_PROFILE,
+            type: GET_PROFILE,
             payload: promise
         })
     }
@@ -205,5 +194,5 @@ const mapDispatchToProps = (dispatch) =>({
 
 });
 
-export default  connect(mapStateToProps, mapDispatchToProps)(BandProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(BandProfile);
 

@@ -13,7 +13,7 @@ const UserRegister =(props)=>{
     {
         case SELECT_ROLE : return <RoleSelect/>;
         case FILL_USER_DETAILS :  return <RegistrationForm/>;
-        case VERIFY_EMAIL : return <VerifyEmail/>
+        case VERIFY_EMAIL : return <VerifyEmail/>;
         default: return <RoleSelect/>;
     }
 

@@ -81,11 +81,11 @@ function CreateBooking(props) {
 
 
 
-    let defaultStartDateTime = moment(new Date().setMinutes(new Date().getMinutes() + 30)).format()
-    defaultStartDateTime  = defaultStartDateTime.substr(0, defaultStartDateTime.length -9 )
+    let defaultStartDateTime = moment(new Date().setMinutes(new Date().getMinutes() + 30)).format();
+    defaultStartDateTime  = defaultStartDateTime.substr(0, defaultStartDateTime.length -9 );
 
-    let defaultEndDateTime = moment(new Date().setHours(new Date().getHours() + 1)).format()
-    defaultEndDateTime  = defaultEndDateTime.substr(0, defaultEndDateTime.length -9 )
+    let defaultEndDateTime = moment(new Date().setHours(new Date().getHours() + 1)).format();
+    defaultEndDateTime  = defaultEndDateTime.substr(0, defaultEndDateTime.length -9 );
 
     const {classes} = props;
     const values = queryString.parse(props.location.search);

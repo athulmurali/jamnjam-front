@@ -121,12 +121,12 @@ class CelebrityProfile extends React.Component{
                     </div>
                     <div style={styles.container}>
                         <CardMedia style={styles.card}>
-
                             {
                                 !! artistInfo.image &&
                                 <img style={styles.cardMedia}
-
-                                     src={artistInfo.image[3]["#text"]} />
+                                     src={artistInfo.image[3]["#text"]}
+                                     alt={"artist card image"}
+                                />
                             }
                         </CardMedia>
                         <Card style={styles.card}>

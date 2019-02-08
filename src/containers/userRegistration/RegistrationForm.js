@@ -95,13 +95,13 @@ class RegistrationForm extends React.Component {
 
 
     getUserNameAvailFromServer=()=>{
-        this.userByRoleService.getUserNameAvailability(this.props.role, this.props.username).
-        then(result=>{
+        this.userByRoleService.getUserNameAvailability(this.props.role, this.props.username)
+            .then(_=>{
             this.setState({
                 isUsernameAvailable : true,
                 usernameError : ''})
-        }).
-        catch(err=>{
+        })
+            .catch(err=>{
             this.setState({isUsernameAvailable : false,
                 usernameError : 'username taken!',})
         })

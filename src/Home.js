@@ -32,8 +32,8 @@ class Home extends Component {
         const users = new Users();
 
 
-        users.getAllUsers().
-        then(result=>{
+        users.getAllUsers()
+            .then(result=>{
 
             const data =result.data;
             const allUsers = [];

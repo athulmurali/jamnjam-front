@@ -87,7 +87,9 @@ class RoleSelect extends React.Component {
                                 <h2>Artist</h2>
 
                                 <img src={REG_ARTIST_COVER}
-                                     style={{width: '250px', height: '250px'}} />
+                                     style={{width: '250px', height: '250px'}}
+                                     alt="artist cover image"
+                                />
 
                                 </Paper>
                             </Grid>
