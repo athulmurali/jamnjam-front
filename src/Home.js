@@ -168,7 +168,7 @@ class Home extends Component {
                       </ul>
                   }
 
-                  {this.state.accountType =="FREE"  &&
+                  {this.state.accountType==="FREE"  &&
                   <ul style={{
                           listStyle: "none",
                           backgroundColor: "grey",

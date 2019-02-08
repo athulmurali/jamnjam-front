@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import purple from '@material-ui/core/colors/purple';
@@ -66,199 +66,187 @@ const styles = theme => ({
     },
 });
 
+class SearchBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: '',
+            accountType: "FREE"
+        };
 
- class  SearchBar extends React.Component {
-     constructor(props){
-         super(props);
+    }
 
-         this.state = {
-             value: '',
-             accountType : "FREE"
-         };
+    componentDidMount() {
+        console.log('SearchBar : Component mounted ')
+    }
 
-     }
+    handleChange = event => {
+        this.setState({value: event.target.value});
 
-     componentDidMount() {
-         console.log('SearchBar : Component mounted ')
-     }
-     handleChange = event => {
-         this.setState({ value: event.target.value });
+        this.props.updateSearchRole(event.target.value)
+    };
+    handleAccountTypeChange = event => {
+        this.setState({accountType: event.target.value});
 
-         this.props.updateSearchRole(event.target.value)
-     };
-     handleAccountTypeChange =event=>{
-         this.setState({ accountType: event.target.value });
+        this.props.updateSearchAccountType(event.target.value)
 
-         this.props.updateSearchAccountType(event.target.value)
+    };
 
-     };
+    render() {
+        return (
+            <div
+                style={{
+                    margin: 10,
+                    alignContent: "center",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                <Paper>
 
-     render() {
-         return (
-             <div
-                  style={{
-                      margin: 10,
-                      alignContent: "center",
-                      justifyContent: "center",
-                      alignItems: "center"
-                  }}>
-                 <Paper>
+                    <RadioGroup
+                        aria-label="Type"
+                        name="type"
+                        className={styles.group}
+                        value={this.state.accountType}
+                        onChange={this.handleAccountTypeChange}
+                        style={{
+                            alignContent: "center",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "row"
+                        }}
+                    >
 
-                     <RadioGroup
-                         aria-label="Type"
-                         name="type"
-                         className={styles.group}
-                         value={this.state.accountType}
-                         onChange={this.handleAccountTypeChange}
-                         style={{
-                             alignContent: "center",
-                             justifyContent: "center",
-                             alignItems: "center",
-                             flexDirection: "row"
-                         }}
-                     >
+                        <FormControlLabel value="PRO" control={<Radio color="primary"/>} label="PRO"/>
+                        <FormControlLabel value="FREE" control={<Radio color="primary"/>} label="Free"/>
+                    </RadioGroup>
+                    <TextField
+                        defaultValue=""
+                        width={'100%'}
+                        placeholder={this.state.accountType === "PRO" ? "  country" : "zip"}
+                        label="Search"
+                        id="bootstrap-input"
+                        InputProps={{
+                            disableUnderline: true,
+                            classes: {
+                                root: styles.bootstrapRoot,
+                                input: styles.bootstrapInput,
+                            },
+                        }}
+                        InputLabelProps={{
+                            shrink: true,
+                            className: styles.bootstrapFormLabel,
+                        }}
+                        onChange={(event) => {
+                            this.props.onChangeText(event.target.value);
 
-                         <FormControlLabel value="PRO" control={<Radio color="primary"/>} label="PRO"/>
-                         <FormControlLabel value="FREE" control={<Radio color="primary"/>} label="Free"/>
-                     </RadioGroup>
-                     <TextField
-                         defaultValue=""
-                         width ={'100%'}
-                         placeholder={ this.state.accountType === "PRO" ? "  country" : "zip"}
-                         label="Search"
-                         id="bootstrap-input"
-                         InputProps={{
-                             disableUnderline: true,
-                             classes: {
-                                 root: styles.bootstrapRoot,
-                                 input: styles.bootstrapInput,
-                             },
-                         }}
-                         InputLabelProps={{
-                             shrink: true,
-                             className: styles.bootstrapFormLabel,
-                         }}
-                         onChange={(event)=>{
-                             this.props.onChangeText(event.target.value);
+                            this.props.updateSearchZip(event.target.value)
 
-                             this.props.updateSearchZip(event.target.value)
+                        }}
+                    />
 
-                         }}
-                     />
+                    {this.state.accountType === "PRO"
+                    &&
+                    <div>
+                        <Button variant="contained" color="default"
+                                onClick={
+                                    () => {
+                                        console.log("asdasd");
+                                        this.props.onPressSearch();
+                                    }}>
+                            Search
+                        </Button>
 
+                    </div>
 
+                    }
 
+                    {this.state.accountType === "FREE"
+                    &&
+                    <div>
+                        <Button variant="contained" color="default"
+                                onClick={
+                                    () => {
+                                        console.log("asdasd");
+                                        this.props.onPressSearch();
+                                    }}>
+                            Search
+                        </Button>
+                        <RadioGroup
+                            aria-label="Type"
+                            name="type"
+                            className={styles.group}
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                            style={{
+                                alignContent: "center",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                flexDirection: "row"
+                            }}
+                        >
 
-                     {this.state.accountType=== "PRO"
-                     &&
-                     <div>
-                         <Button variant="contained" color="default"
-                                 onClick={
-                                     ()=>{
-                                         console.log("asdasd");
-                                         this.props.onPressSearch();
-                                     }}>
-                             Search
-                         </Button>
+                            <FormControlLabel value="artist" control={<Radio color="primary"/>} label="Artist"/>
+                            <FormControlLabel value="band" control={<Radio color="primary"/>} label="Band"/>
+                            <FormControlLabel value="" control={<Radio color="primary"/>} label="All"/>
+                        </RadioGroup>
+                    </div>
 
-                     </div>
+                    }
 
-                     }
+                </Paper>
 
-                     {this.state.accountType=== "FREE"
-                     &&
-                         <div>
-                             <Button variant="contained" color="default"
-                                     onClick={
-                                         ()=>{
-                                             console.log("asdasd");
-                                             this.props.onPressSearch();
-                                         }}>
-                                 Search
-                             </Button>
-                             <RadioGroup
-                                 aria-label="Type"
-                                 name="type"
-                                 className={styles.group}
-                                 value={this.state.value}
-                                 onChange={this.handleChange}
-                                 style={{
-                                     alignContent: "center",
-                                     justifyContent: "center",
-                                     alignItems: "center",
-                                     flexDirection: "row"
-                                 }}
-                             >
+                <Paper>
 
-                                 <FormControlLabel value="artist" control={<Radio color="primary"/>} label="Artist"/>
-                                 <FormControlLabel value="band" control={<Radio color="primary"/>} label="Band"/>
-                                 <FormControlLabel value="" control={<Radio color="primary"/>} label="All"/>
-                             </RadioGroup>
-                         </div>
+                </Paper>
 
-                     }
-
-                 </Paper>
-
-                 <Paper>
-
-                 </Paper>
-
-             </div>
-         );
-     }
+            </div>
+        );
+    }
 }
 
-
-
-
-
-
-const mapStateToProps = state => {
+const mapStateToProps    = state => {
     return {
-        isLoggedIn : state.userAccountReducer.isLoggedIn,
-        profile : state.loginReducer.profile
+        isLoggedIn: state.userAccountReducer.isLoggedIn,
+        profile: state.loginReducer.profile
     }
 
 };
 
+const mapDispatchToProps = (dispatch) => ({
 
-const mapDispatchToProps = (dispatch) =>({
+    updateSearchAccountType: (searchAccountType) => {
+        dispatch({
+            type: UPDATE_SEARCH_ACCOUNT_TYPE,
+            payload: {
+                searchAccountType: searchAccountType
+            }
 
-  updateSearchAccountType:(searchAccountType)=>{
-      dispatch({
-          type:  UPDATE_SEARCH_ACCOUNT_TYPE,
-          payload : {
-              searchAccountType  :searchAccountType
-          }
+        })
+    },
 
-      })
-  },
+    updateSearchZip: (zip) => {
 
+        dispatch({
+            type: UPDATE_ZIP,
+            payload: {
+                searchZip: zip
+            }
 
-  updateSearchZip:(zip)=>{
+        })
+    },
 
-      dispatch({
-          type:  UPDATE_ZIP,
-          payload:{
-              searchZip : zip
-          }
+    updateSearchRole: (searchRole) => {
+        dispatch({
+            type: UPDATE_SEARCH_ROLE,
+            payload: {
+                searchRole: searchRole
+            }
 
-      })
-  },
-
-
-  updateSearchRole:(searchRole)=>{
-      dispatch({
-          type:  UPDATE_SEARCH_ROLE,
-          payload : {
-              searchRole  :searchRole
-          }
-
-      })
-  }
+        })
+    }
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)( withStyles(styles)(SearchBar));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SearchBar));
 

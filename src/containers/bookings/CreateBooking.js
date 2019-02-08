@@ -23,6 +23,7 @@ import queryString from 'query-string'
 import {CALENDAR_BOOKING, ERROR_IMG, LOADING_GIF, SUCCESS_IMG} from "../../const/url";
 import {Link} from "react-router-dom";
 import {PATH_MY_GIGS} from "../../const/routeConstants";
+import moment from "moment";
 
 
 
@@ -77,6 +78,15 @@ const styles =theme=>({
 
 
 function CreateBooking(props) {
+
+
+
+    let defaultStartDateTime = moment(new Date().setMinutes(new Date().getMinutes() + 30)).format()
+    defaultStartDateTime  = defaultStartDateTime.substr(0, defaultStartDateTime.length -9 )
+
+    let defaultEndDateTime = moment(new Date().setHours(new Date().getHours() + 1)).format()
+    defaultEndDateTime  = defaultEndDateTime.substr(0, defaultEndDateTime.length -9 )
+
     const {classes} = props;
     const values = queryString.parse(props.location.search);
     const artistId = values.artistId;
@@ -171,7 +181,6 @@ function CreateBooking(props) {
                             className={classes.textField}
                             value={props.newBooking.title}
                             onChange={(e) =>{
-
                                 props.setStartEndDate(
                                    artistId, e.target.value,
                                     props.newBooking.dateAndTime, props.newBooking.endDateAndTime,
@@ -183,7 +192,7 @@ function CreateBooking(props) {
                             id="datetime-local"
                             label="Start DateTime"
                             type="datetime-local"
-                            defaultValue=""
+                            defaultValue={defaultStartDateTime}
                             className={classes.textField}
                             InputLabelProps={{
                                 shrink: true,
@@ -199,7 +208,7 @@ function CreateBooking(props) {
                             id="datetime-local"
                             label="End DateTime"
                             type="datetime-local"
-                            defaultValue=""
+                            defaultValue={defaultEndDateTime}
                             className={classes.textField}
                             InputLabelProps={{
                                 shrink: true,
@@ -269,14 +278,14 @@ const mapDispatchToProps = (dispatch) =>({
       }})
     },
 
-    setStartEndDate:(artistId,title,dateAndTime,endDateAndTime,remarks)=>{
+    setStartEndDate:(artistId,title,startDateAndTime,endDateAndTime,remarks)=>{
         console.log(title);
         dispatch({
             type :SET_APPOINTMENT_START_END_DATE,
             payload:{
                 with :artistId,
                 title :title,
-                dateAndTime:dateAndTime,
+                dateAndTime:startDateAndTime,
                 endDateAndTime: endDateAndTime,
                 remarks :remarks,
             }
