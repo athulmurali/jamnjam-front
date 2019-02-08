@@ -124,7 +124,7 @@ const styles = theme => ({
                      <TextField
                          defaultValue=""
                          width ={'100%'}
-                         placeholder="Country or zip"
+                         placeholder={ this.state.accountType === "PRO" ? "  country" : "zip"}
                          label="Search"
                          id="bootstrap-input"
                          InputProps={{
