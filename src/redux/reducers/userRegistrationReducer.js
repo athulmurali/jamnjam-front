@@ -155,7 +155,6 @@ const userRegistrationReducer = (state = initialState, action) => {
                 ...state,
                 selectedRole : false,
                 updateMode : false,
-                role : false,
                 selectedUser: false,
                 nextStep: SELECT_ROLE,
                 firstName : '',

@@ -2,7 +2,6 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 import {CLIENT_ID} from '../const/googleCredentials'
 import {connect} from "react-redux";
-import {UserService} from "../services/api/user";
 import {SET_GOOGLE_USER_DATA} from "../redux/Constants/socialLogin";
 import RoleSelectDialog from "./RoleSelectDialog";
 

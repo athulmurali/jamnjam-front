@@ -24,12 +24,6 @@ function handleDelete() {
     alert('You clicked the delete icon.'); // eslint-disable-line no-alert
 }
 
-function handleClick() {
-    alert('You clicked the Chip.'); // eslint-disable-line no-alert
-    
-
-}
-
 function MembersChip(props) {
     const { classes } = props;
 
@@ -40,7 +34,6 @@ function MembersChip(props) {
 
                     people.map( (member,index)=>{
                         const name = member.title || member.firstName + " " +member.lastName;
-                        const  firstChar= name.charAt(0);
 
                         return !!props.editMode ?
                             <Chip
