@@ -23,7 +23,7 @@ export default class  Artist{
 
 
     getTopArtistsInLocation=(country)=>{
-        const url ="http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country="+country+"&api_key="+API_KEY+"&format=json";
+        const url ="https://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country="+country+"&api_key="+API_KEY+"&format=json";
         return fetch(url).then((response)=>{return response.json()})
     };
 
