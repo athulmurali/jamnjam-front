@@ -5,7 +5,7 @@ import axios from 'axios';
 
 let _singleton;
 const API_KEY="ce874f4ce1ad972d051f2a6c9fc82b4f";
-const ARTIST_INFO_URL="http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key="+API_KEY+
+const ARTIST_INFO_URL="https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key="+API_KEY+
     "&format=json&mbid=MBID";
 export default class  Artist{
     constructor(singletonToken) {
