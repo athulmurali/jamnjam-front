@@ -27,7 +27,6 @@ class Home extends Component {
         }
     }
 
-
     getAllUsersFromServer = ()=>{
         const users = new Users();
 
@@ -48,8 +47,6 @@ class Home extends Component {
 
         })
     };
-
-
 
     handleAccountTypeChange=(accountType)=>{
         this.setState({
@@ -78,8 +75,9 @@ class Home extends Component {
     getArtistNames=(country)=>{
 
         artist.getTopArtistsInLocation(country).then(response=>{
-            if (!!response.topartists) this.setState({
-                artistNames : response.topartists.artist
+            const data=  response.data
+            if (!!data.topartists) this.setState({
+                artistNames : data.topartists.artist
             })
 
         })
@@ -214,8 +212,6 @@ const mapDispatchToProps = (dispatch) =>({
    resetSideBar: ()=> {
        dispatch({type :CLOSE_SIDE_BAR})
    }
-
-
 
 });
 
