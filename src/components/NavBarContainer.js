@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import Button from "@material-ui/core/es/Button/Button";
+import Button from "@material-ui/core/Button/Button";
 import {LOG_IN_ACT, LOG_OUT_ACT} from '../redux/actions/userAccountActions';
 import {Link} from "react-router-dom";
 import DrawerMenu from "../containers/DrawerMenu";

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import TextField from "@material-ui/core/es/TextField/TextField";
-import Button from "@material-ui/core/es/Button/Button";
+import TextField from "@material-ui/core/TextField/TextField";
+import Button from "@material-ui/core/Button/Button";
 import GoogleSignIn from "../../components/GoogleSignIn";
 import {connect} from "react-redux";
 import {LOGIN, UPDATE_LOGIN_FIELD} from "../../redux/constants/userLogin";

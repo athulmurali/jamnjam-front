@@ -1,5 +1,5 @@
 import React from "react";
-import {Button} from "@material-ui/core/es/index";
+import {Button} from "@material-ui/core/index";
 import {withStyles} from "@material-ui/core/styles/index";
 import {Link} from "react-router-dom";
 

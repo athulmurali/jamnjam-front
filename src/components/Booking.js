@@ -1,6 +1,6 @@
 import React from "react";
-import TextField from "@material-ui/core/es/TextField/TextField";
-import Button from "@material-ui/core/es/Button/Button";
+import TextField from "@material-ui/core/TextField/TextField";
+import Button from "@material-ui/core/Button/Button";
 
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';

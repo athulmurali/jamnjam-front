@@ -4,7 +4,7 @@ import './App.css';
 import SearchBar from "./components/SearchBar";
 import CelebrityCard from "./components/cards/CelebrityCard";
 import Artist from "./services/lostFmServices/Artist";
-import Typography from "@material-ui/core/es/Typography/Typography";
+import Typography from "@material-ui/core/Typography/Typography";
 import Logout from './components/Logout'
 import {BAND} from "./const/userRoles";
 import {Users} from "./services/api/Users";
