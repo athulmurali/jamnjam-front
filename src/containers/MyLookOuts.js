@@ -1,5 +1,6 @@
 import React from "react";
 import {UserService} from "../services/api/user";
+
 export default class MyLookOuts extends React.Component{
 
     constructor(props)
@@ -43,27 +44,20 @@ export default class MyLookOuts extends React.Component{
     };
 
     deleteLookOut=(lookOutId)=>{
-        this.userService.deleteLookOut(lookOutId).then(
-            res=> {
-                console.log(res.data);
-
-                alert("success");
-
-                this.setState({
-                    completed: true
-                })
-            }).catch(err=>{
-                alert("error!");
-                    console.log(err);
-                })
-
-            };
-
+        this.userService.deleteLookOut(lookOutId)
+            .then(res => {
+                this.setState({completed: true})
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    };
 
 
     componentDidMount(){
         this.getLookOuts();
     }
+
     render(){
 
         if(!!this.state.completed)

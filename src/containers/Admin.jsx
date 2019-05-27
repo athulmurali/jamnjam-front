@@ -2,7 +2,7 @@ import React from "react";
 import TabContainer from "../components/TabContainer";
 import {Button} from "@material-ui/core/es/index";
 import {connect} from "react-redux";
-import {RESET_ADMIN_SCREEN, UPDATE_ROLE} from "../redux/Constants/userRegister";
+import {RESET_ADMIN_SCREEN, UPDATE_ROLE} from "../redux/constants/userRegister";
 import {FILL_USER_DETAILS, VERIFY_EMAIL} from "../const/PageState";
 import UserRegister from "./userRegistration/UserRegister";
 import * as userRoles from "../const/userRoles";

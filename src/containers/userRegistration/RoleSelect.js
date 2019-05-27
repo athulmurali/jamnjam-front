@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import {connect} from "react-redux";
 import {ADMIN, ARTIST, BAND} from "../../const/userRoles";
-import {UPDATE_ROLE} from "../../redux/Constants/userRegister";
+import {UPDATE_ROLE} from "../../redux/constants/userRegister";
 import { REG_ADMIN_COVER, REG_ARTIST_COVER, REG_BAND_COVER} from "../../const/url";
 
 const styles = theme => ({

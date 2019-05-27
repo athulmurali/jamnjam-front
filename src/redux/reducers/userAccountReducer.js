@@ -2,8 +2,8 @@ import {
     CLOSE_SIDE_BAR, DELETE_USER_FULFILLED, DELETE_USER_PENDING, DELETE_USER_REJECTED, LOG_IN, LOG_OUT,
     OPEN_SIDE_BAR,
     SELECT_USER
-} from "../Constants/userAccount";
-import {RESET_SELECTED_ROLE} from "../Constants/userRegister";
+} from "../constants/userAccount";
+import {RESET_SELECTED_ROLE} from "../constants/userRegister";
 
 const initialState = {
     isLoggedIn: false,

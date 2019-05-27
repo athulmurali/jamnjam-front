@@ -18,10 +18,7 @@ const styles = theme => ({
     },
 });
 
-
-
 function handleDelete() {
-    alert('You clicked the delete icon.'); // eslint-disable-line no-alert
 }
 
 function MembersChip(props) {

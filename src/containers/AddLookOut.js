@@ -24,19 +24,13 @@ class AddLookOut extends  React.Component{
             title : this.state.title,
             description : this.state.description
         };
-        this.userService.createArtistLookOuts(payload).then(
-            res=>{
-               console.log(res.data);
-               console.log("success");
-                alert("success!");
-               this.setState({
-                   completed : true
-               } )
-            }
-        ).catch(err=>{
-            console.log(err);
-            alert("error!")
-        })
+        this.userService.createArtistLookOuts(payload)
+            .then(res => {
+                this.setState({completed: true})
+            })
+            .catch(err => {
+                console.log(err);
+            })
     };
 
     componentDidMount(){

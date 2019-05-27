@@ -1,15 +1,15 @@
 import ResponsiveTable from 'material-ui-next-responsive-table'
 import React from "react";
-import {DELETE_APPOINTMENT, GET_MY_APPOINTMENTS} from "../../redux/Constants/appointments";
-import {GET_PROFILE_FROM_LOCAL_ST} from "../../redux/Constants/userRegister";
+import {DELETE_APPOINTMENT, GET_MY_APPOINTMENTS} from "../../redux/constants/appointments";
+import {GET_PROFILE_FROM_LOCAL_ST} from "../../redux/constants/userRegister";
 import {connect} from "react-redux";
-import appointmentService from '../../services/api/AppointmentService'
+import AppointmentService from '../../services/api/AppointmentService'
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import {LOADING_GIF} from "../../const/url";
 
 
-const service = new appointmentService();
+const service = new AppointmentService();
 
 const styles = theme => ({
     button: {

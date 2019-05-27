@@ -14,7 +14,8 @@ import Button from "@material-ui/core/es/Button/Button";
 import {LOG_IN_ACT, LOG_OUT_ACT} from '../redux/actions/userAccountActions';
 import {Link} from "react-router-dom";
 import DrawerMenu from "../containers/DrawerMenu";
-import {OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
+import {OPEN_SIDE_BAR} from "../redux/constants/userAccount";
+import PageMessages from "../config/PageMessages";
 
 
 const styles = theme => ({
@@ -82,7 +83,7 @@ class MenuAppBar extends React.Component {
 
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             <Link to={'/home'} style={{color: 'inherit', textDecoration : 'none'}}
-                            >Jam n' jam</Link>
+                            >{PageMessages.APP_TITLE}</Link>
                         </Typography>
                         {!!this.props.myProfile && (
                             <div>

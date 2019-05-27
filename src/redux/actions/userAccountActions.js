@@ -1,4 +1,4 @@
-import  {LOG_IN,LOG_OUT} from '../Constants/userAccount';
+import  {LOG_IN,LOG_OUT} from '../constants/userAccount';
 
 export const LOG_IN_ACT     = (dispatch, )=>{
     dispatch({

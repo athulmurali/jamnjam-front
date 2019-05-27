@@ -1,8 +1,13 @@
 import axios from 'axios';
 import {
-    ADD_DEL_MEMBER_URL, ARTIST_LOOKOUT_URL,
+    ADD_DEL_MEMBER_URL,
+    ARTIST_LOOKOUT_URL,
     BASE_URL,
-    CREATE_USER_URL, DEL_USER_BY_ROLE_ID_URL, GET_USER_BY_ROLE_ID_URL, GOOGLE_LOGIN_URL, LOGIN_URL,
+    CREATE_USER_URL,
+    DEL_USER_BY_ROLE_ID_URL,
+    GET_USER_BY_ROLE_ID_URL,
+    GOOGLE_LOGIN_URL,
+    LOGIN_URL,
     UPDATE_USER_URL
 } from "../../const/url";
 
@@ -51,11 +56,6 @@ export class UserService{
     };
 
 
-    addMember=(payload)=>{
-        return axios.post(  ADD_DEL_MEMBER_URL,payload)
-    };
-
-
     addMember=(userData)=>{
         return axios.post(ADD_DEL_MEMBER_URL,userData)
     };
@@ -81,9 +81,7 @@ export class UserService{
 
 
     deleteLookOut=(lookOutId)=> {
-
         return axios.delete(ARTIST_LOOKOUT_URL +'/'+ lookOutId.toString())
-
     }
 }
 

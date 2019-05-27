@@ -9,7 +9,7 @@ import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
 import {connect} from "react-redux";
-import {GET_PROFILE} from "../../redux/Constants/userRegister";
+import {GET_PROFILE} from "../../redux/constants/userRegister";
 import UserServiceWithToken from "../../services/UserServiceWithToken";
 import * as roles from "../../const/userRoles";
 import {UserService} from "../../services/api/user";
@@ -17,51 +17,49 @@ import {Link} from "react-router-dom";
 import {NO_IMG_PICTURE} from "../../const/url";
 import MembersChip from "../MembersChip";
 
+const userService = new UserService();
+
 const styles = {
-    masterContainer:{
-        display:"flex",
-        flexFlow:"column wrap",
-        alignSelf:"center",
-        justifyContent:"space-around",
+    masterContainer: {
+        display: "flex",
+        flexFlow: "column wrap",
+        alignSelf: "center",
+        justifyContent: "space-around",
 
 
     },
-    container:{
+    container: {
         display: 'flex',
-        flexFlow:"row wrap",
-        flex:1,
-        alignSelf:"space-around",
-        justifyContent:"center",
-
-
-
+        flexFlow: "row wrap",
+        flex: 1,
+        alignSelf: "space-around",
+        justifyContent: "center",
 
 
     },
     card: {
 
         display: "flex",
-        flexDirection:"column",
-        flex:1,
-        minWidth:250,
-        justifyContent:"space-around",
+        flexDirection: "column",
+        flex: 1,
+        minWidth: 250,
+        justifyContent: "space-around",
         // backgroundColor:"grey",
-        borderColor:"grey",
-        borderWidth:"2"
+        borderColor: "grey",
+        borderWidth: "2"
 
     },
-    cardMedia:{
-        alignSelf:"center",
-        justifyContent:"space-around",
+    cardMedia: {
+        alignSelf: "center",
+        justifyContent: "space-around",
         borderRadius: 10,
-        maxWidth :300,
-        maxHeight : 300
+        maxWidth: 300,
+        maxHeight: 300
     },
     cover: {
         height: 0,
         paddingTop: '56.25%', // 16:9
     },
-
     bullet: {
         display: 'inline-block',
         margin: '0 2px',
@@ -76,56 +74,29 @@ const styles = {
     },
 };
 
-
-
-
-
- class ArtistProfile extends React.Component{
-    constructor(props){
+class ArtistProfile extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             artistInfo: {}
         }
 
     }
-    componentDidMount(){
 
-       const getUserServiceObj = new UserServiceWithToken();
+    componentDidMount() {
+        const getUserServiceObj = new UserServiceWithToken();
         this.props.getMyProfile(getUserServiceObj.getProfile);
-
-
         const currentArtistId = this.props.match.params.artistId;
-         const currentRole = roles.ARTIST;
-
-        const userService = new UserService();
-        userService.getUser(currentRole,currentArtistId ).then(
-            res=>{
-                console.log(res.data);
-                this.setState({
-                    artistProfile : res.data
-                })
-            }
-        ).catch(
-            error=>{
-                alert("error");
-                console.log(error)
-
-            }
-        )
-
+        const currentRole = roles.ARTIST;
+        userService.getUser(currentRole, currentArtistId)
+            .then(res => this.setState({artistProfile: res.data}))
+            .catch(error => console.log(error));
 
     }
 
-
-
-    render(){
-
-
+    render() {
         if (!this.state.artistProfile) return null;
-
-
-        else return(
-
+        else return (
             <div style={styles.masterContainer}>
                 <div style={styles.container}>
                     <h1>Artist page</h1>
@@ -143,7 +114,7 @@ const styles = {
                             // src={this.state.artistInfo.image[3]["#text"]}
 
                              src={this.state.artistProfile.img ||
-                                 NO_IMG_PICTURE}
+                             NO_IMG_PICTURE}
                         />
                     </CardMedia>
                     <Card style={styles.card}>
@@ -159,14 +130,13 @@ const styles = {
                             </Typography>
 
 
-
                             <List>
                                 <ListItem button divider disabled>
                                     <ListItemText primary="Location - Zip" secondary={this.state.artistProfile.zip}/>
                                 </ListItem>
                                 <ListItem button divider disabled>
                                     {/*<ListItemText primary="Fans" secondary={this.state.artistInfo.stats.listeners} />*/}
-                                    <ListItemText primary="Fans" secondary={12345} />
+                                    <ListItemText primary="Fans" secondary={12345}/>
 
                                 </ListItem>
                                 <Typography style={styles.pos} color="textSecondary">
@@ -177,15 +147,12 @@ const styles = {
 
                                         img={""}
 
-                                        members = {this.state.artistProfile.memberOf}
+                                        members={this.state.artistProfile.memberOf}
                                         editMode={false}
                                     />
 
                                 </ListItem>
                             </List>
-
-
-
 
 
                             <Typography style={styles.pos} color="textSecondary">
@@ -199,19 +166,18 @@ const styles = {
                         <CardActions>
                             <div className="row">
                                 <div className="col-6">
-                                    <Button  color="primary" size="small" disabled>Contact</Button>
+                                    <Button color="primary" size="small" disabled>Contact</Button>
                                 </div>
-                                { (this.props.match.params.artistId===
-                                    localStorage.getItem('currentId') )  &&
+                                {(this.props.match.params.artistId ===
+                                    localStorage.getItem('currentId')) &&
                                 <div className="col-6">
-                                    <Link to={'/artist/editProfile/'+ localStorage.getItem('currentId')  }
-                                          style={{ textDecoration: 'none' ,color: 'inherit'}}>
-                                        <Button   color="primary" size="small">Edit</Button>
+                                    <Link to={'/artist/editProfile/' + localStorage.getItem('currentId')}
+                                          style={{textDecoration: 'none', color: 'inherit'}}>
+                                        <Button color="primary" size="small">Edit</Button>
                                     </Link>
 
                                 </div>}
                             </div>
-
 
 
                         </CardActions>
@@ -225,19 +191,15 @@ const styles = {
     }
 }
 
-
-
-
 const mapStateToProps = state => {
     return {...state}
 };
 
+const mapDispatchToProps = (dispatch) => ({
 
-const mapDispatchToProps = (dispatch) =>({
-
-    getMyProfile: (promise)=>{
+    getMyProfile: (promise) => {
         dispatch({
-            type : GET_PROFILE,
+            type: GET_PROFILE,
             payload: promise
         })
     },
@@ -250,7 +212,4 @@ const mapDispatchToProps = (dispatch) =>({
 });
 
 
-
-
-
-export default  connect(mapStateToProps, mapDispatchToProps)(ArtistProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(ArtistProfile);

@@ -98,7 +98,6 @@ export default class ManageNetwork extends React.Component{
             }
         ).catch(
             err =>{
-                alert("error while kicking out meber");
                 console.log(err);
                 const errorString =  JSON.stringify( err.data);
                 this.setState({error : errorString})

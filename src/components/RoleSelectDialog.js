@@ -11,11 +11,12 @@ import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {ADMIN, ARTIST, BAND} from "../const/userRoles";
-import {GOOGLE_USER_SELECT_ROLE, SET_GOOGLE_USER_DATA} from "../redux/Constants/socialLogin";
+import {CREATE_GOOGLE_USER, GOOGLE_USER_SELECT_ROLE, SET_GOOGLE_USER_DATA} from "../redux/constants/socialLogin";
 import {connect} from "react-redux";
 import {User} from "../models/User";
 import {UserService} from "../services/api/user";
-import {CREATE_USER} from "../redux/Constants/userRegister";
+import {CREATE_USER} from "../redux/constants/userRegister";
+import SocialUsersService from "../services/api/SocialUsersService";
 
 
 const styles = theme => ({
@@ -28,34 +29,21 @@ const styles = theme => ({
         minWidth: 120,
     },
 });
+const socialUserService = new SocialUsersService();
 
+const handleChange = (props, event) => props.selectRole(event.target.value);
 
-const handleChange = (props, event) => {
-
-
-
-    props.selectRole(event.target.value);
-
-
-};
 const handleOk =  (props) => {
 
     const userService = new UserService();
-
-
-
-            props.create_user_dispatch(userService.createNewUser
-            ( transformGoogleObjToLocalObj(props.selectedRole, props.googleUserData))).then(
-                (result)=>{
-                    console.log()
-                }
-            )
-
-
+    props.create_user_dispatch(userService
+        .createNewUser(transformGoogleObjToLocalObj(props.selectedRole, props.googleUserData)))
+        .then((result) => {
+        })
     // props.clearGoogleUserData()
 };
 const handleClose = (props) => {
-    // props.clearGoogleUserData();
+    props.clearGoogleUserData();
 };
 
 const transformGoogleObjToLocalObj =(role, googleUserData)=> {
@@ -72,7 +60,7 @@ const transformGoogleObjToLocalObj =(role, googleUserData)=> {
         newGoogleUser.title = "";
 
         newGoogleUser.firstName = googleUserData.profileObj.givenName;
-        newGoogleUser.lastName== googleUserData.profileObj.familyName
+        newGoogleUser.lastName = googleUserData.profileObj.familyName
     }
 
 
@@ -135,10 +123,6 @@ RoleSelectDialog.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-
-
-
-
 const mapStateToProps   =   state => {
     return{
         isNewUser       : state.socailLoginReducer.isNewUser,
@@ -162,15 +146,6 @@ const mapDispatchToProps = (dispatch) =>({
 
     },
 
-    //
-    // createNewGoogleUser:(role,googleUserData ) =>
-    // {
-    //     dispatch({type: CREATE_GOOGLE_USER,
-    //         payload: socialUserService.createGoogleUser(role,googleUserData)
-    //     })
-    //     return Promise.resolve()
-    // },
-
     clearGoogleUserData :()=>{
         dispatch({
             type : SET_GOOGLE_USER_DATA,
@@ -180,8 +155,6 @@ const mapDispatchToProps = (dispatch) =>({
         })
     },
     create_user_dispatch:(payload)=>{
-        console.log("payload to create");
-        console.log(payload);
         dispatch({
             type :  CREATE_USER,
             payload : payload
@@ -189,6 +162,15 @@ const mapDispatchToProps = (dispatch) =>({
 
         return Promise.resolve()
 
+    },
+
+
+    createNewGoogleUser: (role, googleUserData) => {
+        dispatch({
+            type: CREATE_GOOGLE_USER,
+            payload: socialUserService.createGoogleUser(role, googleUserData)
+        });
+        return Promise.resolve()
     },
 });
 

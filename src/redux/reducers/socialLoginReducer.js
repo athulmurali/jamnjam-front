@@ -1,5 +1,5 @@
-import {ReduxActionNames} from "../Constants/commonUtils";
-import {CREATE_GOOGLE_USER, GOOGLE_USER_SELECT_ROLE, SET_GOOGLE_USER_DATA} from "../Constants/socialLogin";
+import {ReduxActionNames} from "../constants/commonUtils";
+import {CREATE_GOOGLE_USER, GOOGLE_USER_SELECT_ROLE, SET_GOOGLE_USER_DATA} from "../constants/socialLogin";
 
 
 const initialState = {

@@ -10,7 +10,7 @@ import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import List from "@material-ui/core/es/List/List";
 import MembersChip from "../MembersChip";
 import {connect} from "react-redux";
-import {GET_PROFILE} from "../../redux/Constants/userRegister";
+import {GET_PROFILE} from "../../redux/constants/userRegister";
 import {UserService} from "../../services/api/user";
 import {Link} from "react-router-dom";
 import {NO_IMG_PICTURE} from "../../const/url";

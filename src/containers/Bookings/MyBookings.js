@@ -1,15 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
-import {GET_PROFILE_FROM_LOCAL_ST} from "../../redux/Constants/userRegister";
-import {GET_MY_APPOINTMENTS} from "../../redux/Constants/appointments";
-import appointmentService from '../../services/api/AppointmentService'
+import {GET_PROFILE_FROM_LOCAL_ST} from "../../redux/constants/userRegister";
+import {GET_MY_APPOINTMENTS} from "../../redux/constants/appointments";
+import AppointmentService from '../../services/api/AppointmentService'
 
 
-const service = new appointmentService();
+const service = new AppointmentService();
 const MyBookings=(props)=>{
     console.log("update required : ? " + props.updateRequired);
 
-    if(!!props.updateRequired)
+    if (props.updateRequired)
     {
         props.getMyBookings();
     }

@@ -1,12 +1,7 @@
-import {
-    LOGIN_FULFILLED,
-    LOGIN_PENDING,
-    LOGIN_REJECTED,
-    UPDATE_LOGIN_FIELD, GOOGLE_LOGIN
-} from "../Constants/userLogin";
+import {GOOGLE_LOGIN, LOGIN_FULFILLED, LOGIN_PENDING, LOGIN_REJECTED, UPDATE_LOGIN_FIELD} from "../constants/userLogin";
 import {TOKEN_NAME} from "../../const/url";
-import {GET_PROFILE_FULFILLED, GET_PROFILE_PENDING, GET_PROFILE_REJECTED} from "../Constants/userRegister";
-import {ReduxActionNames} from "../Constants/commonUtils";
+import {GET_PROFILE_FULFILLED, GET_PROFILE_PENDING, GET_PROFILE_REJECTED} from "../constants/userRegister";
+import {ReduxActionNames} from "../constants/commonUtils";
 
 const initialState = {
     loginData: {
@@ -34,24 +29,6 @@ const loginReducer = (state = initialState, action) => {
             return {...state, fetching:false, error: action.payload};
 
 
-        case LOGIN_FULFILLED :
-        {
-
-            localStorage.clear();
-            localStorage.setItem(TOKEN_NAME, action.payload.data.token);
-            localStorage.setItem('currentId', action.payload.data.user._id);
-
-            localStorage.setItem('myProfile',
-                JSON.stringify(action.payload.data.user));
-
-
-            return {...state,
-                profile: action.payload.data.user,
-                fetching : false, error : false,
-                token : action.payload.data.token
-
-            }
-        }
 
 
         case GET_PROFILE_PENDING :
@@ -81,6 +58,7 @@ const loginReducer = (state = initialState, action) => {
             return {...state, fetching:false, error: action.payload};
 
 
+        case LOGIN_FULFILLED:
         case GOOGLE_LOGIN_NAMES.fulfilled :
         {
 
@@ -99,7 +77,6 @@ const loginReducer = (state = initialState, action) => {
 
             }
         }
-
 
 
         default : return state

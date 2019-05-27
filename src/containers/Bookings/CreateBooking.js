@@ -1,9 +1,10 @@
 import {connect} from "react-redux";
 import {
     CREATE_APPOINTMENT,
-    SET_APPOINTMENT_START_END_DATE, UPDATE_FIELD_BY_VALUE
-} from "../../redux/Constants/appointments";
-import {GET_PROFILE_FROM_LOCAL_ST} from "../../redux/Constants/userRegister";
+    SET_APPOINTMENT_START_END_DATE,
+    UPDATE_FIELD_BY_VALUE
+} from "../../redux/constants/appointments";
+import {GET_PROFILE_FROM_LOCAL_ST} from "../../redux/constants/userRegister";
 import React from "react";
 import AppointmentService from "../../services/api/AppointmentService";
 import PropTypes from 'prop-types';
@@ -24,7 +25,6 @@ import {CALENDAR_BOOKING, ERROR_IMG, LOADING_GIF, SUCCESS_IMG} from "../../const
 import {Link} from "react-router-dom";
 import {PATH_MY_GIGS} from "../../const/routeConstants";
 import moment from "moment";
-
 
 
 const styles =theme=>({

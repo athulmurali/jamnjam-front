@@ -11,9 +11,9 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import AlertDialog from "./AlertDialog";
 import {connect} from "react-redux";
-import {CLOSE_SIDE_BAR, SELECT_USER} from "../redux/Constants/userAccount";
+import {CLOSE_SIDE_BAR, SELECT_USER} from "../redux/constants/userAccount";
 import {Link} from "react-router-dom";
-import {SET_UPDATE_MODE} from "../redux/Constants/userRegister";
+import {SET_UPDATE_MODE} from "../redux/constants/userRegister";
 
 
 const styles = theme => ({

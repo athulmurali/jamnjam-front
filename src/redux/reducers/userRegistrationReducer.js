@@ -1,13 +1,21 @@
 import {
     CREATE_USER_FULFILLED,
     CREATE_USER_PENDING,
-    CREATE_USER_REJECTED, GET_PROFILE_FROM_LOCAL_ST,
-    REGISTER_USER, RESET_ADMIN_SCREEN, RESET_SELECTED_ROLE, RESET_UPDATE_SUCCESS, SET_UPDATE_MODE,
+    CREATE_USER_REJECTED,
+    GET_PROFILE_FROM_LOCAL_ST,
+    REGISTER_USER,
+    RESET_ADMIN_SCREEN,
+    RESET_SELECTED_ROLE,
+    RESET_UPDATE_SUCCESS,
+    SET_UPDATE_MODE,
     UPDATE_FIELD,
-    UPDATE_ROLE, UPDATE_USER_FULFILLED, UPDATE_USER_PENDING, UPDATE_USER_REJECTED
-} from "../Constants/userRegister";
+    UPDATE_ROLE,
+    UPDATE_USER_FULFILLED,
+    UPDATE_USER_PENDING,
+    UPDATE_USER_REJECTED
+} from "../constants/userRegister";
 import {FILL_USER_DETAILS, SELECT_ROLE, VERIFY_EMAIL} from "../../const/PageState";
-import {SELECT_USER} from "../Constants/userAccount";
+import {SELECT_USER} from "../constants/userAccount";
 import {TOKEN_NAME} from "../../const/url";
 
 const initialState = {
@@ -33,8 +41,6 @@ const initialState = {
 
 const userRegistrationReducer = (state = initialState, action) => {
     switch (action.type) {
-
-
 
         case UPDATE_ROLE:return Object.assign({}, state,
             {role : action.payload.role,

@@ -52,7 +52,7 @@ const styles = theme => ({
 });
 
 function UserCard(props) {
-    const { classes, theme } = props;
+    const {classes} = props;
 
     const myProfile = JSON.parse(localStorage.getItem('myProfile'));
 

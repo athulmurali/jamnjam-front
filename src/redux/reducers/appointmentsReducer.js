@@ -12,7 +12,7 @@ import {
     UPDATE_APPOINTMENT_FULFILLED,
     UPDATE_APPOINTMENT_PENDING,
     UPDATE_APPOINTMENT_REJECTED, UPDATE_FIELD_BY_VALUE
-} from "../Constants/appointments";
+} from "../constants/appointments";
 
 const initialState = {
     myAppointments: false,

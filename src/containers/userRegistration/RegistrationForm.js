@@ -13,7 +13,7 @@ import {
     SET_UPDATE_MODE,
     UPDATE_FIELD,
     UPDATE_USER
-} from "../../redux/Constants/userRegister";
+} from "../../redux/constants/userRegister";
 import {connect} from "react-redux";
 import {UserService} from "../../services/api/user";
 import {BAND} from "../../const/userRoles";

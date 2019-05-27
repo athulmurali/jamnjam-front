@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import {mailFolderListItems, otherMailFolderListItems} from './sideBarOptions/bandOptions';
 import {connect} from "react-redux";
-import {CLOSE_SIDE_BAR, OPEN_SIDE_BAR} from "../redux/Constants/userAccount";
+import {CLOSE_SIDE_BAR, OPEN_SIDE_BAR} from "../redux/constants/userAccount";
 import * as roles from "../const/userRoles";
 import {AdminListBottom, AdminListTop} from "./adminTitleData";
 import {ArtistListBottom, ArtistListTop} from "./sideBarOptions/artistOptions";
