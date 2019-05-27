@@ -40,8 +40,6 @@ class Login extends Component {
             this.props.getMyProfile(getUserServiceObj.getProfile);
             localStorage.setItem('currentId', this.props.profile._id);
             this.props.history.push('/' + this.props.profile.role + '/' + this.props.profile._id)
-
-
         }
         return (
             <div style={this.styles.container}>

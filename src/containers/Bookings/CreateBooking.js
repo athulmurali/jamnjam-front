@@ -19,13 +19,11 @@ import TextField from '@material-ui/core/TextField';
 
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-
-import queryString from 'query-string'
+import qs from 'qs'
 import {CALENDAR_BOOKING, ERROR_IMG, LOADING_GIF, SUCCESS_IMG} from "../../const/url";
 import {Link} from "react-router-dom";
 import {PATH_MY_GIGS} from "../../const/routeConstants";
 import moment from "moment";
-
 
 const styles =theme=>({
 
@@ -88,7 +86,8 @@ function CreateBooking(props) {
     defaultEndDateTime  = defaultEndDateTime.substr(0, defaultEndDateTime.length -9 );
 
     const {classes} = props;
-    const values = queryString.parse(props.location.search);
+    //removes ? from the query string
+    const values = qs.parse(props.location.search.substring(1));
     const artistId = values.artistId;
     return (
         <div className={classes.container}>
