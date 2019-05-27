@@ -82,7 +82,6 @@ class SearchBar extends React.Component {
 
     handleChange = event => {
         this.setState({value: event.target.value});
-
         this.props.updateSearchRole(event.target.value)
     };
     handleAccountTypeChange = event => {

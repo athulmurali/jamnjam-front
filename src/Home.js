@@ -13,9 +13,10 @@ import {connect} from "react-redux";
 import {CLOSE_SIDE_BAR} from "./redux/constants/userAccount";
 import {NO_IMG_PICTURE} from "./const/url";
 import PageMessages from "./config/PageMessages";
+import LocationService from "./services/api/LocationService";
 
 const artist = Artist.instance;
-
+const locationService = new LocationService();
 class Home extends Component {
     getAllUsersFromServer = () => {
         const users = new Users();
@@ -75,9 +76,8 @@ class Home extends Component {
                     latitude: newLatitude,
                     longitude: newLongitude,
                 }
-            })
+            },()=>this.setCountryName(newLatitude,newLongitude))
         }
-
     };
     getLocation = () => {
         if (navigator.geolocation) {
@@ -85,6 +85,12 @@ class Home extends Component {
         } else {
             alert("Oops. Geolocation is not supported by this browser !");
         }
+    };
+
+    setCountryName=(newLatitude,newLongitude)=>{
+        locationService.getCountryNameByCoOrdinates(newLatitude, newLongitude)
+            .then(res=>console.log(this.setState({country : res.country})))
+            .catch(err=>console.error(err));
     };
 
     constructor(props) {
@@ -112,28 +118,16 @@ class Home extends Component {
 
 
         const filteredUsers = this.state.freeUsers.filter(user => {
-            console.log(user.zip);
-
             if (this.props.filters.searchAccountType === "PRO")
-
                 return false;
-
             if (!user.zip) return false;
-
             if (!user.role) return false;
-
             if (!user.role.includes(this.props.filters.searchRole))
                 return false;
-
             if (!user.zip.toString().includes(this.props.filters.searchZip))
                 return false;
             else return true
         });
-
-
-        console.log(filteredUsers);
-
-
         return (
             <div className="App">
                 <header className="App-header">
@@ -162,9 +156,7 @@ class Home extends Component {
                     }
                 />
 
-                {this.props.filters.searchAccountType === "PRO"
-                &&
-                this.state.artistNames.length !== 0 &&
+                {this.props.filters.searchAccountType === "PRO" && this.state.artistNames.length !== 0 &&
                 <ul style={{
                     listStyle: "none",
                     backgroundColor: "grey",
