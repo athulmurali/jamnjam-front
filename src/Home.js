@@ -14,24 +14,33 @@ import {CLOSE_SIDE_BAR} from "./redux/constants/userAccount";
 import {NO_IMG_PICTURE} from "./const/url";
 import PageMessages from "./config/PageMessages";
 import LocationService from "./services/api/LocationService";
+import {ACCOUNT_TYPES} from './config/Enums'
 
 const artist = Artist.instance;
 const locationService = new LocationService();
-class Home extends Component {
-    getAllUsersFromServer = () => {
-        const users = new Users();
 
-        users.getAllUsers()
-            .then(result => {
-                const data = result.data;
-                const allUsers = [];
-                const jointArray = allUsers.concat(data.bands, data.artists);
-                this.setState({
-                    freeUsers: jointArray
-                });
-                return jointArray
-            })
-    };
+const styles = {
+    ArtistList: {
+        listStyle: "none",
+        backgroundColor: "grey",
+        padding: 0
+    }
+};
+class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            artistNames: [],
+            currentUserName: "",
+            country: "",
+            freeUsers: [],
+            accountType: ACCOUNT_TYPES.FREE,
+            location: {
+                latitude: 0,
+                longitude: 0,
+            }
+        }
+    }
     handleAccountTypeChange = (accountType) => {
         this.setState({
             accountType: accountType
@@ -93,20 +102,19 @@ class Home extends Component {
             .catch(err=>console.error(err));
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            artistNames: [],
-            currentUserName: "",
-            country: "",
-            freeUsers: [],
-            accountType: "FREE",
-            location: {
-                latitude: 0,
-                longitude: 0,
-            }
-        }
-    }
+    getAllUsersFromServer = () => {
+        const users = new Users();
+
+        users.getAllUsers()
+            .then(result => {
+                const data = result.data;
+                const jointArray = [...data.bands, ...data.artists];
+                this.setState({
+                    freeUsers: jointArray
+                });
+                return jointArray
+            })
+    };
 
     componentDidMount() {
         this.props.resetSideBar();
@@ -118,15 +126,11 @@ class Home extends Component {
 
 
         const filteredUsers = this.state.freeUsers.filter(user => {
-            if (this.props.filters.searchAccountType === "PRO")
+            if ((this.props.filters.searchAccountType === ACCOUNT_TYPES.PRO) ||
+                (!user.zip) || (!user.role) || (!user.role.includes(this.props.filters.searchRole)) ||
+                (!user.zip.toString().includes(this.props.filters.searchZip)))
                 return false;
-            if (!user.zip) return false;
-            if (!user.role) return false;
-            if (!user.role.includes(this.props.filters.searchRole))
-                return false;
-            if (!user.zip.toString().includes(this.props.filters.searchZip))
-                return false;
-            else return true
+            return true
         });
         return (
             <div className="App">
@@ -144,7 +148,7 @@ class Home extends Component {
                         <Typography variant="headline" component="h3">
                             {this.state.currentUserName}
                         </Typography>
-                        <Logout></Logout>
+                        <Logout/>
                     </div>
                 }
 
@@ -156,12 +160,8 @@ class Home extends Component {
                     }
                 />
 
-                {this.props.filters.searchAccountType === "PRO" && this.state.artistNames.length !== 0 &&
-                <ul style={{
-                    listStyle: "none",
-                    backgroundColor: "grey",
-                    padding: 0
-                }}>
+                {this.props.filters.searchAccountType === ACCOUNT_TYPES.PRO && this.state.artistNames.length !== 0 &&
+                <ul style={styles.ArtistList}>
                     {this.state.artistNames.map((artistObj, index) => {
                         return <li key={index}>
                             <CelebrityCard title={artistObj.name}
@@ -177,12 +177,8 @@ class Home extends Component {
                 </ul>
                 }
 
-                {this.state.accountType === "FREE" &&
-                <ul style={{
-                    listStyle: "none",
-                    backgroundColor: "grey",
-                    padding: 0
-                }}>
+                {this.state.accountType === ACCOUNT_TYPES.FREE &&
+                <ul style={styles.ArtistList}>
                     {filteredUsers.map((userObj, index) => {
                         return <li key={index}>
                             <UserCard title={(userObj.role === BAND && userObj.title)
@@ -191,7 +187,6 @@ class Home extends Component {
                                       subtitle={"role : " + userObj.role}
                                       loggedIn={!!this.state.currentUserName || this.props.myProfile}
                                       mbid={userObj._id}
-
                                       role={userObj.role}
                             />
 
