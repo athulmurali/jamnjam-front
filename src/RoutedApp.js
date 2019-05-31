@@ -3,7 +3,7 @@ import React from "react";
 import App from "./Home";
 import ArtistProfile from "./containers/Profiles/ArtistProfile";
 import Booking from "./components/Booking";
-import NavBarContainer from "./components/NavBarContainer";
+import NavBarContainer from "./components/NavBarContainer/NavBarContainer";
 import Admin from "./containers/Admin";
 import UserRegister from "./containers/userRegistration/UserRegister";
 import roleSelect from "./containers/userRegistration/RoleSelect";

@@ -1,0 +1,24 @@
+.registerContainer {
+    text-decoration: none;
+    color: inherit;
+}
+
+.loginContainer {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.registerContainer:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.loginContainer:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+button:focus {
+    outline: 0;
+}
