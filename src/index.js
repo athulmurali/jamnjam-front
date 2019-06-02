@@ -8,27 +8,15 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import RoutedApp from "./RoutedApp";
 
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import {Provider} from "react-redux"
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
-import promise from 'redux-promise-middleware'
 
-import userAccountReducer from './redux/reducers/userAccountReducer';
-import userRegistrationReducer from "./redux/reducers/userRegistrationReducer";
-import loginReducer from "./redux/reducers/loginReducer";
-import {searchReducer} from "./redux/reducers/searchReducer";
+import {Provider} from "react-redux"
+
 import 'react-dates/initialize';
-import appointmentsReducer from "./redux/reducers/appointmentsReducer";
-import socialLoginReducer from "./redux/reducers/socialLoginReducer";
-const combinedReducers = combineReducers({userAccountReducer, userRegistrationReducer,
-    loginReducer, searchReducer, appointmentsReducer, socailLoginReducer: socialLoginReducer});
-const middlewares = applyMiddleware(  promise(), thunk ,logger);
-const store = createStore(combinedReducers,middlewares);
+import store from './redux/reducers'
 
 ReactDOM.render(
-    <Provider store ={store}>
-        <RoutedApp />
+    <Provider store={store}>
+        <RoutedApp/>
     </Provider>
     , document.getElementById('root'));
 registerServiceWorker();

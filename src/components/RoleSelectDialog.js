@@ -125,9 +125,9 @@ RoleSelectDialog.propTypes = {
 
 const mapStateToProps   =   state => {
     return{
-        isNewUser       : state.socailLoginReducer.isNewUser,
-        selectedRole    : state.socailLoginReducer.selectedRole,
-        googleUserData : state.socailLoginReducer.googleUserData
+        isNewUser: state.socialLoginReducer.isNewUser,
+        selectedRole: state.socialLoginReducer.selectedRole,
+        googleUserData: state.socialLoginReducer.googleUserData
     }
 
 };

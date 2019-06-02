@@ -5,7 +5,7 @@ const initialState = {
     searchAccountType : '',
     searchZip:''
 };
-export const searchReducer = (state = initialState, action) => {
+export default function (state = initialState, action) {
     switch (action.type) {
 
         case UPDATE_SEARCH_ROLE :

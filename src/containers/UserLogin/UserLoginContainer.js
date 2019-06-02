@@ -34,6 +34,7 @@ class Login extends Component {
     render() {
 
         if (!!this.props.profile) {
+            console.log(this.props.profile);
             this.props.updateNavBar();
 
             const getUserServiceObj = new UserServiceWithToken();
