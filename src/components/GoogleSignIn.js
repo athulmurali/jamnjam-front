@@ -2,8 +2,8 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 import {CLIENT_ID} from '../const/googleCredentials'
 import {connect} from "react-redux";
-import {SET_GOOGLE_USER_DATA} from "../redux/constants/socialLogin";
 import RoleSelectDialog from "./RoleSelectDialog";
+import {setGoogleUserData} from "../redux/actions/googleLogin";
 
 const responseGoogle = (response) => {
 console.log(response)
@@ -21,6 +21,13 @@ const styles=
     };
 
 const GoogleSignIn =(props)=> {
+
+    // if google userData is available
+    // console.log("getUserNameAvailability ");
+    // to be implemented :  /isAvailable/username=?
+    //if available,exchange profile for  token
+    // else profile
+
     return (
         <div>
             <RoleSelectDialog/>
@@ -53,17 +60,10 @@ const mapStateToProps =(state)=>{
 
 const mapDispatchToProps = (dispatch) =>({
 
-    googleLogin:(data)=>{
-        console.log(data);
-        // uncomment for google login feature
-        // const userService = new UserService();
-        // const promise = userService.googleLoginService(data);
-        dispatch({
-            type :SET_GOOGLE_USER_DATA,
-            payload :{
-            googleUserData:data}
-        })
-    }
+    // uncomment for google login feature
+    // const userService = new UserService();
+    // const promise = userService.googleLoginService(data);
+    googleLogin: (data) => setGoogleUserData(dispatch, data),
 
 });
 

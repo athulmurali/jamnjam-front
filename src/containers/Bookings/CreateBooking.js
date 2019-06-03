@@ -197,8 +197,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)
-(withStyles(styles)(CreateBooking));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(CreateBooking));
 
 
 

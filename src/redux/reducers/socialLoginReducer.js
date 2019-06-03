@@ -47,7 +47,9 @@ const  socialLoginReducer = (state = initialState, action) =>
 
         case GOOGLE_USER_SELECT_ROLE :return {...state, selectedRole: action.payload.selectedRole};
 
-        case SET_GOOGLE_USER_DATA: return {...state, googleUserData: action.payload.googleUserData};
+        case SET_GOOGLE_USER_DATA:
+            console.log(action.payload.googleUserData);
+            return {...state, googleUserData: action.payload.googleUserData};
 
 
         default :

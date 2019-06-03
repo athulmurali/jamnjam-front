@@ -523,8 +523,6 @@ const mapDispatchToProps = (dispatch) =>({
         })
     },
 
-
-
     resetSelectedRole: () =>{dispatch({type: RESET_SELECTED_ROLE})}
 
 });

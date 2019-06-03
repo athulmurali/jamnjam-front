@@ -1,4 +1,5 @@
-import  {LOG_IN,LOG_OUT} from '../constants/userAccount';
+import {LOG_IN, LOG_OUT} from '../constants/userAccount';
+import {CREATE_USER} from "../constants/userRegister";
 
 export const LOG_IN_ACT     = (dispatch, )=>{
     dispatch({
@@ -14,3 +15,9 @@ export const LOG_OUT_ACT    = (dispatch )=>{
             payload : {
             }})
     };
+
+
+export const create_user_dispatch = (dispatch, payload) => dispatch({
+    type: CREATE_USER,
+    payload: payload
+});

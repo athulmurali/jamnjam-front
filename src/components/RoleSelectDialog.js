@@ -11,12 +11,13 @@ import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {ADMIN, ARTIST, BAND} from "../const/userRoles";
-import {CREATE_GOOGLE_USER, GOOGLE_USER_SELECT_ROLE, SET_GOOGLE_USER_DATA} from "../redux/constants/socialLogin";
 import {connect} from "react-redux";
 import {User} from "../models/User";
 import {UserService} from "../services/api/user";
-import {CREATE_USER} from "../redux/constants/userRegister";
-import SocialUsersService from "../services/api/SocialUsersService";
+import {selectRole} from "../redux/actions/roleSelect";
+import {clearGoogleUserData} from "../redux/actions/googleLogin";
+import {create_user_dispatch} from "../redux/actions/userAccountActions";
+import {createNewGoogleUser} from "../redux/actions/userRegistrationActions";
 
 
 const styles = theme => ({
@@ -29,34 +30,31 @@ const styles = theme => ({
         minWidth: 120,
     },
 });
-const socialUserService = new SocialUsersService();
 
 const handleChange = (props, event) => props.selectRole(event.target.value);
 
-const handleOk =  (props) => {
+const handleOk = (props) => {
 
+    // if available
+    //redirect to home page of the user, once the profile information is obtained.
     const userService = new UserService();
-    props.create_user_dispatch(userService
-        .createNewUser(transformGoogleObjToLocalObj(props.selectedRole, props.googleUserData)))
-        .then((result) => {
-        })
-    // props.clearGoogleUserData()
+    props.create_user_dispatch(
+        userService.createNewUser(transformGoogleObjToLocalObj(props.selectedRole, props.googleUserData)))
+
 };
 const handleClose = (props) => {
     props.clearGoogleUserData();
 };
 
-const transformGoogleObjToLocalObj =(role, googleUserData)=> {
+const transformGoogleObjToLocalObj = (role, googleUserData) => {
     const newGoogleUser = new User();
 
-    if (role === BAND)
-    {
+    if (role === BAND) {
         newGoogleUser.title = googleUserData.profileObj.name;
         newGoogleUser.firstName = "";
-        newGoogleUser.lastName= ""
+        newGoogleUser.lastName = ""
 
-    }
-    else {
+    } else {
         newGoogleUser.title = "";
 
         newGoogleUser.firstName = googleUserData.profileObj.givenName;
@@ -64,21 +62,21 @@ const transformGoogleObjToLocalObj =(role, googleUserData)=> {
     }
 
 
-    newGoogleUser.zip   = 123456;
+    newGoogleUser.zip = 123456;
     newGoogleUser.phone = 123456;
     newGoogleUser.password = googleUserData.googleId;
     newGoogleUser.confirmPassword = googleUserData.googleId;
-    newGoogleUser.username= "GID_" + googleUserData.googleId;
-    newGoogleUser.emailId= googleUserData.profileObj.email;
-    newGoogleUser.role= role;
+    newGoogleUser.username = "GID_" + googleUserData.googleId;
+    newGoogleUser.emailId = googleUserData.profileObj.email;
+    newGoogleUser.role = role;
 
 
     return newGoogleUser;
 };
 
-const RoleSelectDialog =(props)=> {
+const RoleSelectDialog = (props) => {
 
-    const { classes } = props;
+    const {classes} = props;
 
     return (
         <div>
@@ -91,12 +89,12 @@ const RoleSelectDialog =(props)=> {
                 <DialogContent>
                     <form className={classes.container}>
                         <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="role">Role</InputLabel>
+                            <InputLabel nma="role">Role</InputLabel>
                             <Select
                                 native
                                 value={props.selectedRole}
-                                onChange={(event)=>handleChange(props,event)}
-                                input={<Input id="role" />}
+                                onChange={(event) => handleChange(props, event)}
+                                input={<Input id="role"/>}
                             >
                                 <option value={ADMIN}>Admin</option>
                                 <option value={ARTIST}>Artist</option>
@@ -106,25 +104,25 @@ const RoleSelectDialog =(props)=> {
                     </form>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={()=>handleClose(props)} color="primary">
+                    <Button onClick={() => handleClose(props)} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={()=>handleOk(props)} color="primary" disabled={!props.selectedRole}>
+                    <Button onClick={() => handleOk(props)} color="primary" disabled={!props.selectedRole}>
                         Ok
                     </Button>
                 </DialogActions>
             </Dialog>
         </div>
-        );
-    };
+    );
+};
 
 
 RoleSelectDialog.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps   =   state => {
-    return{
+const mapStateToProps = state => {
+    return {
         isNewUser: state.socialLoginReducer.isNewUser,
         selectedRole: state.socialLoginReducer.selectedRole,
         googleUserData: state.socialLoginReducer.googleUserData
@@ -133,45 +131,13 @@ const mapStateToProps   =   state => {
 };
 
 
-const mapDispatchToProps = (dispatch) =>({
+const mapDispatchToProps = (dispatch) => ({
 
 
-    selectRole:(role)=>{
-        dispatch({
-            type:       GOOGLE_USER_SELECT_ROLE,
-            payload:    {selectedRole : role}
-        })
-
-
-
-    },
-
-    clearGoogleUserData :()=>{
-        dispatch({
-            type : SET_GOOGLE_USER_DATA,
-            payload:{
-                googleUserData: false
-            }
-        })
-    },
-    create_user_dispatch:(payload)=>{
-        dispatch({
-            type :  CREATE_USER,
-            payload : payload
-        });
-
-        return Promise.resolve()
-
-    },
-
-
-    createNewGoogleUser: (role, googleUserData) => {
-        dispatch({
-            type: CREATE_GOOGLE_USER,
-            payload: socialUserService.createGoogleUser(role, googleUserData)
-        });
-        return Promise.resolve()
-    },
+    selectRole: (role) => selectRole(dispatch, role),
+    clearGoogleUserData: () => clearGoogleUserData(dispatch),
+    create_user_dispatch: (payload) => create_user_dispatch(dispatch, payload),
+    createNewGoogleUser: (role, googleUserData) => createNewGoogleUser(dispatch, role, googleUserData),
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(RoleSelectDialog))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(RoleSelectDialog))
