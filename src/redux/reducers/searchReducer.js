@@ -1,4 +1,5 @@
 import {UPDATE_SEARCH_ACCOUNT_TYPE, UPDATE_SEARCH_ROLE, UPDATE_ZIP} from "../constants/searchConstants";
+import {RESET} from "../constants/common";
 
 const initialState = {
     searchRole : '',
@@ -19,7 +20,7 @@ export const searchReducer = (state = initialState, action) => {
         case UPDATE_ZIP :
             return{ ...state, searchZip : action.payload.searchZip};
 
-
+        case RESET: return {...initialState};
         default: return {
             ...state
         }

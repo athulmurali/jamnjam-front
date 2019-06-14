@@ -1,5 +1,6 @@
 import {ReduxActionNames} from "../constants/commonUtils";
 import {CREATE_GOOGLE_USER, GOOGLE_USER_SELECT_ROLE, SET_GOOGLE_USER_DATA} from "../constants/socialLogin";
+import {RESET} from "../constants/common";
 
 
 const initialState = {
@@ -49,6 +50,7 @@ const  socialLoginReducer = (state = initialState, action) =>
 
         case SET_GOOGLE_USER_DATA: return {...state, googleUserData: action.payload.googleUserData};
 
+        case RESET: return {...initialState};
 
         default :
             return { ...state

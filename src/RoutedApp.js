@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import React from "react";
 import App from "./Home";
 import ArtistProfile from "./containers/Profiles/ArtistProfile";

@@ -16,6 +16,7 @@ import {Link} from "react-router-dom";
 import DrawerMenu from "../containers/DrawerMenu";
 import {OPEN_SIDE_BAR} from "../redux/constants/userAccount";
 import PageMessages from "../config/PageMessages";
+import {RESET} from "../redux/constants/common";
 
 
 const styles = theme => ({
@@ -97,15 +98,18 @@ class MenuAppBar extends React.Component {
                                 >
                                     <AccountCircle />
                                 </IconButton>
-                                <Button color="inherit" className={classes.button}
-                                        onClick={()=>{
-                                            this.props.logOut();
-                                            console.log(this.props);
-                                            window.location.href = "/home";
 
-                                        }}>
-                                    Logout
-                                </Button>
+                                <Link to="/" style={{ textDecoration: 'none' ,color: 'inherit'}}>
+                                    <Button color="inherit" className={classes.button}
+                                            onClick={()=>{
+                                                this.props.logOut();
+                                                this.props.resetStore();
+
+                                            }}>
+                                        Logout
+                                    </Button>
+                                </Link>
+
 
                                 <Menu
                                     id="menu-appbar"
@@ -201,6 +205,7 @@ const mapDispatchToProps = (dispatch) =>({
         dispatch(LOG_OUT_ACT)
     },
     openSideBar: () => {dispatch( {type: OPEN_SIDE_BAR})},
+    resetStore: () => {dispatch( {type: RESET})},
 });
 
 const styledAppBar = withStyles(styles)(MenuAppBar);

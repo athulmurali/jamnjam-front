@@ -13,6 +13,7 @@ import {
     UPDATE_APPOINTMENT_PENDING,
     UPDATE_APPOINTMENT_REJECTED, UPDATE_FIELD_BY_VALUE
 } from "../constants/appointments";
+import {RESET} from "../constants/common";
 
 const initialState = {
     myAppointments: false,
@@ -84,6 +85,7 @@ const appointmentsReducer = (state = initialState, action) => {
             ...action.payload
         };
 
+        case RESET: return {...initialState};
         default :{
             // alert("case not matching! ")
             return state

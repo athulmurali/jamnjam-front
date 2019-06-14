@@ -2,6 +2,7 @@ import {GOOGLE_LOGIN, LOGIN_FULFILLED, LOGIN_PENDING, LOGIN_REJECTED, UPDATE_LOG
 import {TOKEN_NAME} from "../../const/url";
 import {GET_PROFILE_FULFILLED, GET_PROFILE_PENDING, GET_PROFILE_REJECTED} from "../constants/userRegister";
 import {ReduxActionNames} from "../constants/commonUtils";
+import {RESET} from "../constants/common";
 
 const initialState = {
     loginData: {
@@ -77,6 +78,8 @@ const loginReducer = (state = initialState, action) => {
 
             }
         }
+
+        case RESET: return {...initialState};
 
 
         default : return state

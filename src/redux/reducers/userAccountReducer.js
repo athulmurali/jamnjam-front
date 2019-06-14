@@ -4,6 +4,7 @@ import {
     SELECT_USER
 } from "../constants/userAccount";
 import {RESET_SELECTED_ROLE} from "../constants/userRegister";
+import {RESET} from "../constants/common";
 
 const initialState = {
     isLoggedIn: false,
@@ -68,6 +69,8 @@ const userAccountReducer = (state = initialState, action) => {
             };
 
 
+
+        case RESET: return {...initialState};
 
         default:
             return Object.assign({}, state, {error: false})

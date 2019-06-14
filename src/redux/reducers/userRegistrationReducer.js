@@ -17,6 +17,7 @@ import {
 import {FILL_USER_DETAILS, SELECT_ROLE, VERIFY_EMAIL} from "../../const/PageState";
 import {SELECT_USER} from "../constants/userAccount";
 import {TOKEN_NAME} from "../../const/url";
+import {RESET} from "../constants/common";
 
 const initialState = {
     firstName : '',
@@ -202,6 +203,7 @@ const userRegistrationReducer = (state = initialState, action) => {
         }
 
 
+        case RESET: return {...initialState};
 
         default:
             return Object.assign({}, state, {error: false})
