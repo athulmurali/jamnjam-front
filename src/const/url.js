@@ -1,5 +1,5 @@
 export const  BASE_URL = "http://jamnjam-be.us-east-2.elasticbeanstalk.com";
-// export const  BASE_URL = "https://jamnjam-backend.herokuapp.com";
+// export const  BASE_URL = "http://jamnjam-backend.herokuapp.com";
 // export const  BASE_URL = "http://localhost:3000"
 
 
@@ -42,15 +42,15 @@ export const UPDATE_USER_URL = BASE_URL +'/update/user';
 
 export const ADD_DEL_MEMBER_URL = BASE_URL + '/artist/band';
 export const ARTIST_LOOKOUT_URL = BASE_URL +'/artistLookOut';
-export const NO_IMG_PICTURE = "https://image.ibb.co/go2kO9/assassins_avatar_by_multispeedking_d6380y4.png";
-export const MAGIC_DP = "https://image.ibb.co/jHnGwU/magic.jpg";
-export const SUCCESS_IMG ="https://image.ibb.co/fZ2LSe/success.png";
-export const CALENDAR_BOOKING =  "https://image.ibb.co/jwoPLz/calendar_booking.png";
+export const NO_IMG_PICTURE = "http://image.ibb.co/go2kO9/assassins_avatar_by_multispeedking_d6380y4.png";
+export const MAGIC_DP = "http://image.ibb.co/jHnGwU/magic.jpg";
+export const SUCCESS_IMG ="http://image.ibb.co/fZ2LSe/success.png";
+export const CALENDAR_BOOKING =  "http://image.ibb.co/jwoPLz/calendar_booking.png";
 
 
-export const REG_BAND_COVER     = "https://preview.ibb.co/mxyWFz/band.jpg";
-export const REG_ADMIN_COVER        = "https://image.ibb.co/im1h5z/admin_cover.png";
-export const REG_ARTIST_COVER       = "https://image.ibb.co/dzvEJK/artist_cover.png";
+export const REG_BAND_COVER     = "http://preview.ibb.co/mxyWFz/band.jpg";
+export const REG_ADMIN_COVER        = "http://image.ibb.co/im1h5z/admin_cover.png";
+export const REG_ARTIST_COVER       = "http://image.ibb.co/dzvEJK/artist_cover.png";
 
 
 // appointments  urls
@@ -58,8 +58,8 @@ export const  GET_MY_APPOINTMENTS =  BASE_URL + "/appointmentsApp/appointments";
 export const  CREATE_APPOINTMENT  = BASE_URL + "/appointmentsApp/appointments";
 
 export const DELETE_APPOINTMENT = BASE_URL + "/appointmentsApp/appointments";
-export const ERROR_IMG = "https://preview.ibb.co/d48GHe/error.jpg";
-// export const LOADING_GIF="https://preview.ibb.co/jUYfAz/loading_GIf.gif"
-export const LOADING_GIF ="https://i.stack.imgur.com/ATB3o.gif";
+export const ERROR_IMG = "http://preview.ibb.co/d48GHe/error.jpg";
+// export const LOADING_GIF="http://preview.ibb.co/jUYfAz/loading_GIf.gif"
+export const LOADING_GIF ="http://i.stack.imgur.com/ATB3o.gif";
 export const LOOK_OUTS_FROM_MY_BANDS="/artist/:artistId/lookOutsFromByBands/";
 
