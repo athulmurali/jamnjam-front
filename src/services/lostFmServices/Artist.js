@@ -6,7 +6,7 @@ import axios from 'axios';
 let _singleton;
 const API_KEY="ce874f4ce1ad972d051f2a6c9fc82b4f";
 
-const BASE_URL ="https://ws.audioscrobbler.com/2.0/"
+const BASE_URL ="http://ws.audioscrobbler.com/2.0/";
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,

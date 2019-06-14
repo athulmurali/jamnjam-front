@@ -5,7 +5,7 @@
 // will only see deployed updates on the "N+1" visit to a page, since previously
 // cached resources are updated in the background.
 
-// To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
+// To learn more about the benefits of this model, read http://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
 
 const isLocalhost = Boolean(
@@ -25,7 +25,7 @@ export default function register() {
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
-      // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
+      // serve assets; see http://github.com/facebookincubator/create-react-app/issues/2374
       return;
     }
 
@@ -41,7 +41,7 @@ export default function register() {
         navigator.serviceWorker.ready.then(() => {
           console.log(
             'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://goo.gl/SC7cgQ'
+              'worker. To learn more, visit http://goo.gl/SC7cgQ'
           );
         });
       } else {
