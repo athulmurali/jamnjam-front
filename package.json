@@ -12,7 +12,7 @@
     "email-validator": "^2.0.4",
     "font-awesome": "^4.7.0",
     "history": "latest",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "material-ui": "^0.20.2",
     "material-ui-next-responsive-table": "^0.4.6",
     "moment": "^2.22.2",
